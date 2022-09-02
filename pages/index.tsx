@@ -1,23 +1,23 @@
 import type { GetStaticProps, NextPage } from 'next';
+import { axiosInstance } from '../lib/axios';
 import { Article } from '../lib/type';
 
-type IndexPageProps = {
-  articles: Article[];
+type TopPageProps = {
+  data: any /* TODO: define props type */;
 };
 
-const IndexPage: NextPage<IndexPageProps> = ({ articles }) => {
-  console.log({ articles });
-
+const TopPage: NextPage<TopPageProps> = ({ data }) => {
+  console.log({ data });
   return <p>Index Page</p>;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/articles/get');
-    const articles = await res.json();
+    const res = await axiosInstance.get('/api/top');
+    const data = res.data;
     return {
       props: {
-        articles: articles,
+        data: data,
       },
     };
   } catch (err) {
@@ -26,4 +26,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 };
 
-export default IndexPage;
+export default TopPage;
