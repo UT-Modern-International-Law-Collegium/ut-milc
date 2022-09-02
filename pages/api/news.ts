@@ -4,7 +4,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       try {
-        // TODO: トップページのデータ取得
+        // TODO: データ取得
         res.status(200).json({});
       } catch (err) {
         throw new Error(`error at /api/news :${err}`);

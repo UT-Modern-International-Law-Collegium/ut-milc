@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  // TODO: mysqlにaboutテーブル作って、そこからコンテンツを引っ張ってくる。
   switch (req.method) {
     case 'GET':
       try {
+        // TODO: mysqlにaboutテーブル作って、そこからコンテンツを引っ張ってくる。
         res.status(200).json({});
       } catch (err) {
         res.status(500).json({ message: `error at /api/about err: ${err}` });
