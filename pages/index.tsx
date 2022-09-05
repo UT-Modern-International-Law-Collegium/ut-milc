@@ -27,3 +27,5 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default IndexPage;
+
+// cmd+slash
