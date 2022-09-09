@@ -17,26 +17,45 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   };
 
   return (
-    <Stack {...rest} position={'fixed'} bottom={200} left={100} spacing={6}>
-      <NextChakraLink fontSize={30} color={stlyeLinkColor('/')} href={'/'}>
+    <Stack
+      {...rest}
+      position={'fixed'}
+      bottom={'50%'}
+      left={100}
+      transform={'translate(0,50%)'}
+      spacing={6}
+    >
+      <NextChakraLink
+        fontFamily={'serif'}
+        letterSpacing={5}
+        fontSize={36}
+        color={stlyeLinkColor('/')}
+        href={'/'}
+      >
         Top
       </NextChakraLink>
       <NextChakraLink
-        fontSize={30}
+        fontFamily={'serif'}
+        letterSpacing={5}
+        fontSize={36}
         color={stlyeLinkColor('/about')}
         href={'/about'}
       >
         About
       </NextChakraLink>
       <NextChakraLink
-        fontSize={30}
+        fontFamily={'serif'}
+        letterSpacing={5}
+        fontSize={36}
         color={stlyeLinkColor('/news')}
         href={'/news'}
       >
         News
       </NextChakraLink>
       <NextChakraLink
-        fontSize={30}
+        fontFamily={'serif'}
+        letterSpacing={5}
+        fontSize={36}
         color={stlyeLinkColor('/join-us')}
         href={'/join-us'}
       >
