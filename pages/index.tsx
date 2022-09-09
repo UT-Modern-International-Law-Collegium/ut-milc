@@ -27,5 +27,3 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default TopPage;
-
-// cmd+slash
