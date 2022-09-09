@@ -5,7 +5,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     case 'GET':
       try {
         // TODO: トップページのデータ取得
-        res.status(200).json({});
+        return res.status(200).json({});
       } catch (err) {
         throw new Error(`error at /api/top :${err}`);
       }
