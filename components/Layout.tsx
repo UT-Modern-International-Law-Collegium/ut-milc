@@ -9,7 +9,7 @@ type LayoutProps = {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <Stack position={'relative'}>
-      <Navigation position={'fixed'} />
+      <Navigation />
       {children}
     </Stack>
   );
