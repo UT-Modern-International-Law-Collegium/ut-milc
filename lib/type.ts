@@ -6,3 +6,11 @@ export type Article = {
   tag: string;
   status: 'public' | 'draft';
 };
+
+export type AboutPageData = {
+  id: number;
+  title: string;
+  content: string;
+  created_at: any;
+  status: string;
+};
