@@ -19,6 +19,7 @@ const SectionButton: FC<SectionButtonProps & ButtonProps> = ({
           pl={6}
           bg={'none'}
           fontWeight={'normal'}
+          fontSize={18}
           textDecoration={'underline'}
           borderRadius={'none'}
           _hover={{}}
