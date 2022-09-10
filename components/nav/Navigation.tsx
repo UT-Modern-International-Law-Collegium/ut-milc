@@ -27,7 +27,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
     if (router.pathname === path) {
       return '#00FFB1';
     } else {
-      return isDisplayingFirstview ? '#fff' : '#000';
+      return router.pathname === '/' && isDisplayingFirstview ? '#fff' : '#000';
     }
   };
 
