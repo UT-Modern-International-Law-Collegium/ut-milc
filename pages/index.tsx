@@ -1,8 +1,8 @@
 import React from 'react';
 import type { GetStaticProps, NextPage } from 'next';
-import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
+import { useForm } from 'react-hook-form';
 import {
   Heading,
   Stack,
@@ -13,6 +13,11 @@ import {
   Tbody,
   Td,
   Badge,
+  FormLabel,
+  Input,
+  Textarea,
+  Button,
+  Center,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -24,17 +29,39 @@ type TopPageProps = {
   data: { top: any[]; news: Article[] };
 };
 
+type ContactForm = {
+  email: string;
+  content: string;
+};
+
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactForm>();
+
+  const doContactFormSubmit = (data: ContactForm): void => {};
+
   return (
     <Stack spacing={4}>
       {/* ファーストビュー */}
       <Firstview />
       {/* ファーストビュー以下 */}
-      <Stack pl={500} pt={'100vh'}>
+      <Stack
+        pl={500}
+        pt={'100vh'}
+        sx={{
+          '.section-wrapper': {
+            minH: '400px',
+            w: '48vw',
+          },
+        }}
+      >
         {/* about */}
         {data.top.length !== 0 && (
-          <Stack spacing={8} minH={400} w={'48vw'}>
+          <Stack spacing={8} className={'section-wrapper'}>
             <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
               About
             </Heading>
@@ -47,7 +74,7 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
           </Stack>
         )}
         {/* news */}
-        <Stack minH={400} maxW={'48vw'} spacing={8}>
+        <Stack className={'section-wrapper'} spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             News
           </Heading>
@@ -77,13 +104,13 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
           </SectionButton>
         </Stack>
         {/* join us */}
-        <Stack minH={400}>
+        <Stack className={'section-wrapper'}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             Join us
           </Heading>
         </Stack>
         {/* contact */}
-        <Stack minH={400} spacing={8}>
+        <Stack spacing={8} className={'section-wrapper'}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             Contact
           </Heading>
@@ -94,6 +121,44 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
             </NextChakraLink>
             からご応募ください。
           </Text>
+          <Stack sx={{ span: { color: 'red' } }}>
+            <FormLabel fontSize={18} m={0}>
+              メールアドレス<span>*</span>
+            </FormLabel>
+            <Input
+              {...register('email', {
+                required: 'メールアドレスは必須項目です。',
+                pattern: {
+                  value:
+                    /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+                  message: 'メールアドレスの形式が違います。',
+                },
+              })}
+            />
+            <span>{errors.email?.message}</span>
+          </Stack>
+          <Stack sx={{ span: { color: 'red' } }}>
+            <FormLabel fontSize={18} m={0}>
+              お問い合わせ内容<span>*</span>
+            </FormLabel>
+            <Textarea
+              minH={200}
+              {...register('content', {
+                required: 'お問い合わせ内容を入力してください。',
+              })}
+            />
+            <span>{errors.content?.message}</span>
+          </Stack>
+          <Center>
+            <Button
+              w={200}
+              // m={'0 0 0 auto'}
+              bg={'blue.100'}
+              onClick={handleSubmit(doContactFormSubmit)}
+            >
+              送信する
+            </Button>
+          </Center>
         </Stack>
       </Stack>
     </Stack>

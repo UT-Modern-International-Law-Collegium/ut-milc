@@ -9,7 +9,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
   return (
     <Stack>
       <Stack pl={400}>
-        <PageTitle minW={192}>団体紹介</PageTitle>
+        <PageTitle minW={200}>団体紹介</PageTitle>
       </Stack>
     </Stack>
   );

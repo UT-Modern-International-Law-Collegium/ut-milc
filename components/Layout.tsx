@@ -11,6 +11,8 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     <Stack position={'relative'}>
       {children}
       <Navigation />
+      {/* フッター */}
+      <Stack h={400}></Stack>
     </Stack>
   );
 };

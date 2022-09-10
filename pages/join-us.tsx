@@ -8,7 +8,7 @@ const JoinUsPage: NextPage<JoinUsPage> = () => {
   return (
     <Stack>
       <Stack pl={400}>
-        <PageTitle minW={288}>入会申し込み</PageTitle>
+        <PageTitle minW={300}>入会申し込み</PageTitle>
       </Stack>
     </Stack>
   );

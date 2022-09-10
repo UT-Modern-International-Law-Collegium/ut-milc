@@ -11,7 +11,7 @@ const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
   return (
     <Stack>
       <Stack pl={400}>
-        <PageTitle minW={192}>活動報告</PageTitle>
+        <PageTitle minW={200}>活動報告</PageTitle>
       </Stack>
     </Stack>
   );

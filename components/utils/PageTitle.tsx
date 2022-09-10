@@ -18,7 +18,7 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       spacing={8}
     >
       <Divider orientation={'horizontal'} opacity={1} borderColor={'#000'} />
-      <Heading fontFamily={'serif'} size={'2xl'} {...rest}>
+      <Heading fontFamily={'serif'} size={'2xl'} letterSpacing={2} {...rest}>
         {children}
       </Heading>
       <Divider orientation={'horizontal'} opacity={1} borderColor={'#000'} />
