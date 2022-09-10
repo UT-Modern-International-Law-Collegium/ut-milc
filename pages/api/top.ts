@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { excuteQuery } from '../../lib/mysql';
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       try {
-        // TODO: トップページのデータ取得
-        res.status(200).json({});
+        const response = await excuteQuery('SELECT about FROM api_toppagedata');
+        return res.status(200).json(response);
       } catch (err) {
         throw new Error(`error at /api/top :${err}`);
       }

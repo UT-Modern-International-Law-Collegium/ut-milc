@@ -1,9 +1,17 @@
+import { Stack } from '@chakra-ui/react';
 import { NextPage } from 'next';
+import PageTitle from '../components/utils/PageTitle';
 
 type JoinUsPage = {};
 
 const JoinUsPage: NextPage<JoinUsPage> = () => {
-  return <p>Join us Page</p>;
+  return (
+    <Stack>
+      <Stack pl={400}>
+        <PageTitle minW={300}>入会申し込み</PageTitle>
+      </Stack>
+    </Stack>
+  );
 };
 
 export default JoinUsPage;
