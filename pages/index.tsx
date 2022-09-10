@@ -4,6 +4,8 @@ import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
 import { motion, useScroll } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { IconContext } from 'react-icons/lib';
+import { BsArrowRight } from 'react-icons/bs';
 import {
   Heading,
   Stack,
@@ -45,6 +47,12 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
   const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactForm>();
+
   useEffect(() => {
     return scrollY.onChange((latest: number) => {
       if (latest === 0) {
@@ -54,12 +62,6 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
       }
     });
   }, [scrollY]);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactForm>();
 
   const doContactFormSubmit = (data: ContactForm): void => {};
 
@@ -124,10 +126,29 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
           </SectionButton>
         </Stack>
         {/* join us */}
-        <Stack className={'section-wrapper'}>
+        <Stack className={'section-wrapper'} spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             Join us
           </Heading>
+          <Text fontSize={18}>
+            現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
+          </Text>
+          <Center>
+            <IconContext.Provider value={{ size: '20px' }}>
+              <Button
+                bg={'teal.200'}
+                fontWeight={'normal'}
+                fontSize={18}
+                py={7}
+                pl={7}
+                pr={8}
+                rightIcon={<BsArrowRight />}
+                onClick={() => router.push('/join-us')}
+              >
+                入会のお申し込みはこちら
+              </Button>
+            </IconContext.Provider>
+          </Center>
         </Stack>
         {/* contact */}
         <Stack spacing={8} className={'section-wrapper'}>
