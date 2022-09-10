@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Firstview: FC = () => {
   return (
-    <Stack h={'100vh'} bg={'#020708'} position={'relative'}>
+    <Stack h={'100vh'} bg={'#092025'} position={'relative'}>
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}
