@@ -16,8 +16,6 @@ type TopPageProps = {
 };
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
-  console.log({ data });
-
   return (
     <Stack spacing={4}>
       {/* ファーストビュー */}

@@ -1,4 +1,6 @@
+import { Stack } from '@chakra-ui/react';
 import { NextPage } from 'next';
+import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
 
 type NewsPageProps = {
@@ -6,7 +8,13 @@ type NewsPageProps = {
 };
 
 const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
-  return <p>News Page</p>;
+  return (
+    <Stack>
+      <Stack pl={400}>
+        <PageTitle minW={192}>活動報告</PageTitle>
+      </Stack>
+    </Stack>
+  );
 };
 
 export const getStaticProps = async () => {
