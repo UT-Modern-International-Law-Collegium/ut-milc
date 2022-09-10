@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
+import { motion, useScroll } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import {
   Heading,
@@ -18,6 +19,7 @@ import {
   Textarea,
   Button,
   Center,
+  keyframes,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -36,6 +38,23 @@ type ContactForm = {
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
+  const [isDisplayingFirstview, setIsDisplayingFirstview] =
+    useState<boolean>(true);
+  const { scrollY } = useScroll();
+
+  const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
+  const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
+
+  useEffect(() => {
+    return scrollY.onChange((latest: number) => {
+      if (latest === 0) {
+        setIsDisplayingFirstview(true);
+      } else {
+        setIsDisplayingFirstview(false);
+      }
+    });
+  }, [scrollY]);
+
   const {
     register,
     handleSubmit,
@@ -47,11 +66,12 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   return (
     <Stack spacing={4}>
       {/* ファーストビュー */}
-      <Firstview />
+      <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
       {/* ファーストビュー以下 */}
       <Stack
+        as={motion.div}
+        animation={isDisplayingFirstview ? '' : fadeUpAnimation}
         pl={500}
-        pt={'100vh'}
         sx={{
           '.section-wrapper': {
             minH: '400px',

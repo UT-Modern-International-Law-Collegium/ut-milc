@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
-import { CircularProgress, Heading, Stack, Text } from '@chakra-ui/react';
-import styled from 'styled-components';
+import {
+  CircularProgress,
+  Heading,
+  Stack,
+  StackProps,
+  Text,
+} from '@chakra-ui/react';
 
-const Firstview: FC = () => {
+const Firstview: FC<StackProps> = ({ ...rest }) => {
   return (
-    <Stack h={'100vh'} bg={'#020708'} position={'relative'}>
+    <Stack h={'100vh'} bg={'#092025'} position={'relative'} {...rest}>
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}
