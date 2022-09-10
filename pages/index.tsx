@@ -1,25 +1,42 @@
-import { Box, Heading, Stack, VStack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Stack,
+  VStack,
+  Text,
+  Center,
+  Button,
+} from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
 
 type TopPageProps = {
-  data: any /* TODO: define props type */;
+  data: any[];
 };
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
+  console.log({ data });
+
   return (
     <Stack spacing={4}>
       {/* ファーストビュー */}
       <Firstview />
       {/* ファーストビュー以下 */}
       <Stack pl={500} pt={'100vh'}>
-        <Stack minH={300}>
-          <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
-            About
-          </Heading>
-          <Text></Text>
-        </Stack>
+        {data.length !== 0 && (
+          <Stack spacing={8} minH={400} w={'48vw'}>
+            <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
+              About
+            </Heading>
+            <Text fontSize={18} lineHeight={2}>
+              {data[0].about}
+            </Text>
+            <Center>
+              <Button px={5}>団体紹介はこちら</Button>
+            </Center>
+          </Stack>
+        )}
         <Stack minH={300}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             News
