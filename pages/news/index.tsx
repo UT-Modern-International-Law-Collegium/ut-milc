@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { Article } from '../../lib/type';
@@ -18,7 +18,7 @@ const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const res = await axiosInstance.get('/api/news');
     return { props: { data: res.data } };

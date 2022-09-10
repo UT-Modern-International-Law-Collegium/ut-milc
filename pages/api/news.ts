@@ -6,10 +6,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case 'GET':
       try {
         const count: string = req.query['count'] as string;
+        const { newsId } = req.query;
         let dbQuery: string;
+        if (count && newsId)
+          throw new Error('/news/[newsId]?cout=... is not valid.');
         if (count) {
           dbQuery = `SELECT * FROM api_article WHERE status="public" LIMIT ${count}`;
         } else {
+          if (newsId) {
+            dbQuery = `SELECT * FROM api_article WHERE status="public" AND id=${newsId}`;
+          }
           dbQuery = `SELECT * FROM api_article WHERE status="public"`;
         }
         const news = await excuteQuery(dbQuery);
