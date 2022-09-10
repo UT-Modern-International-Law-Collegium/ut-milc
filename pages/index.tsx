@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
+import { useScroll } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import {
   Heading,
@@ -36,6 +37,20 @@ type ContactForm = {
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
+  const [isDisplayingFirstview, setIsDisplayingFirstview] =
+    useState<boolean>(true);
+  const { scrollY } = useScroll();
+
+  useEffect(() => {
+    return scrollY.onChange((latest: number) => {
+      if (latest === 0) {
+        setIsDisplayingFirstview(true);
+      } else {
+        setIsDisplayingFirstview(false);
+      }
+    });
+  }, [scrollY]);
+
   const {
     register,
     handleSubmit,
@@ -47,11 +62,10 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   return (
     <Stack spacing={4}>
       {/* ファーストビュー */}
-      <Firstview />
+      <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
       {/* ファーストビュー以下 */}
       <Stack
         pl={500}
-        pt={'100vh'}
         sx={{
           '.section-wrapper': {
             minH: '400px',

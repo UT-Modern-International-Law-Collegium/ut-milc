@@ -1,10 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Stack, StackProps } from '@chakra-ui/react';
 import NextChakraLink from '../utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
+import { useScroll } from 'framer-motion';
 
 const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
+  const [isDisplayingFirstview, setIsDisplayingFirstview] =
+    useState<boolean>(true);
+  const { scrollY } = useScroll();
+
+  useEffect(() => {
+    if (router.pathname !== '/') return;
+    return scrollY.onChange((latest) => {
+      if (latest === 0) {
+        setIsDisplayingFirstview(true);
+      } else {
+        setIsDisplayingFirstview(false);
+      }
+    });
+  }, [scrollY, router]);
 
   const stlyeLinkColor = (
     path: '/' | '/about' | '/news' | '/join-us'
@@ -12,7 +27,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
     if (router.pathname === path) {
       return '#00FFB1';
     } else {
-      return 'Inherit';
+      return isDisplayingFirstview ? '#fff' : '#000';
     }
   };
 
