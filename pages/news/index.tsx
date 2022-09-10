@@ -1,8 +1,8 @@
 import { Stack } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import PageTitle from '../components/utils/PageTitle';
-import { axiosInstance } from '../lib/axios';
-import { Article } from '../lib/type';
+import PageTitle from '../../components/utils/PageTitle';
+import { axiosInstance } from '../../lib/axios';
+import { Article } from '../../lib/type';
 
 type NewsPageProps = {
   data: Article[];
