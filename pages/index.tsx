@@ -43,7 +43,7 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const { scrollY } = useScroll();
 
   const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
-  const fadeUpAnimation = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
+  const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
 
   useEffect(() => {
     return scrollY.onChange((latest: number) => {

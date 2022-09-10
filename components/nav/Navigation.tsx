@@ -11,7 +11,6 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    if (router.pathname !== '/') return;
     return scrollY.onChange((latest) => {
       if (latest === 0) {
         setIsDisplayingFirstview(true);
