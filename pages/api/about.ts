@@ -1,11 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { excuteQuery } from '../../lib/mysql';
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       try {
-        // TODO: mysqlにaboutテーブル作って、そこからコンテンツを引っ張ってくる。
-        return res.status(200).json({});
+        const response = await excuteQuery(
+          'SELECT * FROM api_aboutpagedata WHERE status="public"'
+        );
+        return res.status(200).json(response);
       } catch (err) {
         return res
           .status(500)
