@@ -15,7 +15,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const res = await axiosInstance.get('/api/news');
     const paths = res.data.map((item: Article) => ({
-      params: { id: item.id.toString() },
+      params: { newsId: item.id.toString() },
     }));
     return { paths, fallback: false };
   } catch (err) {
@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const res = await axiosInstance.get(`/api/news/${params!.id}`);
+    const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
     return { props: { data: res.data } };
   } catch (err) {
     throw new Error(`error at [newsId].tsx getStaticProps: ${err}`);
