@@ -27,8 +27,10 @@ const Header: FC = () => {
     <Stack
       position={'fixed'}
       zIndex={1}
-      bg={'rgb(255, 255, 255, 0.8)'}
+      bg={'gray.300'}
       w={'100vw'}
+      py={2}
+      boxShadow={'lg'}
     >
       <IconContext.Provider value={{ size: '28px', color: '#092025' }}>
         <IconButton
