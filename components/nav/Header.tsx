@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import {
   Drawer,
   DrawerCloseButton,
@@ -11,9 +11,18 @@ import {
 import { RiMenu3Fill } from 'react-icons/ri';
 import { IconContext } from 'react-icons/lib';
 import Navigation from './Navigation';
+import { NextRouter, useRouter } from 'next/router';
 
 const Header: FC = () => {
+  const router: NextRouter = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    if (router.isReady) {
+      return onClose;
+    }
+  }, [router, onClose]);
+
   return (
     <Stack
       position={'fixed'}
@@ -34,7 +43,7 @@ const Header: FC = () => {
       </IconContext.Provider>
       <Drawer isOpen={isOpen} onClose={onClose} placement={'right'}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={'gray.100'}>
           <DrawerCloseButton />
           <Navigation />
         </DrawerContent>
