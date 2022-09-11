@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const fakeData = {
   top: [
     {
@@ -40,6 +42,63 @@ export const fakeData = {
     },
   ],
   achivment: {},
-  news: {},
+  news: [
+    {
+      id: 0,
+      title: '今日はこれをしました。',
+      content: '今日はこれをしました。',
+      created_at: moment(),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 1,
+      title: '昨日はこれをしました。',
+      content: '昨日はこれをしました。',
+      created_at: moment().add(-1, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 2,
+      title: 'おとといはこれをしました。',
+      content: 'おとといはこれをしました。',
+      created_at: moment().add(-2, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 3,
+      title: '3日前はこれをしました。',
+      content: '3日前はこれをしました。',
+      created_at: moment().add(-3, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 4,
+      title: '4日前はこれをしました。',
+      content: '4日前はこれをしました。',
+      created_at: moment().add(-4, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 5,
+      title: '今日はこれをしました。',
+      content: '今日はこれをしました。',
+      created_at: moment().add(-5, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+    {
+      id: 6,
+      title: '今日はこれをしました。',
+      content: '今日はこれをしました。',
+      created_at: moment().add(-6, 'd'),
+      tag: 'テストデータ',
+      status: 'public',
+    },
+  ],
   joinUs: {},
 };
