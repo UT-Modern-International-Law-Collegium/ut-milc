@@ -41,7 +41,7 @@ export const fakeData = {
       status: 'public',
     },
   ],
-  achivment: {},
+  awards: {},
   news: [
     {
       id: 0,
