@@ -1,16 +1,10 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import {
-  Divider,
-  Heading,
-  HStack,
-  Stack,
-  Text,
-  useMediaQuery,
-} from '@chakra-ui/react';
+import { Heading, HStack, Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
 import { AboutPageData } from '../lib/type';
+import { fakeData } from '../lib/fakeData';
 
 type AboutPageProps = { data: AboutPageData[] };
 
@@ -46,8 +40,12 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await axiosInstance.get('/api/about');
-    return { props: { data: res.data } };
+    if (process.env.ENV_VAR === 'development') {
+      return { props: { data: fakeData.about } };
+    } else {
+      const res = await axiosInstance.get('/api/about');
+      return { props: { data: res.data } };
+    }
   } catch (err) {
     throw new Error(`err at about page: ${err}`);
   }
