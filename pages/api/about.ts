@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       try {
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.ENV_VAR === 'development') {
           return res.status(200).json(fakeData.about);
         } else {
           const response = await excuteQuery(
