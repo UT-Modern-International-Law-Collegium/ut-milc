@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Stack, StackProps } from '@chakra-ui/react';
+import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
 import NextChakraLink from '../utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
 import { useScroll } from 'framer-motion';
@@ -8,9 +8,11 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   const { scrollY } = useScroll();
 
   useEffect(() => {
+    if (isLargerThan768px) return;
     return scrollY.onChange((latest) => {
       if (latest === 0) {
         setIsDisplayingFirstview(true);
@@ -18,7 +20,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
         setIsDisplayingFirstview(false);
       }
     });
-  }, [scrollY, router]);
+  }, [scrollY, router, isLargerThan768px]);
 
   const stlyeLinkColor = (
     path: '/' | '/about' | '/news' | '/join-us' | '/achivment'
@@ -26,7 +28,13 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
     if (router.pathname === path) {
       return '#00FFB1';
     } else {
-      return router.pathname === '/' && isDisplayingFirstview ? '#fff' : '#000';
+      if (isLargerThan768px) {
+        return router.pathname === '/' && isDisplayingFirstview
+          ? '#fff'
+          : '#000';
+      } else {
+        return '#000';
+      }
     }
   };
 
@@ -35,7 +43,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       {...rest}
       position={'fixed'}
       bottom={'50%'}
-      left={100}
+      left={isLargerThan768px ? 100 : 10}
       transform={'translate(0,50%)'}
       spacing={6}
     >

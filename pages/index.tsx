@@ -22,6 +22,7 @@ import {
   Button,
   Center,
   keyframes,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -42,9 +43,12 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   const { scrollY } = useScroll();
 
-  const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
+  const animationKeyFrame = isLargerThan768px
+    ? keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`
+    : keyframes`from{opacity:0;transform:translateY(-200px);}to{opacity:1;transform:translateY(-650px);}`;
   const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
 
   const {
@@ -66,20 +70,26 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const doContactFormSubmit = (data: ContactForm): void => {};
 
   return (
-    <Stack spacing={4}>
+    <Stack spacing={isLargerThan768px ? 4 : 0}>
       {/* ファーストビュー */}
       <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
       {/* ファーストビュー以下 */}
       <Stack
         as={motion.div}
         animation={isDisplayingFirstview ? '' : fadeUpAnimation}
-        pl={500}
-        sx={{
-          '.section-wrapper': {
-            minH: '400px',
-            w: '48vw',
-          },
-        }}
+        spacing={isLargerThan768px ? 0 : 12}
+        pl={isLargerThan768px ? 500 : 10}
+        pr={isLargerThan768px ? 0 : 10}
+        sx={
+          isLargerThan768px
+            ? {
+                '.section-wrapper': {
+                  minH: '400px',
+                  w: '48vw',
+                },
+              }
+            : {}
+        }
       >
         {/* about */}
         {data.top.length !== 0 && (
