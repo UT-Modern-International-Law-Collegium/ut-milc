@@ -1,4 +1,4 @@
-import { Divider, Stack } from '@chakra-ui/react';
+import { Center, Divider, Stack, useMediaQuery } from '@chakra-ui/react';
 import { GetStaticProps, NextPage } from 'next';
 import NewsRow from '../../components/news/NewsRow';
 import PageTitle from '../../components/utils/PageTitle';
@@ -10,15 +10,19 @@ type NewsPageProps = {
 };
 
 const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+
   return (
-    <Stack>
-      <Stack pl={400} spacing={10}>
-        <PageTitle minW={200}>活動報告</PageTitle>
-        <Stack divider={<Divider />} spacing={4}>
-          {data.map((item) => {
-            return <NewsRow key={item.id} news={item} />;
-          })}
-        </Stack>
+    <Stack
+      pl={isLargerThan768px ? 400 : 10}
+      spacing={10}
+      pr={isLargerThan768px ? 0 : 10}
+    >
+      <PageTitle minW={200}>活動報告</PageTitle>
+      <Stack divider={<Divider />} spacing={4}>
+        {data.map((item) => {
+          return <NewsRow key={item.id} news={item} />;
+        })}
       </Stack>
     </Stack>
   );
