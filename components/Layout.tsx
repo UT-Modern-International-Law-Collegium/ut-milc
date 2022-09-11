@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Stack, Box, useMediaQuery } from '@chakra-ui/react';
 import Navigation from './nav/Navigation';
+import Header from './nav/Header';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -18,7 +19,12 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       </Stack>
     );
   } else {
-    return <Stack>{children}</Stack>;
+    return (
+      <Stack>
+        <Header />
+        {children}
+      </Stack>
+    );
   }
 };
 
