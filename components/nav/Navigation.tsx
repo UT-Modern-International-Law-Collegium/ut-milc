@@ -12,7 +12,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    if (isLargerThan768px) return;
+    if (!isLargerThan768px) return;
     return scrollY.onChange((latest) => {
       if (latest === 0) {
         setIsDisplayingFirstview(true);
