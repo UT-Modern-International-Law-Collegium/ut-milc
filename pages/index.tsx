@@ -29,6 +29,7 @@ import { axiosInstance } from '../lib/axios';
 import { Article } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import NextChakraLink from '../components/utils/NextChakraLink';
+import { fakeData } from '../lib/fakeData';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[] };
@@ -116,7 +117,8 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
             <TableContainer>
               <Table>
                 <Tbody>
-                  {data.news.map((item) => {
+                  {data.news.map((item, index) => {
+                    if (index > 4) return;
                     return (
                       <Tr key={item.id}>
                         <Td>{moment(item.created_at).format('YYYY-MM-DD')}</Td>
@@ -218,17 +220,28 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const topRes = await axiosInstance.get('/api/top');
-    const newsRes = await axiosInstance.get('/api/news?count=5');
-    const data = {
-      top: topRes.data,
-      news: newsRes.data,
-    };
-    return {
-      props: {
-        data: data,
-      },
-    };
+    if (process.env.ENV_VAR === 'development') {
+      return {
+        props: {
+          data: {
+            top: fakeData.top,
+            news: fakeData.news,
+          },
+        },
+      };
+    } else {
+      const topRes = await axiosInstance.get('/api/top');
+      const newsRes = await axiosInstance.get('/api/news?count=5');
+      const data = {
+        top: topRes.data,
+        news: newsRes.data,
+      };
+      return {
+        props: {
+          data: data,
+        },
+      };
+    }
   } catch (err) {
     console.error({ err });
     throw new Error(`err: ${err}`);

@@ -1,8 +1,9 @@
-import { Center, Divider, Stack, useMediaQuery } from '@chakra-ui/react';
+import { Divider, Stack, useMediaQuery } from '@chakra-ui/react';
 import { GetStaticProps, NextPage } from 'next';
 import NewsRow from '../../components/news/NewsRow';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
+import { fakeData } from '../../lib/fakeData';
 import { Article } from '../../lib/type';
 
 type NewsPageProps = {
@@ -30,8 +31,12 @@ const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await axiosInstance.get('/api/news');
-    return { props: { data: res.data } };
+    if (process.env.ENV_VAR === 'development') {
+      return { props: { data: fakeData.news } };
+    } else {
+      const res = await axiosInstance.get('/api/news');
+      return { props: { data: res.data } };
+    }
   } catch (err) {
     throw new Error(`error at news page: ${err}`);
   }
