@@ -31,7 +31,9 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         top={'50%'}
         left={'50%'}
         transform={'translate(-50%,-50%)'}
-        size={isLargetThan768px ? '1400px' : '554px'}
+        size={
+          isLargetThan768px ? '1400px' : '390px'
+        } /* TODO: resize when mobile. */
         color={'#C9C9C9'}
       />
       <Stack
@@ -79,9 +81,11 @@ const TopTitle: FC = () => {
     return (
       <Heading
         style={{ writingMode: 'vertical-rl' }}
+        size={'3xl'}
+        fontWeight={'normal'}
         color={'#fff'}
         fontFamily={'serif'}
-        letterSpacing={30}
+        letterSpacing={36}
       >
         現代国際法研究会
       </Heading>
