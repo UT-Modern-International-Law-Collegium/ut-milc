@@ -1,6 +1,6 @@
 import { Divider, Stack } from '@chakra-ui/react';
 import { GetStaticProps, NextPage } from 'next';
-import NewsRow from '../../components/nav/NewsRow';
+import NewsRow from '../../components/news/NewsRow';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { Article } from '../../lib/type';

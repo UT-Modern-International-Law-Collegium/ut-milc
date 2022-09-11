@@ -21,7 +21,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   }, [scrollY, router]);
 
   const stlyeLinkColor = (
-    path: '/' | '/about' | '/news' | '/join-us'
+    path: '/' | '/about' | '/news' | '/join-us' | '/achivment'
   ): string => {
     if (router.pathname === path) {
       return '#00FFB1';
@@ -56,6 +56,15 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
         href={'/about'}
       >
         About
+      </NextChakraLink>
+      <NextChakraLink
+        fontFamily={'serif'}
+        letterSpacing={5}
+        fontSize={36}
+        color={stlyeLinkColor('/achivment')}
+        href={'/achivment'}
+      >
+        achivment
       </NextChakraLink>
       <NextChakraLink
         fontFamily={'serif'}
