@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fakeData } from '../../lib/fakeData';
 import { excuteQuery } from '../../lib/mysql';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
