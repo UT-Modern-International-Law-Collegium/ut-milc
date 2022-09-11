@@ -45,7 +45,7 @@ const NewsDetailPage: NextPage<NewsDetailPageProps> = ({ data }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     let data: any;
-    if (process.env.ENV_VAR === 'developmen') {
+    if (process.env.ENV_VAR === 'development') {
       data = fakeData.news;
     } else {
       const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
@@ -62,8 +62,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
-    return { props: { data: res.data } };
+    if (process.env.ENV_VAR === 'development') {
+      return { props: { data: [fakeData.news[Number(params!.newsId)]] } };
+    } else {
+      const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
+      return { props: { data: res.data } };
+    }
   } catch (err) {
     throw new Error(`error at [newsId].tsx getStaticProps: ${err}`);
   }
