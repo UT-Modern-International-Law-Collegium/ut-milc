@@ -1,7 +1,9 @@
 import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { axiosInstance } from '../../lib/axios';
+import { fakeData } from '../../lib/fakeData';
 import { Article } from '../../lib/type';
 
 type NewsDetailPageProps = {
@@ -42,8 +44,14 @@ const NewsDetailPage: NextPage<NewsDetailPageProps> = ({ data }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const res = await axiosInstance.get('/api/news');
-    const paths = res.data.map((item: Article) => ({
+    let data: any;
+    if (process.env.ENV_VAR === 'developmen') {
+      data = fakeData.news;
+    } else {
+      const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
+      data = res.data;
+    }
+    const paths = data.map((item: Article) => ({
       params: { newsId: item.id.toString() },
     }));
     return { paths, fallback: false };
