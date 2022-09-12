@@ -51,15 +51,17 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
 const TopTitle: FC = () => {
   const [isLargetThan1280px] = useMediaQuery('(min-width:1280px)');
   const [titlePtValue, setTitlePtValue] = useState<number>(0);
-  console.log(titlePtValue);
+  const [letterSpacingValue, setLetterSpacingValue] = useState<string>('0.4em');
 
   useEffect(() => {
     if (window.innerHeight > 667) {
       // iPhone SEより大きい
       setTitlePtValue(window.innerHeight * 0.24);
+      setLetterSpacingValue('0.6em');
     } else {
       // iPhone SEより小さい
-      setTitlePtValue(window.innerHeight * 0.17);
+      setTitlePtValue(window.innerHeight * 0.2);
+      setLetterSpacingValue('0.4em');
     }
   }, []);
 
@@ -105,7 +107,7 @@ const TopTitle: FC = () => {
         fontWeight={'normal'}
         color={'#fff'}
         fontFamily={'serif'}
-        letterSpacing={'0.6em'}
+        letterSpacing={letterSpacingValue}
         position={'absolute'}
         top={'50%'}
         left={'50%'}
