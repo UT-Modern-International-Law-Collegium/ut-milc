@@ -45,6 +45,10 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+  const [isLargerThan1280px] =
+    useMediaQuery(
+      '(min-width:1280px)'
+    ); /* NOTE: animationは1280px以上の時に限る。 */
   const { scrollY } = useScroll();
 
   const animationKeyFrame = isLargerThan768px
@@ -59,6 +63,7 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   } = useForm<ContactForm>();
 
   useEffect(() => {
+    if (!isLargerThan1280px) return;
     return scrollY.onChange((latest: number) => {
       if (latest === 0) {
         setIsDisplayingFirstview(true);
@@ -66,7 +71,7 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
         setIsDisplayingFirstview(false);
       }
     });
-  }, [scrollY]);
+  }, [scrollY, isLargerThan1280px]);
 
   const doContactFormSubmit = (data: ContactForm): void => {};
 
@@ -78,7 +83,8 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
       <Stack
         as={motion.div}
         animation={isDisplayingFirstview ? '' : fadeUpAnimation}
-        spacing={isLargerThan768px ? 0 : 12}
+        spacing={isLargerThan768px ? 0 : 20}
+        pt={isLargerThan768px ? 0 : 20}
         pl={isLargerThan768px ? 500 : 10}
         pr={isLargerThan768px ? 0 : 10}
         sx={
