@@ -91,7 +91,7 @@ const TopTitle: FC = () => {
         fontWeight={'normal'}
         color={'#fff'}
         fontFamily={'serif'}
-        letterSpacing={24}
+        letterSpacing={'0.6em'}
       >
         現代国際法研究会
       </Heading>
