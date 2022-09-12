@@ -11,7 +11,13 @@ import {
 const Firstview: FC<StackProps> = ({ ...rest }) => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
   return (
-    <Stack h={'100vh'} bg={'#092025'} position={'relative'} {...rest}>
+    <Stack
+      h={'100vh'}
+      bg={'#092025'}
+      position={'relative'}
+      overflow={'hidden'}
+      {...rest}
+    >
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}
@@ -32,7 +38,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         left={'50%'}
         transform={'translate(-50%,-50%)'}
         size={
-          isLargetThan768px ? '1400px' : '390px'
+          isLargetThan768px ? '1400px' : '400px'
         } /* TODO: resize when mobile. */
         color={'#C9C9C9'}
       />
@@ -49,8 +55,8 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
 };
 
 const TopTitle: FC = () => {
-  const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
-  if (isLargetThan768px) {
+  const [isLargetThan1280px] = useMediaQuery('(min-width:1280px)');
+  if (isLargetThan1280px) {
     return (
       <Heading
         style={{ writingMode: 'vertical-rl' }}
@@ -81,11 +87,11 @@ const TopTitle: FC = () => {
     return (
       <Heading
         style={{ writingMode: 'vertical-rl' }}
-        size={'3xl'}
+        size={'2xl'}
         fontWeight={'normal'}
         color={'#fff'}
         fontFamily={'serif'}
-        letterSpacing={36}
+        letterSpacing={24}
       >
         現代国際法研究会
       </Heading>
