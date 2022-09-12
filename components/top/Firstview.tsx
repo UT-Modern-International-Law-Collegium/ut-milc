@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   CircularProgress,
   Heading,
@@ -10,6 +10,7 @@ import {
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
+
   return (
     <Stack
       h={'100vh'}
@@ -42,30 +43,41 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         } /* TODO: resize when mobile. */
         color={'#C9C9C9'}
       />
-      <Stack
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-      >
-        <TopTitle />
-      </Stack>
+      <TopTitle />
     </Stack>
   );
 };
 
 const TopTitle: FC = () => {
   const [isLargetThan1280px] = useMediaQuery('(min-width:1280px)');
+  const [titlePtValue, setTitlePtValue] = useState<number>(0);
+  console.log(titlePtValue);
+
+  useEffect(() => {
+    if (window.innerHeight > 667) {
+      // iPhone SEより大きい
+      setTitlePtValue(window.innerHeight * 0.24);
+    } else {
+      // iPhone SEより小さい
+      setTitlePtValue(window.innerHeight * 0.17);
+    }
+  }, []);
+
   if (isLargetThan1280px) {
     return (
       <Heading
-        style={{ writingMode: 'vertical-rl' }}
+        h={'100vh'}
         color={'#fff'}
+        style={{ writingMode: 'vertical-rl' }}
         letterSpacing={36}
         fontSize={68}
-        fontWeight={'1'}
+        fontWeight={'normal'}
         fontFamily={'serif'}
         lineHeight={1.5}
+        position={'absolute'}
+        top={'62%'}
+        left={'50%'}
+        transform={'translate(-50%,-50%)'}
       >
         <Text
           style={{
@@ -88,10 +100,16 @@ const TopTitle: FC = () => {
       <Heading
         style={{ writingMode: 'vertical-rl' }}
         size={'2xl'}
+        pt={titlePtValue} /* ヘッダーの高さ分 */
+        h={'100vh'}
         fontWeight={'normal'}
         color={'#fff'}
         fontFamily={'serif'}
         letterSpacing={'0.6em'}
+        position={'absolute'}
+        top={'50%'}
+        left={'50%'}
+        transform={'translate(-50%,-50%)'}
       >
         現代国際法研究会
       </Heading>
