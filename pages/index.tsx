@@ -51,10 +51,6 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
     ); /* NOTE: animationは1280px以上の時に限る。 */
   const { scrollY } = useScroll();
 
-  /* NOTE: animationは1280px以上の時に限る。 */
-  const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
-  const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
-
   const {
     register,
     handleSubmit,
@@ -77,11 +73,10 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   return (
     <Stack spacing={{ base: 0, md: 4 }}>
       {/* ファーストビュー */}
-      <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
+      <Firstview />
       {/* ファーストビュー以下 */}
       <Stack
         as={motion.div}
-        animation={isDisplayingFirstview ? '' : fadeUpAnimation}
         spacing={{ base: 20, md: 0 }}
         pt={{ base: 0, md: 20 }}
         pl={{ base: 10, md: 500 }}
