@@ -13,7 +13,10 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   if (isLargerThan768px) {
     return (
       <>
-        <Stack position={{ base: 'relative' }}>
+        <Stack
+          position={{ base: 'relative' }}
+          minH={{ base: 'none', md: '384vh' }}
+        >
           <Navigation />
           {children}
         </Stack>

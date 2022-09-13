@@ -78,11 +78,14 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   return (
     <Stack spacing={{ base: 0, md: 4 }}>
       {/* ファーストビュー */}
-      <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
+      <Firstview opacity={isDisplayingFirstview ? 1 : 1} transition={'0.2s'} />
       {/* ファーストビュー以下 */}
       <Stack
         as={motion.div}
-        animation={isDisplayingFirstview ? '' : fadeUpAnimation}
+        // TODO: アニメーションは最後に実装するため、animationはコメントアウト。
+        // animation={isDisplayingFirstview ? '' : fadeUpAnimation}
+        position={{ base: 'static', md: 'absolute' }}
+        top={{ base: 0, md: '120vh', xl: '130vh' }}
         spacing={{ base: 20, md: 0 }}
         pt={{ base: 20, md: 0 }}
         pl={{ base: 10, md: 500 }}
