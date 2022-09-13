@@ -1,6 +1,8 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { Heading, HStack, Stack, Text, useMediaQuery } from '@chakra-ui/react';
+import { IconContext } from 'react-icons/lib';
+import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
 import { AboutPageData } from '../lib/type';
@@ -26,7 +28,12 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
               maxW={850}
               w={isLargerThan768px ? '82%' : '100%'}
             >
-              <Heading>{item.title}</Heading>
+              <HStack alignItems={'center'} spacing={2}>
+                <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
+                  <BsFillSquareFill />
+                  <Heading size={'lg'}>{item.title}</Heading>
+                </IconContext.Provider>
+              </HStack>
               <HStack spacing={4} borderLeft={'1px solid #ccc'} pl={5}>
                 <Text>{item.content}</Text>
               </HStack>
