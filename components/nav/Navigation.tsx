@@ -43,7 +43,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       {...rest}
       position={'fixed'}
       bottom={'50%'}
-      left={isLargerThan768px ? 100 : 10}
+      left={{ base: 10, md: 100 }}
       transform={'translate(0,50%)'}
       spacing={6}
     >
