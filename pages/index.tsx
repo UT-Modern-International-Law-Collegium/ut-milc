@@ -51,9 +51,8 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
     ); /* NOTE: animationは1280px以上の時に限る。 */
   const { scrollY } = useScroll();
 
-  const animationKeyFrame = isLargerThan768px
-    ? keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`
-    : keyframes`from{opacity:0;transform:translateY(-200px);}to{opacity:1;transform:translateY(-650px);}`;
+  /* NOTE: animationは1280px以上の時に限る。 */
+  const animationKeyFrame = keyframes`from{opacity:0;transform:translateY(0px);}to{opacity:1;transform:translateY(-400px)}`;
   const fadeUpAnimation: string = `${animationKeyFrame} 1.4s ease-out 1 forwards`;
 
   const {
