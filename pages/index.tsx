@@ -99,46 +99,40 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
         }
       >
         {/* about */}
-        {data.top.length !== 0 && (
-          <Stack spacing={8} className={'section-wrapper'}>
-            <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
-              About
-            </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.top[0].about}
-            </Text>
-            <SectionButton onClick={() => router.push('/about')}>
-              団体紹介はこちら
-            </SectionButton>
-          </Stack>
-        )}
+        <Stack spacing={8} className={'section-wrapper'}>
+          <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
+            About
+          </Heading>
+          <Text fontSize={18} lineHeight={2}>
+            {data.top[0].about}
+          </Text>
+          <SectionButton onClick={() => router.push('/about')}>
+            団体紹介はこちら
+          </SectionButton>
+        </Stack>
         {/* news */}
         <Stack className={'section-wrapper'} spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             News
           </Heading>
-          {data.news.length === 0 ? (
-            <Text>活動報告はありません。</Text>
-          ) : (
-            <TableContainer>
-              <Table>
-                <Tbody>
-                  {data.news.map((item, index) => {
-                    if (index > 4) return;
-                    return (
-                      <Tr key={item.id}>
-                        <Td>{moment(item.created_at).format('YYYY-MM-DD')}</Td>
-                        <Td>{item.title}</Td>
-                        <Td>
-                          <Badge>{item.tag}</Badge>
-                        </Td>
-                      </Tr>
-                    );
-                  })}
-                </Tbody>
-              </Table>
-            </TableContainer>
-          )}
+          <TableContainer>
+            <Table>
+              <Tbody>
+                {data.news.map((item, index) => {
+                  if (index > 4) return;
+                  return (
+                    <Tr key={item.id}>
+                      <Td>{moment(item.created_at).format('YYYY-MM-DD')}</Td>
+                      <Td>{item.title}</Td>
+                      <Td>
+                        <Badge>{item.tag}</Badge>
+                      </Td>
+                    </Tr>
+                  );
+                })}
+              </Tbody>
+            </Table>
+          </TableContainer>
           <SectionButton onClick={() => router.push('/news')}>
             全て見る
           </SectionButton>
@@ -155,7 +149,6 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
             <IconContext.Provider value={{ size: '20px' }}>
               <Button
                 bg={'teal.200'}
-                fontWeight={'normal'}
                 fontSize={18}
                 py={7}
                 pl={7}
