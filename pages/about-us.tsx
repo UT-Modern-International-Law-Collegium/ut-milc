@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
     if (process.env.ENV_VAR === 'development') {
       return { props: { data: fakeData.about } };
     } else {
-      const res = await axiosInstance.get('/api/about');
+      const res = await axiosInstance.get('/api/about-us');
       return { props: { data: res.data } };
     }
   } catch (err) {

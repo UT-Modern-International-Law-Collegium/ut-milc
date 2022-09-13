@@ -12,10 +12,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       } catch (err) {
         return res
           .status(500)
-          .json({ message: `error at /api/about err: ${err}` });
+          .json({ message: `error at /api/about-us err: ${err}` });
       }
     default:
-      throw new Error('method must be only GET at /api/about');
+      throw new Error('method must be only GET at /api/about-us');
   }
 };
 

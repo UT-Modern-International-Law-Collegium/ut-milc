@@ -101,12 +101,12 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
         {/* about */}
         <Stack spacing={8} className={'section-wrapper'}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
-            About
+            About us
           </Heading>
           <Text fontSize={18} lineHeight={2}>
             {data.top[0].about}
           </Text>
-          <SectionButton onClick={() => router.push('/about')}>
+          <SectionButton onClick={() => router.push('/about-us')}>
             団体紹介はこちら
           </SectionButton>
         </Stack>
