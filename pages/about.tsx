@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { Heading, HStack, Stack, Text, useMediaQuery } from '@chakra-ui/react';
+import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
@@ -11,23 +11,17 @@ import { fakeData } from '../lib/fakeData';
 type AboutPageProps = { data: AboutPageData[] };
 
 const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
-  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-
   return (
     <Stack>
       <Stack
-        pl={isLargerThan768px ? 400 : 10}
-        pr={isLargerThan768px ? 0 : 10}
-        spacing={10}
+        pl={{ base: 10, md: 400 }}
+        pr={{ base: 10, md: 0 }}
+        spacing={{ base: 10 }}
       >
         <PageTitle minW={200}>団体紹介</PageTitle>
         {data.map((item) => {
           return (
-            <Stack
-              key={item.id}
-              maxW={850}
-              w={isLargerThan768px ? '82%' : '100%'}
-            >
+            <Stack key={item.id} maxW={850} w={{ base: '100%', md: '82%' }}>
               <HStack alignItems={'center'} spacing={2}>
                 <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
                   <BsFillSquareFill />
