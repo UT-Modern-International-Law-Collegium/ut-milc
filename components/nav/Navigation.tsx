@@ -23,7 +23,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   }, [scrollY, router, isLargerThan768px]);
 
   const stlyeLinkColor = (
-    path: '/' | '/about' | '/news' | '/join-us' | '/awards'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (router.pathname === path) {
       return '#00FFB1';
@@ -60,10 +60,10 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
         fontFamily={'serif'}
         letterSpacing={5}
         fontSize={36}
-        color={stlyeLinkColor('/about')}
-        href={'/about'}
+        color={stlyeLinkColor('/about-us')}
+        href={'/about-us'}
       >
-        About
+        About us
       </NextChakraLink>
       <NextChakraLink
         fontFamily={'serif'}
