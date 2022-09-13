@@ -76,17 +76,17 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const doContactFormSubmit = (data: ContactForm): void => {};
 
   return (
-    <Stack spacing={isLargerThan768px ? 4 : 0}>
+    <Stack spacing={{ base: 0, md: 4 }}>
       {/* ファーストビュー */}
       <Firstview opacity={isDisplayingFirstview ? 1 : 0} transition={'0.2s'} />
       {/* ファーストビュー以下 */}
       <Stack
         as={motion.div}
         animation={isDisplayingFirstview ? '' : fadeUpAnimation}
-        spacing={isLargerThan768px ? 0 : 20}
-        pt={isLargerThan768px ? 0 : 20}
-        pl={isLargerThan768px ? 500 : 10}
-        pr={isLargerThan768px ? 0 : 10}
+        spacing={{ base: 20, md: 0 }}
+        pt={{ base: 0, md: 20 }}
+        pl={{ base: 10, md: 500 }}
+        pr={{ base: 10, md: 0 }}
         sx={
           isLargerThan768px
             ? {
