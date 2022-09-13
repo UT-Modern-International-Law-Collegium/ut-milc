@@ -32,7 +32,11 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
         borderColor={'#000'}
         w={isLargerThan768px ? 230 : 10}
       />
-      <Heading fontFamily={'serif'} size={'2xl'} letterSpacing={2}>
+      <Heading
+        fontFamily={'serif'}
+        size={{ base: 'xl', md: '2xl' }}
+        letterSpacing={2}
+      >
         {children}
       </Heading>
       <Divider

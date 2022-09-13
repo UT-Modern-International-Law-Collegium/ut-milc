@@ -10,7 +10,7 @@ const JoinUsPage: NextPage<JoinUsPage> = () => {
   return (
     <Stack>
       <Stack pl={isLargerThan768px ? 400 : 10} pr={isLargerThan768px ? 0 : 10}>
-        <PageTitle minW={300}>入会申し込み</PageTitle>
+        <PageTitle>入会申し込み</PageTitle>
       </Stack>
     </Stack>
   );
