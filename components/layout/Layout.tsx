@@ -12,12 +12,14 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   if (isLargerThan768px) {
     return (
-      <Stack position={'relative'}>
-        {children}
-        <Navigation />
+      <>
+        <Stack position={{ base: 'relative' }}>
+          <Navigation />
+          {children}
+        </Stack>
         {/* フッター */}
         <Footer />
-      </Stack>
+      </>
     );
   } else {
     return (

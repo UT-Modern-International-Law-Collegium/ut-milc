@@ -41,11 +41,15 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   return (
     <Stack
       {...rest}
-      position={'fixed'}
-      bottom={'50%'}
-      left={isLargerThan768px ? 100 : 10}
-      transform={'translate(0,50%)'}
+      position={{ base: 'fixed', md: 'sticky' }}
+      top={{ base: '50%' }}
+      maxW={{ base: 'none', md: 300 }}
+      // NOTE: positionがstickyの時はleft指定できない。
+      left={{ base: 10, md: 100 }}
+      pl={{ base: 0, md: 100 }}
+      transform={'translate(0,-50%)'}
       spacing={6}
+      zIndex={1}
     >
       <NextChakraLink
         fontFamily={'serif'}

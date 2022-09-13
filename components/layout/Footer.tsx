@@ -4,7 +4,7 @@ import { BsInstagram, BsTwitter } from 'react-icons/bs';
 
 const Footer: FC = () => {
   return (
-    <VStack bg={'gray.200'} minH={200} py={8}>
+    <VStack bg={'gray.200'} py={8} minH={300}>
       <Heading
         size={'lg'}
         fontWeight={'thin'}

@@ -13,7 +13,8 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
 
   return (
     <Stack
-      h={'100vh'}
+      transform={{ md: 'translateY(-50%)' }}
+      h={{ base: '100vh', md: '120vh', xl: '140vh' }}
       bg={'#092025'}
       position={'relative'}
       overflow={'hidden'}
