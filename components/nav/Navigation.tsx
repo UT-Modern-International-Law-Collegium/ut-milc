@@ -8,19 +8,23 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
+  const [isNavigationVisible, setIsNavigationVisible] = useState(true);
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
 
   useEffect(() => {
     if (!isLargerThan768px) return;
+
     return scrollY.onChange((latest) => {
+      const prev: number = scrollYProgress.getPrevious();
+      setIsNavigationVisible(prev < 0.8);
       if (latest === 0) {
         setIsDisplayingFirstview(true);
       } else {
         setIsDisplayingFirstview(false);
       }
     });
-  }, [scrollY, router, isLargerThan768px]);
+  }, [scrollY, router, isLargerThan768px, scrollYProgress]);
 
   const stlyeLinkColor = (
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
@@ -41,11 +45,13 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   return (
     <Stack
       {...rest}
-      position={'fixed'}
+      position={{ base: 'fixed' }}
       bottom={'50%'}
       left={{ base: 10, md: 100 }}
       transform={'translate(0,50%)'}
       spacing={6}
+      opacity={{ base: 1, md: isNavigationVisible ? 1 : 0 }}
+      transition={'0.2s'}
     >
       <NextChakraLink
         fontFamily={'serif'}
