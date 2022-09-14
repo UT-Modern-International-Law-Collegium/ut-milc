@@ -15,7 +15,7 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       alignItems={'center'}
       justifyContent={'space-between'}
       pt={{ base: 20, md: 100 }}
-      w={{ base: '100%', md: '80%' }}
+      w={{ base: '100%' }}
       spacing={{ base: 0, md: 8 }}
     >
       <Divider
