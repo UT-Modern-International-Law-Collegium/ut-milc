@@ -2,15 +2,18 @@ import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { ReactElement } from 'react';
+import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { Article } from '../../lib/type';
+import { NextPageWithLayout } from '../_app';
 
 type NewsDetailPageProps = {
   data: Article[];
 };
 
-const NewsDetailPage: NextPage<NewsDetailPageProps> = ({ data }) => {
+const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
   return (
     <Stack>
       <Stack
@@ -45,6 +48,10 @@ const NewsDetailPage: NextPage<NewsDetailPageProps> = ({ data }) => {
       </Stack>
     </Stack>
   );
+};
+
+NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

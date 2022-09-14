@@ -1,14 +1,20 @@
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-import Layout from '../components/layout/Layout';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getlayout = Component.getLayout ?? ((page) => page);
   return (
-    <ChakraProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ChakraProvider>
+    <ChakraProvider>{getlayout(<Component {...pageProps} />)}</ChakraProvider>
   );
 };
 

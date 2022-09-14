@@ -1,12 +1,15 @@
 import { Stack } from '@chakra-ui/react';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
+import { ReactElement } from 'react';
+import Layout from '../components/layout/Layout';
 import PageTitle from '../components/utils/PageTitle';
+import { NextPageWithLayout } from './_app';
 
 type Props = {
   data: any[];
 };
 
-const AchivmentPage: NextPage<Props> = ({ data }) => {
+const AwardsPage: NextPageWithLayout<Props> = ({ data }) => {
   return (
     <Stack>
       <Stack
@@ -20,8 +23,12 @@ const AchivmentPage: NextPage<Props> = ({ data }) => {
   );
 };
 
+AwardsPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
 export const getStaticProps: GetStaticProps = async () => {
   return { props: { data: {} } };
 };
 
-export default AchivmentPage;
+export default AwardsPage;
