@@ -8,7 +8,6 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
-  const [isNavigationVisible, setIsNavigationVisible] = useState(true);
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   const { scrollY, scrollYProgress } = useScroll();
 
@@ -17,7 +16,6 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
 
     return scrollY.onChange((latest) => {
       const prev: number = scrollYProgress.getPrevious();
-      setIsNavigationVisible(prev < 0.8);
       if (latest === 0) {
         setIsDisplayingFirstview(true);
       } else {
@@ -50,8 +48,6 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       left={{ base: 10, md: 100 }}
       transform={'translate(0,50%)'}
       spacing={6}
-      opacity={{ base: 1, md: isNavigationVisible ? 1 : 0 }}
-      transition={'0.2s'}
     >
       <NextChakraLink
         fontFamily={'serif'}
