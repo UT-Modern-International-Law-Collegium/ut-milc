@@ -7,6 +7,23 @@ export const fakeData = {
         '東京大学現代国際法研究会は、筒井若水先生（東京大学名誉教授）が開講されていた「昭和43年度筒井ゼミナール」を前身とし、50年以上の歴史を持つ東京大学法学部公認サークルです。',
     },
   ],
+  awards: [
+    {
+      name: 'Japan cup',
+      detail: ['総合結果: 5位', '書面結果: 被告2位'],
+    },
+    {
+      name: 'Amity International moot court',
+      detail: [
+        '総合結果: Semi-finalist (全国3位)',
+        '個人結果: 3rd Best Oralist: 劉思怡（全国3位)',
+      ],
+    },
+    {
+      name: '秋の国際法模擬裁判大会',
+      detail: ['総合結果: 優勝', '書面結果: 原告1位'],
+    },
+  ],
   about: [
     {
       id: 0,
@@ -41,7 +58,6 @@ export const fakeData = {
       status: 'public',
     },
   ],
-  awards: {},
   news: [
     {
       id: 0,

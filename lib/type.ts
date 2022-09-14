@@ -14,3 +14,8 @@ export type AboutPageData = {
   created_at: any;
   status: string;
 };
+
+export type Award = {
+  name: string;
+  detail: string[];
+};
