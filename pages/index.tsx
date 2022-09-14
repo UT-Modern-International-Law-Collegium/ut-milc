@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { NextRouter, useRouter } from 'next/router';
+import Image from 'next/image';
 import moment from 'moment';
 import { useScroll } from 'framer-motion';
-import { useForm } from 'react-hook-form';
 import { IconContext } from 'react-icons/lib';
 import { BsArrowRight } from 'react-icons/bs';
 import {
@@ -16,19 +16,13 @@ import {
   Tbody,
   Td,
   Badge,
-  FormLabel,
-  Input,
-  Textarea,
   Button,
   Center,
   useMediaQuery,
   Box,
-  GridItem,
-  HStack,
   SimpleGrid,
   UnorderedList,
   ListItem,
-  Divider,
   VStack,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
@@ -37,16 +31,10 @@ import { Article, Award } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
 import Layout from '../components/layout/Layout';
-import Image from 'next/image';
 import { restrictStringCount } from '../utils/restrictStringCount';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[]; awards: Award[] };
-};
-
-type ContactForm = {
-  email: string;
-  content: string;
 };
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
@@ -80,12 +68,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
     ); /* NOTE: animationは1280px以上の時に限る。 */
   const { scrollY } = useScroll();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactForm>();
-
   useEffect(() => {
     if (!isLargerThan1280px) return;
     return scrollY.onChange((latest: number) => {
@@ -96,8 +78,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       }
     });
   }, [scrollY, isLargerThan1280px]);
-
-  const doContactFormSubmit = (data: ContactForm): void => {};
 
   return (
     <Stack spacing={{ base: 0, md: 4 }}>
@@ -252,57 +232,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </Center>
         </VStack>
       </Stack>
-      {/* contact */}
-      {/* <Stack spacing={8}>
-        <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
-          Contact
-        </Heading>
-        <Text fontSize={18}>
-          ※当団体に参加を希望される方は、
-          <NextChakraLink href={'/join-us'} textDecoration={'underline'}>
-            こちら
-          </NextChakraLink>
-          からご応募ください。
-        </Text>
-        <Stack sx={{ span: { color: 'red' } }}>
-          <FormLabel fontSize={18} m={0}>
-            メールアドレス<span>*</span>
-          </FormLabel>
-          <Input
-            {...register('email', {
-              required: 'メールアドレスは必須項目です。',
-              pattern: {
-                value:
-                  /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
-                message: 'メールアドレスの形式が違います。',
-              },
-            })}
-          />
-          <span>{errors.email?.message}</span>
-        </Stack>
-        <Stack sx={{ span: { color: 'red' } }}>
-          <FormLabel fontSize={18} m={0}>
-            お問い合わせ内容<span>*</span>
-          </FormLabel>
-          <Textarea
-            minH={200}
-            {...register('content', {
-              required: 'お問い合わせ内容を入力してください。',
-            })}
-          />
-          <span>{errors.content?.message}</span>
-        </Stack>
-        <Center>
-          <Button
-            w={200}
-            // m={'0 0 0 auto'}
-            bg={'blue.100'}
-            onClick={handleSubmit(doContactFormSubmit)}
-          >
-            送信する
-          </Button>
-        </Center>
-      </Stack> */}
     </Stack>
   );
 };
