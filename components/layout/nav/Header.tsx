@@ -31,42 +31,49 @@ const Header: FC = () => {
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (router.pathname === path) {
-      return '#00FFB1';
+      return 'rgb(0, 255, 177, 1)';
     } else {
-      return '#000';
+      return 'rgb(0,0,0,1)';
     }
   };
 
   if (isLargerThan992px) {
     return (
       <HStack
-        spacing={8}
-        mx={'auto'}
-        py={6}
-        fontSize={20}
-        fontFamily={'serif'}
-        fontWeight={600}
-        letterSpacing={1.8}
+        py={4}
         position={'fixed'}
-        right={0}
-        pr={200}
-        zIndex={2}
+        zIndex={1}
+        bg={'rgb(255,255,255,0.9)'}
+        w={'100vw'}
+        justifyContent={'right'}
+        px={100}
       >
-        <NextChakraLink href={'/'} color={styleLinkColor('/')}>
-          Top
-        </NextChakraLink>
-        <NextChakraLink href={'/about-us'} color={styleLinkColor('/about-us')}>
-          About us
-        </NextChakraLink>
-        <NextChakraLink href={'/awards'} color={styleLinkColor('/awards')}>
-          Awards
-        </NextChakraLink>
-        <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
-          news
-        </NextChakraLink>
-        <NextChakraLink href={'/join-us'} color={styleLinkColor('/join-us')}>
-          Join us
-        </NextChakraLink>
+        <HStack
+          spacing={8}
+          fontSize={20}
+          fontFamily={'serif'}
+          fontWeight={600}
+          letterSpacing={1.8}
+        >
+          <NextChakraLink href={'/'} color={styleLinkColor('/')}>
+            Top
+          </NextChakraLink>
+          <NextChakraLink
+            href={'/about-us'}
+            color={styleLinkColor('/about-us')}
+          >
+            About us
+          </NextChakraLink>
+          <NextChakraLink href={'/awards'} color={styleLinkColor('/awards')}>
+            Awards
+          </NextChakraLink>
+          <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
+            news
+          </NextChakraLink>
+          <NextChakraLink href={'/join-us'} color={styleLinkColor('/join-us')}>
+            Join us
+          </NextChakraLink>
+        </HStack>
       </HStack>
     );
   } else {
