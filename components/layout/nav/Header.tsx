@@ -27,6 +27,16 @@ const Header: FC = () => {
     }
   }, [router, onClose]);
 
+  const styleLinkColor = (
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
+  ): string => {
+    if (router.pathname === path) {
+      return '#00FFB1';
+    } else {
+      return '#000';
+    }
+  };
+
   if (isLargerThan992px) {
     return (
       <HStack
@@ -42,11 +52,21 @@ const Header: FC = () => {
         pr={200}
         zIndex={2}
       >
-        <NextChakraLink href={'/'}>Top</NextChakraLink>
-        <NextChakraLink href={'/about-us'}>About us</NextChakraLink>
-        <NextChakraLink href={'/awards'}>Awards</NextChakraLink>
-        <NextChakraLink href={'/news'}>news</NextChakraLink>
-        <NextChakraLink href={'/join-us'}>Join us</NextChakraLink>
+        <NextChakraLink href={'/'} color={styleLinkColor('/')}>
+          Top
+        </NextChakraLink>
+        <NextChakraLink href={'/about-us'} color={styleLinkColor('/about-us')}>
+          About us
+        </NextChakraLink>
+        <NextChakraLink href={'/awards'} color={styleLinkColor('/awards')}>
+          Awards
+        </NextChakraLink>
+        <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
+          news
+        </NextChakraLink>
+        <NextChakraLink href={'/join-us'} color={styleLinkColor('/join-us')}>
+          Join us
+        </NextChakraLink>
       </HStack>
     );
   } else {
