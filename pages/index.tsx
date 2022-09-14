@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
@@ -30,6 +30,7 @@ import { Article } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import NextChakraLink from '../components/utils/NextChakraLink';
 import { fakeData } from '../lib/fakeData';
+import Layout from '../components/layout/Layout';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[] };
@@ -41,6 +42,23 @@ type ContactForm = {
 };
 
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+  if (isLargerThan768px) {
+    return <DesktopContent data={data} />;
+  } else {
+    return (
+      <Layout>
+        <MobileContent data={data} />
+      </Layout>
+    );
+  }
+};
+
+const MobileContent: FC<TopPageProps> = ({ data }) => {
+  return <Stack></Stack>;
+};
+
+const DesktopContent: FC<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isDisplayingFirstview, setIsDisplayingFirstview] =
     useState<boolean>(true);
