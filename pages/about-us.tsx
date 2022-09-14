@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { IconContext } from 'react-icons/lib';
@@ -7,10 +7,12 @@ import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
 import { AboutPageData } from '../lib/type';
 import { fakeData } from '../lib/fakeData';
+import { NextPageWithLayout } from './_app';
+import Layout from '../components/layout/Layout';
 
 type AboutPageProps = { data: AboutPageData[] };
 
-const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
+const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   return (
     <Stack>
       <Stack
@@ -37,6 +39,10 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
       </Stack>
     </Stack>
   );
+};
+
+AboutPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export const getStaticProps: GetStaticProps = async () => {

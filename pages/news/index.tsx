@@ -1,16 +1,19 @@
 import { Divider, Stack } from '@chakra-ui/react';
 import { GetStaticProps, NextPage } from 'next';
+import { ReactElement } from 'react';
+import Layout from '../../components/layout/Layout';
 import NewsRow from '../../components/news/NewsRow';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { Article } from '../../lib/type';
+import { NextPageWithLayout } from '../_app';
 
 type NewsPageProps = {
   data: Article[];
 };
 
-const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
+const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
   return (
     <Stack
       pl={{ base: 10, md: 400 }}
@@ -25,6 +28,10 @@ const NewsPage: NextPage<NewsPageProps> = ({ data }) => {
       </Stack>
     </Stack>
   );
+};
+
+NewsPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
