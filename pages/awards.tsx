@@ -12,11 +12,7 @@ type Props = {
 const AwardsPage: NextPageWithLayout<Props> = ({ data }) => {
   return (
     <Stack>
-      <Stack
-        pl={{ base: 10, md: 400 }}
-        pr={{ base: 10, md: 0 }}
-        spacing={{ base: 10 }}
-      >
+      <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
         <PageTitle minW={200}>活動実績</PageTitle>
       </Stack>
     </Stack>

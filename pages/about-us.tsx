@@ -15,11 +15,7 @@ type AboutPageProps = { data: AboutPageData[] };
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   return (
     <Stack>
-      <Stack
-        pl={{ base: 10, md: 400 }}
-        pr={{ base: 10, md: 0 }}
-        spacing={{ base: 10 }}
-      >
+      <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
         <PageTitle minW={200}>団体紹介</PageTitle>
         {data.map((item) => {
           return (
