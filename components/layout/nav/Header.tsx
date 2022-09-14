@@ -31,14 +31,16 @@ const Header: FC = () => {
     return (
       <HStack
         spacing={8}
-        justifyContent={'right'}
-        w={'80%'}
         mx={'auto'}
         py={6}
         fontSize={20}
         fontFamily={'serif'}
         fontWeight={600}
         letterSpacing={1.8}
+        position={'fixed'}
+        right={0}
+        pr={200}
+        zIndex={2}
       >
         <NextChakraLink href={'/'}>Top</NextChakraLink>
         <NextChakraLink href={'/about-us'}>About us</NextChakraLink>
