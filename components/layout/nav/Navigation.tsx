@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
-import NextChakraLink from '../utils/NextChakraLink';
+import NextChakraLink from '../../utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
 import { useScroll } from 'framer-motion';
 
