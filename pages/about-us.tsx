@@ -14,25 +14,28 @@ type AboutPageProps = { data: AboutPageData[] };
 
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   return (
-    <Stack>
-      <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
-        <PageTitle minW={200}>団体紹介</PageTitle>
-        {data.map((item) => {
-          return (
-            <Stack key={item.id} maxW={850} w={{ base: '100%', md: '82%' }}>
-              <HStack alignItems={'center'} spacing={2}>
-                <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
-                  <BsFillSquareFill />
-                  <Heading size={'lg'}>{item.title}</Heading>
-                </IconContext.Provider>
-              </HStack>
-              <HStack spacing={4} borderLeft={'1px solid #ccc'} pl={5}>
-                <Text>{item.content}</Text>
-              </HStack>
-            </Stack>
-          );
-        })}
-      </Stack>
+    <Stack
+      px={{ base: 10, md: 100 }}
+      spacing={{ base: 10 }}
+      w={{ base: '100%', md: '80%' }}
+      mx={'auto'}
+    >
+      <PageTitle minW={200}>団体紹介</PageTitle>
+      {data.map((item) => {
+        return (
+          <Stack key={item.id} w={{ base: '100%' }}>
+            <HStack alignItems={'center'} spacing={2}>
+              <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
+                <BsFillSquareFill />
+                <Heading size={'lg'}>{item.title}</Heading>
+              </IconContext.Provider>
+            </HStack>
+            <HStack spacing={4} borderLeft={'1px solid #ccc'} pl={5}>
+              <Text>{item.content}</Text>
+            </HStack>
+          </Stack>
+        );
+      })}
     </Stack>
   );
 };
