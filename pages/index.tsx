@@ -44,7 +44,11 @@ type ContactForm = {
 const TopPage: NextPage<TopPageProps> = ({ data }) => {
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   if (isLargerThan768px) {
-    return <DesktopContent data={data} />;
+    return (
+      <Layout>
+        <DesktopContent data={data} />;
+      </Layout>
+    );
   } else {
     return (
       <Layout>
@@ -93,25 +97,9 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       {/* ファーストビュー */}
       <Firstview />
       {/* ファーストビュー以下 */}
-      <Stack
-        as={motion.div}
-        spacing={{ base: 20, md: 0 }}
-        pt={{ base: 0, md: 20 }}
-        pl={{ base: 10, md: 500 }}
-        pr={{ base: 10, md: 0 }}
-        sx={
-          isLargerThan768px
-            ? {
-                '.section-wrapper': {
-                  minH: '400px',
-                  w: '48vw',
-                },
-              }
-            : {}
-        }
-      >
+      <Stack spacing={{ base: 20, md: 20 }} pt={{ base: 0, md: 20 }} px={300}>
         {/* about */}
-        <Stack spacing={8} className={'section-wrapper'}>
+        <Stack spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             About us
           </Heading>
@@ -123,7 +111,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </SectionButton>
         </Stack>
         {/* news */}
-        <Stack className={'section-wrapper'} spacing={8}>
+        <Stack spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             News
           </Heading>
@@ -150,7 +138,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </SectionButton>
         </Stack>
         {/* join us */}
-        <Stack className={'section-wrapper'} spacing={8}>
+        <Stack spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             Join us
           </Heading>
@@ -174,7 +162,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </Center>
         </Stack>
         {/* contact */}
-        <Stack spacing={8} className={'section-wrapper'}>
+        <Stack spacing={8}>
           <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             Contact
           </Heading>

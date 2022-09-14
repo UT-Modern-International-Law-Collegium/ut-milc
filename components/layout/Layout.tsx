@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { Stack, Box, useMediaQuery } from '@chakra-ui/react';
-import Navigation from './nav/Navigation';
+import { Stack, useMediaQuery } from '@chakra-ui/react';
 import Header from './nav/Header';
 import Footer from './Footer';
 
@@ -13,10 +12,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   if (isLargerThan768px) {
     return (
       <>
+        <Header />
         <Stack position={'relative'} minH={'100vh'}>
           {children}
-          <Navigation />
-          {/* フッター */}
         </Stack>
         <Footer />
       </>

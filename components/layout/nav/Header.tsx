@@ -4,18 +4,22 @@ import {
   DrawerCloseButton,
   DrawerContent,
   DrawerOverlay,
+  HStack,
   IconButton,
   Stack,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { RiMenu3Fill } from 'react-icons/ri';
 import { IconContext } from 'react-icons/lib';
 import Navigation from './Navigation';
 import { NextRouter, useRouter } from 'next/router';
+import NextChakraLink from '../../utils/NextChakraLink';
 
 const Header: FC = () => {
   const router: NextRouter = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLargerThan992px] = useMediaQuery('(min-width:992px)');
 
   useEffect(() => {
     if (router.isReady) {
@@ -23,35 +27,86 @@ const Header: FC = () => {
     }
   }, [router, onClose]);
 
-  return (
-    <Stack
-      position={'fixed'}
-      zIndex={1}
-      bg={'gray.300'}
-      w={'100vw'}
-      py={2}
-      boxShadow={'lg'}
-    >
-      <IconContext.Provider value={{ size: '28px', color: '#092025' }}>
-        <IconButton
-          aria-label={'hamburger-menu'}
-          icon={<RiMenu3Fill />}
-          m={'0 0 0 auto'}
-          colorScheme={'whiteAlpha'}
-          sx={{ background: 'none' }}
-          _focus={{ background: 'none' }}
-          onClick={onOpen}
-        />
-      </IconContext.Provider>
-      <Drawer isOpen={isOpen} onClose={onClose} placement={'right'}>
-        <DrawerOverlay />
-        <DrawerContent bg={'gray.100'}>
-          <DrawerCloseButton />
-          <Navigation />
-        </DrawerContent>
-      </Drawer>
-    </Stack>
-  );
+  const styleLinkColor = (
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
+  ): string => {
+    if (router.pathname === path) {
+      return 'rgb(0, 255, 177, 1)';
+    } else {
+      return 'rgb(0,0,0,1)';
+    }
+  };
+
+  if (isLargerThan992px) {
+    return (
+      <HStack
+        py={4}
+        position={'fixed'}
+        zIndex={1}
+        bg={'rgb(255,255,255,0.9)'}
+        w={'100vw'}
+        justifyContent={'right'}
+        px={100}
+      >
+        <HStack
+          spacing={8}
+          fontSize={20}
+          fontFamily={'serif'}
+          fontWeight={600}
+          letterSpacing={1.8}
+        >
+          <NextChakraLink href={'/'} color={styleLinkColor('/')}>
+            Top
+          </NextChakraLink>
+          <NextChakraLink
+            href={'/about-us'}
+            color={styleLinkColor('/about-us')}
+          >
+            About us
+          </NextChakraLink>
+          <NextChakraLink href={'/awards'} color={styleLinkColor('/awards')}>
+            Awards
+          </NextChakraLink>
+          <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
+            news
+          </NextChakraLink>
+          <NextChakraLink href={'/join-us'} color={styleLinkColor('/join-us')}>
+            Join us
+          </NextChakraLink>
+        </HStack>
+      </HStack>
+    );
+  } else {
+    return (
+      <Stack
+        position={'fixed'}
+        zIndex={1}
+        bg={'gray.300'}
+        w={'100vw'}
+        py={2}
+        boxShadow={'lg'}
+      >
+        <IconContext.Provider value={{ size: '28px', color: '#092025' }}>
+          <IconButton
+            aria-label={'hamburger-menu'}
+            icon={<RiMenu3Fill />}
+            m={'0 0 0 auto'}
+            colorScheme={'whiteAlpha'}
+            sx={{ background: 'none' }}
+            _focus={{ background: 'none' }}
+            onClick={onOpen}
+          />
+        </IconContext.Provider>
+        <Drawer isOpen={isOpen} onClose={onClose} placement={'right'}>
+          <DrawerOverlay />
+          <DrawerContent bg={'gray.100'}>
+            <DrawerCloseButton />
+            <Navigation />
+          </DrawerContent>
+        </Drawer>
+      </Stack>
+    );
+  }
 };
 
 export default Header;

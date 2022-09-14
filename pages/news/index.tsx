@@ -15,11 +15,7 @@ type NewsPageProps = {
 
 const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
   return (
-    <Stack
-      pl={{ base: 10, md: 400 }}
-      pr={{ base: 10, md: 0 }}
-      spacing={{ base: 10 }}
-    >
+    <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
       <PageTitle minW={200}>活動報告</PageTitle>
       <Stack divider={<Divider />} spacing={4}>
         {data.map((item) => {

@@ -16,12 +16,7 @@ type NewsDetailPageProps = {
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
   return (
     <Stack>
-      <Stack
-        pt={{ base: 20 }}
-        pl={{ base: 10, md: 400 }}
-        pr={{ base: 10, md: 0 }}
-        spacing={{ base: 10 }}
-      >
+      <Stack pt={{ base: 20 }} px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
         {/* タイトルと日付とタグ */}
         <Stack
           maxW={850}

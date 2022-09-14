@@ -17,6 +17,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       bg={'#092025'}
       position={'relative'}
       overflow={'hidden'}
+      zIndex={2}
       {...rest}
     >
       {/* 内側の円 */}
