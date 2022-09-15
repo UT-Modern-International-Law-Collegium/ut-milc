@@ -18,14 +18,14 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       bg={'#092025'}
       position={'relative'}
       overflow={'hidden'}
-      zIndex={2}
+      zIndex={{ base: 0, md: 2 }}
       borderBottom={'4px solid'}
       borderColor={'teal.500'}
       boxSizing={'content-box'}
       {...rest}
     >
       {/* ナビゲーション */}
-      <Navigation display={{ base: 'none', md: 'flex' }} zIndex={2} />
+      {isLargetThan768px && <Navigation zIndex={2} />}
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}

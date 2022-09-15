@@ -21,11 +21,11 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     );
   } else {
     return (
-      <Stack>
+      <>
         <Header />
         {children}
         <Footer />
-      </Stack>
+      </>
     );
   }
 };
