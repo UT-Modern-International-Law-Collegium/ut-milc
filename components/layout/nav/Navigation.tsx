@@ -1,28 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
 import NextChakraLink from '../../utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
-import { useScroll } from 'framer-motion';
 
 const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
-  const [isDisplayingFirstview, setIsDisplayingFirstview] =
-    useState<boolean>(true);
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-  const { scrollY, scrollYProgress } = useScroll();
-
-  useEffect(() => {
-    if (!isLargerThan768px) return;
-
-    return scrollY.onChange((latest) => {
-      const prev: number = scrollYProgress.getPrevious();
-      if (latest === 0) {
-        setIsDisplayingFirstview(true);
-      } else {
-        setIsDisplayingFirstview(false);
-      }
-    });
-  }, [scrollY, router, isLargerThan768px, scrollYProgress]);
 
   const stlyeLinkColor = (
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
@@ -41,11 +24,11 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   return (
     <Stack
       {...rest}
-      display={{ base: 'none', md: 'flex' }}
+      display={{ base: 'flex' }}
       position={{ base: 'fixed', md: 'absolute' }}
-      bottom={'50%'}
+      top={'50%'}
       left={{ base: 10, md: 100 }}
-      transform={'translate(0,50%)'}
+      transform={'translate(0,-50%)'}
       spacing={6}
     >
       <NextChakraLink
