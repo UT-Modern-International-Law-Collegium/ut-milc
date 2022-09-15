@@ -34,6 +34,7 @@ import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
 import Layout from '../components/layout/Layout';
 import NextChakraLink from '../components/utils/NextChakraLink';
+import AwardPiece from '../components/top/AwardPiece';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[]; awards: Award[] };
@@ -87,14 +88,13 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       <Firstview />
       {/* ファーストビュー以下part1 */}
       <Stack
-        spacing={{ base: 20, md: 28 }}
+        spacing={{ base: 20, md: 280 }}
         pt={{ base: 0, md: 20 }}
         pb={{ base: 0, md: 20 }}
-        px={{ lg: 82, xl: 200 }}
         position={'relative'}
       >
         {/* about */}
-        <Stack spacing={20} direction={'row'}>
+        <Stack spacing={20} direction={'row'} px={{ lg: 82, xl: 200 }}>
           {/* タイトルとテキスト */}
           <Stack spacing={8}>
             <Heading
@@ -131,27 +131,32 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </Box>
         </Stack>
         {/* awards */}
-        <Grid templateColumns="repeat(7, 1fr)" gap={20}>
+        <Grid
+          templateAreas={`"none0 award0 none9"
+                          "none1 none2 non11"
+                          "award1 none4 content"
+                          "none5 none6 none12"
+                          "none8 award2 none10"`}
+          gridTemplateColumns={'1fr 1fr 1fr'}
+          gridTemplateRows={'1fr 100fr 1fr 100fr 1fr'}
+          h={{ base: 400 }}
+          px={{ base: 200 }}
+        >
           {/* awardsの内容 */}
-          <GridItem colSpan={4}>
-            <Stack maxW={'50%'} m={'0 0 0 auto'} textAlign={'right'}>
-              <Heading size={'lg'} noOfLines={1}>
-                {data.awards[0].name}
-              </Heading>
-            </Stack>
-            <Stack maxW={'50%'}>
-              <Heading size={'lg'} noOfLines={1}>
-                {data.awards[1].name}
-              </Heading>
-            </Stack>
-            <Stack maxW={'50%'} m={'0 0 0 auto'} textAlign={'right'}>
-              <Heading size={'lg'} noOfLines={1}>
-                {data.awards[2].name}
-              </Heading>
-            </Stack>
-          </GridItem>
+          {data.awards.map((award, index) => {
+            return (
+              <GridItem
+                key={index}
+                area={`award${index}`}
+                position={'relative'}
+                zIndex={1}
+              >
+                <AwardPiece award={award} />
+              </GridItem>
+            );
+          })}
           {/* タイトルなど */}
-          <GridItem colSpan={3}>
+          <GridItem area={'content'}>
             <Stack spacing={8}>
               {/* タイトルとテキスト */}
               <Stack spacing={8}>
@@ -180,7 +185,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </GridItem>
         </Grid>
         {/* news */}
-        <Stack spacing={8}>
+        <Stack spacing={8} px={{ lg: 82, xl: 200 }}>
           <Heading
             fontFamily={'serif'}
             letterSpacing={2}
