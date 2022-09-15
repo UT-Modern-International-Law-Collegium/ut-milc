@@ -14,14 +14,15 @@ import { Article } from '../../lib/type';
 
 type Props = {
   item: Article;
+  isLatest?: boolean;
 };
 
-const NewsCard: FC<Props> = ({ item }) => {
+const NewsCard: FC<Props> = ({ item, isLatest }) => {
   return (
     <LinkBox
       as={Stack}
-      p={4}
-      borderRadius={4}
+      p={{ base: 8, md: 4 }}
+      borderRadius={{ base: 8, md: 4 }}
       boxShadow={'xl'}
       sx={{ img: { transition: '0.2s' } }}
       _hover={{
@@ -45,8 +46,17 @@ const NewsCard: FC<Props> = ({ item }) => {
         </LinkOverlay>
       </NextLink>
       <HStack justifyContent={'space-between'}>
-        <Text>{moment(item.created_at).format('YYYY-MM-DD')}</Text>
-        <Badge>{item.tag}</Badge>
+        <Text fontSize={16}>
+          {moment(item.created_at).format('YYYY-MM-DD')}
+        </Text>
+        <HStack>
+          <Badge fontSize={14}>{item.tag}</Badge>
+          {isLatest && (
+            <Badge colorScheme={'teal'} fontSize={14}>
+              最新記事
+            </Badge>
+          )}
+        </HStack>
       </HStack>
     </LinkBox>
   );
