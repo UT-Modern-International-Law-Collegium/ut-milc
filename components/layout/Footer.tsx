@@ -137,7 +137,6 @@ const Footer: FC = () => {
           <Center>
             <Button
               w={200}
-              // m={'0 0 0 auto'}
               bg={'blue.100'}
               onClick={handleSubmit(doContactFormSubmit)}
             >
