@@ -69,7 +69,8 @@ const MobileContent: FC<TopPageProps> = ({ data }) => {
       <Stack
         sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
         px={'5%'}
-        spacing={8}
+        spacing={12}
+        pb={16}
       >
         {/* about */}
         <Stack>
@@ -114,7 +115,7 @@ const MobileContent: FC<TopPageProps> = ({ data }) => {
           position={'absolute'}
           bg={'#fff'}
           // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
-          top={-0.3}
+          top={-0.4}
           left={0}
           clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
           h={100}
