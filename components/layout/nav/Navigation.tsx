@@ -30,50 +30,23 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       left={{ base: 10, md: 100 }}
       transform={'translate(0,-50%)'}
       spacing={6}
+      fontSize={{ base: 36, md: 24, lg: 36 }}
+      fontFamily={'serif'}
+      letterSpacing={5}
     >
-      <NextChakraLink
-        fontFamily={'serif'}
-        letterSpacing={5}
-        fontSize={36}
-        color={stlyeLinkColor('/')}
-        href={'/'}
-      >
+      <NextChakraLink color={stlyeLinkColor('/')} href={'/'}>
         Top
       </NextChakraLink>
-      <NextChakraLink
-        fontFamily={'serif'}
-        letterSpacing={5}
-        fontSize={36}
-        color={stlyeLinkColor('/about-us')}
-        href={'/about-us'}
-      >
+      <NextChakraLink color={stlyeLinkColor('/about-us')} href={'/about-us'}>
         About us
       </NextChakraLink>
-      <NextChakraLink
-        fontFamily={'serif'}
-        letterSpacing={5}
-        fontSize={36}
-        color={stlyeLinkColor('/awards')}
-        href={'/awards'}
-      >
+      <NextChakraLink color={stlyeLinkColor('/awards')} href={'/awards'}>
         Awards
       </NextChakraLink>
-      <NextChakraLink
-        fontFamily={'serif'}
-        letterSpacing={5}
-        fontSize={36}
-        color={stlyeLinkColor('/news')}
-        href={'/news'}
-      >
+      <NextChakraLink color={stlyeLinkColor('/news')} href={'/news'}>
         News
       </NextChakraLink>
-      <NextChakraLink
-        fontFamily={'serif'}
-        letterSpacing={5}
-        fontSize={36}
-        color={stlyeLinkColor('/join-us')}
-        href={'/join-us'}
-      >
+      <NextChakraLink color={stlyeLinkColor('/join-us')} href={'/join-us'}>
         Join us
       </NextChakraLink>
     </Stack>
