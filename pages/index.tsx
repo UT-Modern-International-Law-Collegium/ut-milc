@@ -178,6 +178,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
                 href={'/awards'}
                 fontSize={18}
                 textAlign={'right'}
+                textDecoration={'underline'}
               >
                 全ての活動実績を見る
               </NextChakraLink>

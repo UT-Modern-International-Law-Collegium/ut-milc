@@ -1,5 +1,5 @@
+import React, { FC } from 'react';
 import { CircularProgress, Heading, Stack, Text } from '@chakra-ui/react';
-import { FC } from 'react';
 import { Award } from '../../lib/type';
 
 type Props = { award: Award };
