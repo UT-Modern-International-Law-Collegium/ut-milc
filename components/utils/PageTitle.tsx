@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Stack, Divider, Heading, HeadingProps } from '@chakra-ui/react';
+import { Stack, Heading, HeadingProps } from '@chakra-ui/react';
 
 type PageTitleProps = {
   children: React.ReactNode;
@@ -17,13 +17,8 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       pt={{ base: 20, md: 100 }}
       w={{ base: '100%' }}
       spacing={{ base: 0, md: 8 }}
+      {...rest}
     >
-      <Divider
-        orientation={'horizontal'}
-        opacity={1}
-        borderColor={'#000'}
-        w={{ base: 10, md: 230 }}
-      />
       <Heading
         fontFamily={'serif'}
         size={{ base: 'xl', md: '2xl' }}
@@ -31,12 +26,6 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       >
         {children}
       </Heading>
-      <Divider
-        orientation={'horizontal'}
-        opacity={1}
-        borderColor={'#000'}
-        w={{ base: 10, md: 230 }}
-      />
     </Stack>
   );
 };

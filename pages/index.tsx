@@ -170,7 +170,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
                   Awards
                 </Heading>
                 <Text fontSize={18}>
-                  現代国際法研究会は、大会などへの積極的な参加を通じた
+                  現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
                 </Text>
               </Stack>
               {/* リンク */}
@@ -212,7 +212,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
                   }}
                 >
                   <Image
-                    className="sample"
                     src={
                       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
                     }
