@@ -17,13 +17,14 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       pt={{ base: 20, md: 100 }}
       w={{ base: '100%' }}
       spacing={{ base: 0, md: 8 }}
+      {...rest}
     >
-      <Divider
+      {/* <Divider
         orientation={'horizontal'}
         opacity={1}
         borderColor={'#000'}
         w={{ base: 10, md: 230 }}
-      />
+      /> */}
       <Heading
         fontFamily={'serif'}
         size={{ base: 'xl', md: '2xl' }}
@@ -31,12 +32,12 @@ const PageTitle: FC<PageTitleProps & HeadingProps> = ({
       >
         {children}
       </Heading>
-      <Divider
+      {/* <Divider
         orientation={'horizontal'}
         opacity={1}
         borderColor={'#000'}
         w={{ base: 10, md: 230 }}
-      />
+      /> */}
     </Stack>
   );
 };
