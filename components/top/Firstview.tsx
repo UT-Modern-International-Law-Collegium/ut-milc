@@ -19,6 +19,9 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       position={'relative'}
       overflow={'hidden'}
       zIndex={2}
+      borderBottom={'4px solid'}
+      borderColor={'teal.500'}
+      boxSizing={'content-box'}
       {...rest}
     >
       {/* ナビゲーション */}
