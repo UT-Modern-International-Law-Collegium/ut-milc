@@ -194,14 +194,17 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         </Stack>
       </Stack>
       {/* part2（join us） */}
-      <Stack bg={'#092025'} h={700} position={'relative'}>
+      <Stack bg={'#092025'} h={700} position={'relative'} pt={200}>
         {/* arrow */}
         <Stack
+          position={'absolute'}
           bg={'#fff'}
+          // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
+          top={-0.2}
+          left={0}
           clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
           h={200}
-          top={0}
-          zIndex={3}
+          w={'100vw'}
         />
         {/* join us */}
         <VStack spacing={12}>
