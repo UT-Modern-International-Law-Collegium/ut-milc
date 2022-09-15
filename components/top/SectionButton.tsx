@@ -15,7 +15,7 @@ const SectionButton: FC<SectionButtonProps & ButtonProps> = ({
     <Center>
       <IconContext.Provider value={{ size: '20px' }}>
         <Button
-          rightIcon={<BsArrowRight />}
+          // rightIcon={<BsArrowRight />}
           pl={6}
           bg={'none'}
           fontWeight={'normal'}

@@ -68,7 +68,7 @@ const Header: FC = () => {
             Awards
           </NextChakraLink>
           <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
-            news
+            News
           </NextChakraLink>
           <NextChakraLink href={'/join-us'} color={styleLinkColor('/join-us')}>
             Join us

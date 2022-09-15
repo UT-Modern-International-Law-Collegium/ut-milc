@@ -7,6 +7,7 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
+import Navigation from '../layout/nav/Navigation';
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
@@ -20,6 +21,8 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       zIndex={2}
       {...rest}
     >
+      {/* ナビゲーション */}
+      <Navigation display={{ base: 'none', md: 'flex' }} zIndex={2} />
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}

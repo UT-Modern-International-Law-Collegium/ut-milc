@@ -31,9 +31,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       return '#00FFB1';
     } else {
       if (isLargerThan768px) {
-        return router.pathname === '/' && isDisplayingFirstview
-          ? '#fff'
-          : '#000';
+        return '#fff';
       } else {
         return '#000';
       }
@@ -43,7 +41,8 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   return (
     <Stack
       {...rest}
-      position={{ base: 'fixed' }}
+      display={{ base: 'none', md: 'flex' }}
+      position={{ base: 'fixed', md: 'absolute' }}
       bottom={'50%'}
       left={{ base: 10, md: 100 }}
       transform={'translate(0,50%)'}
