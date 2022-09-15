@@ -93,6 +93,30 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         {/* about */}
         <Stack spacing={20} direction={'row'}>
           {/* 画像 */}
+          {/* タイトルとテキスト */}
+          <Stack spacing={8}>
+            <Heading
+              fontFamily={'serif'}
+              letterSpacing={2}
+              size={'2xl'}
+              // textAlign={'right'}
+              textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
+            >
+              About us
+            </Heading>
+            <Text fontSize={18} lineHeight={2}>
+              {data.top[0].about}
+            </Text>
+            <Center>
+              <SectionButton
+                pt={100}
+                m={'0 0 0 auto'}
+                onClick={() => router.push('/about-us')}
+              >
+                団体紹介はこちら
+              </SectionButton>
+            </Center>
+          </Stack>
           <Box>
             <Image
               src={
@@ -103,28 +127,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
               height={800}
             />
           </Box>
-          {/* タイトルとテキスト */}
-          <Stack spacing={8}>
-            <Heading
-              fontFamily={'serif'}
-              letterSpacing={2}
-              size={'2xl'}
-              textAlign={'right'}
-              textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
-            >
-              About us
-            </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.top[0].about}
-            </Text>
-            <SectionButton
-              pt={100}
-              m={'0 0 0 auto'}
-              onClick={() => router.push('/about-us')}
-            >
-              団体紹介はこちら
-            </SectionButton>
-          </Stack>
         </Stack>
         {/* awards */}
         <Stack spacing={8}>
