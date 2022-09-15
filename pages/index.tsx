@@ -1,20 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
+import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import moment from 'moment';
 import { useScroll } from 'framer-motion';
 import { IconContext } from 'react-icons/lib';
-import { BsArrowRight } from 'react-icons/bs';
+import { BsArrowRight, BsFillCaretRightFill } from 'react-icons/bs';
 import {
   Heading,
   Stack,
   Text,
-  TableContainer,
-  Table,
-  Tr,
-  Tbody,
-  Td,
   Badge,
   Button,
   Center,
@@ -24,6 +20,9 @@ import {
   UnorderedList,
   ListItem,
   VStack,
+  HStack,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -87,7 +86,8 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       <Stack
         spacing={{ base: 20, md: 28 }}
         pt={{ base: 0, md: 20 }}
-        px={200}
+        pb={{ base: 0, md: 20 }}
+        px={{ lg: 82, xl: 200 }}
         position={'relative'}
       >
         {/* about */}
@@ -122,7 +122,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
               src={
                 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               }
-              alt={''}
+              alt={'東京大学国際法研究会HPのabout画像'}
               width={800}
               height={800}
             />
@@ -170,27 +170,60 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           >
             News
           </Heading>
-          <TableContainer>
-            <Table>
-              <Tbody>
-                {data.news.map((item, index) => {
-                  if (index > 4) return;
-                  return (
-                    <Tr key={item.id}>
-                      <Td>{moment(item.created_at).format('YYYY-MM-DD')}</Td>
-                      <Td>{item.title}</Td>
-                      <Td>
-                        <Badge>{item.tag}</Badge>
-                      </Td>
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
-          <SectionButton onClick={() => router.push('/news')}>
-            全て見る
-          </SectionButton>
+          <HStack spacing={8}>
+            {data.news.map((item: Article, index) => {
+              if (index > 2) return;
+              return (
+                <LinkBox
+                  as={Stack}
+                  key={item.id}
+                  p={4}
+                  borderRadius={4}
+                  boxShadow={'xl'}
+                  sx={{ img: { transition: '0.2s' } }}
+                  _hover={{
+                    img: { transform: 'scale(1.1,1.1)' },
+                    textDecoration: 'underline',
+                  }}
+                >
+                  <Image
+                    className="sample"
+                    src={
+                      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                    }
+                    alt={`image of ${item.title}`}
+                    width={800}
+                    height={600}
+                  />
+                  <NextLink href={`/news/${item.id}`} passHref>
+                    <LinkOverlay>
+                      <Text fontSize={18} fontWeight={'bold'}>
+                        {item.title}
+                      </Text>
+                    </LinkOverlay>
+                  </NextLink>
+                  <HStack justifyContent={'space-between'}>
+                    <Text>{moment(item.created_at).format('YYYY-MM-DD')}</Text>
+                    <Badge>{item.tag}</Badge>
+                  </HStack>
+                </LinkBox>
+              );
+            })}
+            <LinkBox
+              as={VStack}
+              minW={100}
+              _hover={{ textDecoration: 'underline' }}
+            >
+              <IconContext.Provider value={{ size: '24px' }}>
+                <NextLink href={'/news'} passHref>
+                  <LinkOverlay>
+                    <BsFillCaretRightFill />
+                  </LinkOverlay>
+                </NextLink>
+              </IconContext.Provider>
+              <Text>全て見る</Text>
+            </LinkBox>
+          </HStack>
         </Stack>
       </Stack>
       {/* part2（join us） */}
