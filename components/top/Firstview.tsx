@@ -22,7 +22,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       {...rest}
     >
       {/* ナビゲーション */}
-      <Navigation display={{ base: 'none', md: 'flex' }} />
+      <Navigation display={{ base: 'none', md: 'flex' }} zIndex={2} />
       {/* 内側の円 */}
       <CircularProgress
         thickness={'0.1px'}
