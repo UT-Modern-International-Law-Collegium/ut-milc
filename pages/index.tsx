@@ -20,13 +20,12 @@ import {
   Center,
   useMediaQuery,
   Box,
-  SimpleGrid,
-  UnorderedList,
-  ListItem,
   VStack,
   HStack,
   LinkBox,
   LinkOverlay,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -34,7 +33,7 @@ import { Article, Award } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
 import Layout from '../components/layout/Layout';
-import { restrictStringCount } from '../utils/restrictStringCount';
+import NextChakraLink from '../components/utils/NextChakraLink';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[]; awards: Award[] };
@@ -96,14 +95,12 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       >
         {/* about */}
         <Stack spacing={20} direction={'row'}>
-          {/* 画像 */}
           {/* タイトルとテキスト */}
           <Stack spacing={8}>
             <Heading
               fontFamily={'serif'}
               letterSpacing={2}
               size={'2xl'}
-              // textAlign={'right'}
               textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
             >
               About us
@@ -121,6 +118,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
               </SectionButton>
             </Center>
           </Stack>
+          {/* 画像 */}
           <Box>
             <Image
               src={
@@ -133,37 +131,54 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </Box>
         </Stack>
         {/* awards */}
-        <Stack spacing={8}>
-          <Heading
-            fontFamily={'serif'}
-            letterSpacing={2}
-            size={'2xl'}
-            textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
-          >
-            Awards
-          </Heading>
-          {/* コンテンツ */}
-          <SimpleGrid columns={3} spacing={10}>
-            {data.awards.map((award: Award, index) => {
-              return (
-                <Stack
-                  key={index}
-                  p={4}
-                  borderRight={index === 2 ? 'none' : '1px'}
+        <Grid templateColumns="repeat(7, 1fr)" gap={20}>
+          {/* awardsの内容 */}
+          <GridItem colSpan={4}>
+            <Stack maxW={'50%'} m={'0 0 0 auto'} textAlign={'right'}>
+              <Heading size={'lg'} noOfLines={1}>
+                {data.awards[0].name}
+              </Heading>
+            </Stack>
+            <Stack maxW={'50%'}>
+              <Heading size={'lg'} noOfLines={1}>
+                {data.awards[1].name}
+              </Heading>
+            </Stack>
+            <Stack maxW={'50%'} m={'0 0 0 auto'} textAlign={'right'}>
+              <Heading size={'lg'} noOfLines={1}>
+                {data.awards[2].name}
+              </Heading>
+            </Stack>
+          </GridItem>
+          {/* タイトルなど */}
+          <GridItem colSpan={3}>
+            <Stack spacing={8}>
+              {/* タイトルとテキスト */}
+              <Stack spacing={8}>
+                <Heading
+                  fontFamily={'serif'}
+                  letterSpacing={2}
+                  size={'2xl'}
+                  textAlign={'right'}
+                  textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
                 >
-                  <Heading size={'md'} textAlign={'center'}>
-                    {restrictStringCount(award.name, 12)}
-                  </Heading>
-                  <UnorderedList pl={4}>
-                    {award.detail.map((item, index) => {
-                      return <ListItem key={index}>{item}</ListItem>;
-                    })}
-                  </UnorderedList>
-                </Stack>
-              );
-            })}
-          </SimpleGrid>
-        </Stack>
+                  Awards
+                </Heading>
+                <Text fontSize={18}>
+                  現代国際法研究会は、大会などへの積極的な参加を通じた
+                </Text>
+              </Stack>
+              {/* リンク */}
+              <NextChakraLink
+                href={'/awards'}
+                fontSize={18}
+                textAlign={'right'}
+              >
+                全ての活動実績を見る
+              </NextChakraLink>
+            </Stack>
+          </GridItem>
+        </Grid>
         {/* news */}
         <Stack spacing={8}>
           <Heading
