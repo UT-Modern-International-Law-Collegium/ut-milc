@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
@@ -16,6 +16,7 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   return (
     <Stack
       px={{ base: 10, md: 100 }}
+      pb={{ base: 100 }}
       spacing={{ base: 10 }}
       w={{ base: '100%', md: '80%' }}
       mx={'auto'}
@@ -31,7 +32,9 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
               </IconContext.Provider>
             </HStack>
             <HStack spacing={4} borderLeft={'1px solid #ccc'} pl={5}>
-              <Text>{item.content}</Text>
+              <Text fontSize={18} lineHeight={2}>
+                {item.content}
+              </Text>
             </HStack>
           </Stack>
         );
