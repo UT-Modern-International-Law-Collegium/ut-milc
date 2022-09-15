@@ -21,8 +21,10 @@ const NewsCard: FC<Props> = ({ item, isLatest }) => {
   return (
     <LinkBox
       as={Stack}
-      p={{ base: 8, md: 4 }}
+      minW={300}
+      py={{ base: 8, md: 4 }}
       borderRadius={{ base: 8, md: 4 }}
+      px={4}
       boxShadow={'xl'}
       sx={{ img: { transition: '0.2s' } }}
       _hover={{
