@@ -6,7 +6,11 @@ import Image from 'next/image';
 import moment from 'moment';
 import { useScroll } from 'framer-motion';
 import { IconContext } from 'react-icons/lib';
-import { BsArrowRight, BsFillCaretRightFill } from 'react-icons/bs';
+import {
+  BsArrowRight,
+  BsFillCaretRightFill,
+  BsCheckCircle,
+} from 'react-icons/bs';
 import {
   Heading,
   Stack,
@@ -233,7 +237,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           position={'absolute'}
           bg={'#fff'}
           // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
-          top={-0.2}
+          top={-0.3}
           left={0}
           clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
           h={200}
@@ -241,15 +245,20 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         />
         {/* join us */}
         <VStack spacing={12}>
-          <Heading
-            fontFamily={'serif'}
-            letterSpacing={2}
-            size={'2xl'}
-            textAlign={'center'}
-            color={'#fff'}
-          >
-            Join us
-          </Heading>
+          <HStack spacing={6}>
+            <IconContext.Provider value={{ size: '42px', color: '#81E6D9' }}>
+              <BsCheckCircle />
+            </IconContext.Provider>
+            <Heading
+              fontFamily={'serif'}
+              letterSpacing={2}
+              size={'2xl'}
+              textAlign={'center'}
+              color={'#fff'}
+            >
+              Join us
+            </Heading>
+          </HStack>
           <Text fontSize={18} color={'#fff'} w={'40%'} textAlign={'center'}>
             現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
           </Text>
