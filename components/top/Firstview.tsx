@@ -108,7 +108,7 @@ const TopTitle: FC = () => {
     return (
       <Heading
         style={{ writingMode: 'vertical-rl' }}
-        size={'2xl'}
+        size={{ base: '2xl', md: 'xl' }}
         pt={titlePtValue} /* ヘッダーの高さ分 */
         h={'100vh'}
         fontWeight={'normal'}
