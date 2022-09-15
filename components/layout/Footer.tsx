@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import {
   Button,
   Center,
@@ -17,7 +19,6 @@ import {
 import { BsTwitter, BsInstagram } from 'react-icons/bs';
 import { IconContext } from 'react-icons/lib';
 import NextChakraLink from '../utils/NextChakraLink';
-import { useForm } from 'react-hook-form';
 
 type ContactForm = {
   email: string;
@@ -25,6 +26,7 @@ type ContactForm = {
 };
 
 const Footer: FC = () => {
+  const router: NextRouter = useRouter();
   const {
     register,
     handleSubmit,
@@ -70,6 +72,9 @@ const Footer: FC = () => {
                   aria-label="instagram"
                   icon={<BsInstagram />}
                   bg={'none'}
+                  onClick={() =>
+                    router.push('https://www.instagram.com/utmilc/')
+                  }
                 />
                 <Text>instagram</Text>
               </VStack>
@@ -78,6 +83,7 @@ const Footer: FC = () => {
                   aria-label="twitter"
                   icon={<BsTwitter />}
                   bg={'none'}
+                  onClick={() => router.push('https://twitter.com/utmilc_2022')}
                 />
                 <Text>twitter</Text>
               </VStack>
