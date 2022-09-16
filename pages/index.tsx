@@ -168,24 +168,6 @@ const MobileContent: FC<TopPageProps> = ({ data }) => {
 
 const DesktopContent: FC<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
-  const [isDisplayingFirstview, setIsDisplayingFirstview] =
-    useState<boolean>(true);
-  const [isLargerThan1280px] =
-    useMediaQuery(
-      '(min-width:1280px)'
-    ); /* NOTE: animationは1280px以上の時に限る。 */
-  const { scrollY } = useScroll();
-
-  useEffect(() => {
-    if (!isLargerThan1280px) return;
-    return scrollY.onChange((latest: number) => {
-      if (latest === 0) {
-        setIsDisplayingFirstview(true);
-      } else {
-        setIsDisplayingFirstview(false);
-      }
-    });
-  }, [scrollY, isLargerThan1280px]);
 
   return (
     <Stack spacing={{ base: 0, md: 4 }}>
