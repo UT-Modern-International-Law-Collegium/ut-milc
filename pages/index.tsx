@@ -193,7 +193,10 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
             fontFamily={'serif'}
             letterSpacing={2}
             size={'2xl'}
-            textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
+            textShadow={{
+              base: 'none',
+              md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
+            }}
           >
             News
           </Heading>
