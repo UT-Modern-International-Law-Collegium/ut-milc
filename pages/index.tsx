@@ -178,7 +178,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         spacing={{ base: 12, md: 140 }}
         pt={{ base: 0, md: 20 }}
         pb={{ base: 16, md: 20 }}
-        px={{ lg: 82, xl: 200 }}
+        px={{ md: 12, lg: 82, xl: 200 }}
         sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
       >
         {/* about */}
@@ -324,72 +324,58 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           >
             News
           </Heading>
-          <HStack spacing={8}>
+          <HStack
+            spacing={{ md: 8 }}
+            overflowX={{ base: 'scroll', md: 'unset' }}
+          >
             {data.news.map((item: Article, index) => {
               if (index > 2) return;
-              return (
-                <LinkBox
-                  as={Stack}
-                  key={item.id}
-                  p={4}
-                  borderRadius={4}
-                  boxShadow={'xl'}
-                  sx={{ img: { transition: '0.2s' } }}
-                  _hover={{
-                    img: { transform: 'scale(1.1,1.1)' },
-                    textDecoration: 'underline',
-                  }}
-                >
-                  <Image
-                    src={
-                      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-                    }
-                    alt={`image of ${item.title}`}
-                    width={800}
-                    height={600}
-                  />
-                  <NextLink href={`/news/${item.id}`} passHref>
+              return <NewsCard key={item.id} item={item} />;
+            })}
+            {isLargerThan768px ? (
+              <LinkBox
+                as={VStack}
+                minW={{ md: 'unset', lg: 100 }}
+                _hover={{ textDecoration: 'underline' }}
+              >
+                <IconContext.Provider value={{ size: '24px' }}>
+                  <NextLink href={'/news'} passHref>
                     <LinkOverlay>
-                      <Text fontSize={18} fontWeight={'bold'}>
-                        {item.title}
-                      </Text>
+                      <BsFillCaretRightFill />
                     </LinkOverlay>
                   </NextLink>
-                  <HStack justifyContent={'space-between'}>
-                    <Text>{moment(item.created_at).format('YYYY-MM-DD')}</Text>
-                    <Badge>{item.tag}</Badge>
-                  </HStack>
-                </LinkBox>
-              );
-            })}
-            <LinkBox
-              as={VStack}
-              minW={100}
-              _hover={{ textDecoration: 'underline' }}
-            >
-              <IconContext.Provider value={{ size: '24px' }}>
-                <NextLink href={'/news'} passHref>
-                  <LinkOverlay>
-                    <BsFillCaretRightFill />
-                  </LinkOverlay>
-                </NextLink>
+                </IconContext.Provider>
+                <Text display={{ md: 'none', lg: 'block' }}>全て見る</Text>
+              </LinkBox>
+            ) : (
+              <IconContext.Provider value={{ size: '36px' }}>
+                <IconButton
+                  aria-label="news"
+                  icon={<BsArrowRightShort />}
+                  bg={'none'}
+                  onClick={() => router.push('/news')}
+                />
               </IconContext.Provider>
-              <Text>全て見る</Text>
-            </LinkBox>
+            )}
           </HStack>
         </Stack>
       </Stack>
-      {/* part2（join us） */}
-      <Stack bg={'#092025'} h={700} position={'relative'} pt={200}>
+      {/* join us ~ footer */}
+      <Stack
+        bg={'#092025'}
+        position={'relative'}
+        h={{ base: 500, md: 700 }}
+        pt={{ base: 100, md: 200 }}
+      >
         {/* arrow */}
         <Stack
           position={'absolute'}
           bg={'#fff'}
           // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
-          top={-0.3}
+          top={{ base: -0.4, md: -0.3 }}
           left={0}
           clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
-          h={200}
+          h={{ base: 100, md: 200 }}
           w={'100%'}
         />
         {/* join us */}
