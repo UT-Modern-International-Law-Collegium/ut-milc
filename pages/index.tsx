@@ -1,16 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import moment from 'moment';
-import { useScroll } from 'framer-motion';
 import { IconContext } from 'react-icons/lib';
 import {
   BsArrowRight,
   BsFillCaretRightFill,
   BsCheckCircle,
   BsArrowRightShort,
+  BsAward,
 } from 'react-icons/bs';
 import {
   Heading,
@@ -25,9 +25,8 @@ import {
   HStack,
   LinkBox,
   LinkOverlay,
-  Grid,
-  GridItem,
   IconButton,
+  Icon,
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
@@ -35,8 +34,6 @@ import { Article, Award } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
 import Layout from '../components/layout/Layout';
-import NextChakraLink from '../components/utils/NextChakraLink';
-import AwardPiece from '../components/top/AwardPiece';
 import NewsCard from '../components/news/NewsCard';
 
 type TopPageProps = {
@@ -175,7 +172,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       <Firstview />
       {/* ファーストビュー以下part1 */}
       <Stack
-        spacing={{ base: 20, md: 280 }}
+        spacing={{ base: 20, md: 140 }}
         pt={{ base: 0, md: 20 }}
         pb={{ base: 0, md: 20 }}
         position={'relative'}
@@ -221,60 +218,74 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           </Box>
         </Stack>
         {/* awards */}
-        <Grid
-          templateAreas={`"none0 award0 none9"
-                          "none1 none2 non11"
-                          "award1 none4 content"
-                          "none5 none6 none12"
-                          "none8 award2 none10"`}
-          gridTemplateColumns={'1fr 1fr 1fr'}
-          gridTemplateRows={'1fr 100fr 1fr 100fr 1fr'}
-          h={{ base: 400 }}
-          px={{ base: 200 }}
+        <Stack
+          px={{ lg: 82, xl: 200 }}
+          direction={'row'}
+          justifyContent={'space-between'}
+          spacing={20}
         >
-          {/* awardsの内容 */}
-          {data.awards.map((award, index) => {
-            return (
-              <GridItem
-                key={index}
-                area={`award${index}`}
-                position={'relative'}
-                zIndex={1}
-              >
-                <AwardPiece award={award} />
-              </GridItem>
-            );
-          })}
-          {/* タイトルなど */}
-          <GridItem area={'content'}>
-            <Stack spacing={8}>
-              {/* タイトルとテキスト */}
-              <Stack spacing={8}>
-                <Heading
-                  fontFamily={'serif'}
-                  letterSpacing={2}
-                  size={'2xl'}
-                  textAlign={'right'}
-                  textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
-                >
-                  Awards
-                </Heading>
-                <Text fontSize={18}>
-                  現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
-                </Text>
-              </Stack>
-              {/* リンク */}
-              <NextChakraLink
-                href={'/awards'}
-                fontSize={18}
-                textAlign={'right'}
-                textDecoration={'underline'}
-              >
-                全ての活動実績を見る
-              </NextChakraLink>
-            </Stack>
-          </GridItem>
-        </Grid>
+          <VStack
+            w={'60%'}
+            spacing={4}
+            py={8}
+            px={4}
+            borderRadius={8}
+            border={'solid'}
+            borderColor={'gray.300'}
+            position={'relative'}
+          >
+            <Icon
+              as={BsAward}
+              position={'absolute'}
+              top={-6}
+              left={-8}
+              color={'yellow.300'}
+              opacity={0.6}
+              w={140}
+              h={140}
+            />
+            <Heading
+              fontWeight={'light'}
+              textAlign={'center'}
+              fontSize={30}
+              zIndex={1}
+            >
+              2022 Philip C. Jessup International Law Moot Court Competition
+              National Round
+            </Heading>
+            <Text fontSize={20}>~ NationalRound（国内予選） ~</Text>
+            <HStack alignItems={'baseline'}>
+              <Text fontSize={20}>総合結果</Text>
+              <Text fontSize={32} pl={4}>
+                優勝
+              </Text>
+              <Text as="span" fontSize={20}>
+                （国際大会進出）
+              </Text>
+            </HStack>
+          </VStack>
+          <Stack w={'40%'} spacing={8} position={'relative'}>
+            <Heading
+              fontFamily={'serif'}
+              letterSpacing={2}
+              size={'2xl'}
+              textAlign={'right'}
+              textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
+            >
+              Awards
+            </Heading>
+            <Text fontSize={18} lineHeight={2}>
+              現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
+            </Text>
+            <SectionButton
+              position={'absolute'}
+              bottom={0}
+              onClick={() => router.push('/awards')}
+            >
+              全ての成績を見る
+            </SectionButton>
+          </Stack>
+        </Stack>
         {/* news */}
         <Stack spacing={8} px={{ lg: 82, xl: 200 }}>
           <Heading
