@@ -199,7 +199,12 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         position={'relative'}
       >
         {/* about */}
-        <Stack spacing={20} direction={'row'} px={{ lg: 82, xl: 200 }}>
+        <Stack
+          spacing={20}
+          direction={'row'}
+          px={{ lg: 82, xl: 200 }}
+          position={'relative'}
+        >
           {/* タイトルとテキスト */}
           <Stack spacing={8}>
             <Heading
@@ -213,15 +218,13 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
             <Text fontSize={18} lineHeight={2}>
               {data.top[0].about}
             </Text>
-            <Center>
-              <SectionButton
-                pt={100}
-                m={'0 0 0 auto'}
-                onClick={() => router.push('/about-us')}
-              >
-                団体紹介はこちら
-              </SectionButton>
-            </Center>
+            <SectionButton
+              position={'absolute'}
+              bottom={0}
+              onClick={() => router.push('/about-us')}
+            >
+              団体紹介はこちら
+            </SectionButton>
           </Stack>
           {/* 画像 */}
           <Box>
