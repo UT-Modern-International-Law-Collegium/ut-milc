@@ -178,7 +178,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         spacing={{ base: 12, md: 140 }}
         pt={{ base: 0, md: 20 }}
         pb={{ base: 16, md: 20 }}
-        px={{ md: 12, lg: 82, xl: 200 }}
+        px={{ base: 12, md: 0, lg: 82, xl: 200 }}
         sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
       >
         {/* about */}
@@ -190,7 +190,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           <Stack
             position={{ base: 'static', md: 'relative' }}
             spacing={{ base: 0, md: 8 }}
-            px={{ base: 12, md: 0 }}
           >
             <Heading
               size={'2xl'}
@@ -201,7 +200,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
             >
               About us
             </Heading>
-            <Text fontSize={18} lineHeight={2} px={{ base: 4, md: 0 }}>
+            <Text fontSize={18} lineHeight={2}>
               {data.top[0].about}
             </Text>
             <SectionButton
@@ -226,7 +225,6 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         </Stack>
         {/* awards */}
         <Stack
-          // px={{ base: 12, md: 0, lg: 82, xl: 200 }}
           direction={{ base: 'column-reverse', md: 'row' }}
           justifyContent={{ base: 'center', md: 'space-between' }}
           spacing={{ base: 4, md: 20 }}
