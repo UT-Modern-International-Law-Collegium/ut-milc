@@ -51,7 +51,8 @@ const TopPage: NextPage<TopPageProps> = ({ data }) => {
   } else {
     return (
       <Layout>
-        <MobileContent data={data} />
+        <DesktopContent data={data} />
+        {/* <MobileContent data={data} /> */}
       </Layout>
     );
   }
@@ -165,48 +166,54 @@ const MobileContent: FC<TopPageProps> = ({ data }) => {
 
 const DesktopContent: FC<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   return (
-    <Stack spacing={{ base: 0, md: 4 }}>
+    <Stack spacing={{ base: 12, md: 4 }}>
       {/* ファーストビュー */}
       <Firstview />
-      {/* ファーストビュー以下part1 */}
+      {/* about us ~ news */}
       <Stack
-        spacing={{ base: 20, md: 140 }}
+        position={{ base: 'static', md: 'relative' }}
+        spacing={{ base: 12, md: 140 }}
         pt={{ base: 0, md: 20 }}
-        pb={{ base: 0, md: 20 }}
-        position={'relative'}
+        pb={{ base: 16, md: 20 }}
+        px={{ lg: 82, xl: 200 }}
+        sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
       >
         {/* about */}
         <Stack
-          spacing={20}
-          direction={'row'}
-          px={{ lg: 82, xl: 200 }}
-          position={'relative'}
+          spacing={{ base: 0, md: 20 }}
+          direction={{ base: 'column', md: 'row' }}
         >
           {/* タイトルとテキスト */}
-          <Stack spacing={8}>
+          <Stack
+            position={{ base: 'static', md: 'relative' }}
+            spacing={{ base: 0, md: 8 }}
+            px={{ base: 12, md: 0 }}
+          >
             <Heading
-              fontFamily={'serif'}
-              letterSpacing={2}
               size={'2xl'}
-              textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
+              textShadow={{
+                base: 'none',
+                md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
+              }}
             >
               About us
             </Heading>
-            <Text fontSize={18} lineHeight={2}>
+            <Text fontSize={18} lineHeight={2} px={{ base: 4, md: 0 }}>
               {data.top[0].about}
             </Text>
             <SectionButton
-              position={'absolute'}
-              bottom={0}
+              position={{ base: 'static', md: 'absolute' }}
+              bottom={{ md: 0 }}
               onClick={() => router.push('/about-us')}
             >
               団体紹介はこちら
             </SectionButton>
           </Stack>
           {/* 画像 */}
-          <Box>
+          <Box display={{ base: 'none', md: 'block' }}>
             <Image
               src={
                 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
@@ -219,15 +226,23 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
         </Stack>
         {/* awards */}
         <Stack
-          px={{ lg: 82, xl: 200 }}
-          direction={'row'}
-          justifyContent={'space-between'}
-          spacing={20}
+          // px={{ base: 12, md: 0, lg: 82, xl: 200 }}
+          direction={{ base: 'column-reverse', md: 'row' }}
+          justifyContent={{ base: 'center', md: 'space-between' }}
+          spacing={{ base: 4, md: 20 }}
         >
+          {!isLargerThan768px && (
+            <SectionButton
+              display={{ base: 'block', md: 'none' }}
+              onClick={() => router.push('/awards')}
+            >
+              全ての成績を見る
+            </SectionButton>
+          )}
           <VStack
-            w={'60%'}
-            spacing={4}
-            py={8}
+            w={{ base: 'none', md: '60%' }}
+            spacing={{ base: 2, md: 4 }}
+            py={{ base: 4, md: 8 }}
             px={4}
             borderRadius={8}
             border={'solid'}
@@ -241,53 +256,66 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
               left={-8}
               color={'yellow.300'}
               opacity={0.6}
-              w={140}
-              h={140}
+              w={{ base: 100, md: 140 }}
+              h={{ base: 100, md: 140 }}
             />
             <Heading
               fontWeight={'light'}
               textAlign={'center'}
-              fontSize={30}
+              fontSize={{ base: 22, md: 30 }}
               zIndex={1}
             >
               2022 Philip C. Jessup International Law Moot Court Competition
               National Round
             </Heading>
-            <Text fontSize={20}>~ NationalRound（国内予選） ~</Text>
+            <Text fontSize={{ base: 18, md: 20 }}>
+              ~ NationalRound（国内予選） ~
+            </Text>
             <HStack alignItems={'baseline'}>
-              <Text fontSize={20}>総合結果</Text>
-              <Text fontSize={32} pl={4}>
+              <Text fontSize={{ base: 18, md: 20 }}>総合結果</Text>
+              <Text fontSize={{ base: 24, md: 32 }} pl={{ base: 2, md: 4 }}>
                 優勝
               </Text>
-              <Text as="span" fontSize={20}>
+              <Text as="span" fontSize={{ base: 18, md: 20 }}>
                 （国際大会進出）
               </Text>
             </HStack>
           </VStack>
-          <Stack w={'40%'} spacing={8} position={'relative'}>
+          {/* タイトルとテキスト */}
+          <Stack
+            w={{ base: '100%', md: '40%' }}
+            spacing={{ base: 0, md: 8 }}
+            position={'relative'}
+          >
             <Heading
               fontFamily={'serif'}
               letterSpacing={2}
               size={'2xl'}
-              textAlign={'right'}
-              textShadow={'6px 4px 1px rgb(0, 255, 177, 0.6)'}
+              textAlign={{ base: 'inherit', md: 'right' }}
+              textShadow={{
+                base: 'none',
+                md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
+              }}
             >
               Awards
             </Heading>
             <Text fontSize={18} lineHeight={2}>
               現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
             </Text>
-            <SectionButton
-              position={'absolute'}
-              bottom={0}
-              onClick={() => router.push('/awards')}
-            >
-              全ての成績を見る
-            </SectionButton>
+            {isLargerThan768px && (
+              <SectionButton
+                position={'absolute'}
+                display={{ base: 'none', md: 'block' }}
+                bottom={{ md: 0 }}
+                onClick={() => router.push('/awards')}
+              >
+                全ての成績を見る
+              </SectionButton>
+            )}
           </Stack>
         </Stack>
         {/* news */}
-        <Stack spacing={8} px={{ lg: 82, xl: 200 }}>
+        <Stack spacing={8}>
           <Heading
             fontFamily={'serif'}
             letterSpacing={2}
