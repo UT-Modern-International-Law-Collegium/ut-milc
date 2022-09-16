@@ -67,24 +67,18 @@ const Footer: FC = () => {
           </HStack>
           <HStack spacing={12} justifyContent={'center'}>
             <IconContext.Provider value={{ size: '36px' }}>
-              <VStack>
-                <IconButton
-                  aria-label="instagram"
-                  icon={<BsInstagram />}
-                  bg={'none'}
-                  onClick={() =>
-                    router.push('https://www.instagram.com/utmilc/')
-                  }
-                />
+              <VStack
+                as={NextChakraLink}
+                href={'https://www.instagram.com/utmilc/'}
+              >
+                <BsInstagram />
                 <Text>instagram</Text>
               </VStack>
-              <VStack>
-                <IconButton
-                  aria-label="twitter"
-                  icon={<BsTwitter />}
-                  bg={'none'}
-                  onClick={() => router.push('https://twitter.com/utmilc_2022')}
-                />
+              <VStack
+                as={NextChakraLink}
+                href={'https://twitter.com/utmilc_2022'}
+              >
+                <BsTwitter />
                 <Text>twitter</Text>
               </VStack>
             </IconContext.Provider>
