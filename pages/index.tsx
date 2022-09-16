@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
-import type { GetStaticProps, NextPage } from 'next';
+import React, { ReactElement } from 'react';
+import type { GetStaticProps } from 'next';
 import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
-import moment from 'moment';
 import { IconContext } from 'react-icons/lib';
 import {
   BsArrowRight,
@@ -16,7 +15,6 @@ import {
   Heading,
   Stack,
   Text,
-  Badge,
   Button,
   Center,
   useMediaQuery,
@@ -33,138 +31,15 @@ import { axiosInstance } from '../lib/axios';
 import { Article, Award } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
-import Layout from '../components/layout/Layout';
 import NewsCard from '../components/news/NewsCard';
+import { NextPageWithLayout } from './_app';
+import Layout from '../components/layout/Layout';
 
 type TopPageProps = {
   data: { top: any[]; news: Article[]; awards: Award[] };
 };
 
-const TopPage: NextPage<TopPageProps> = ({ data }) => {
-  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-  if (isLargerThan768px) {
-    return (
-      <Layout>
-        <DesktopContent data={data} />;
-      </Layout>
-    );
-  } else {
-    return (
-      <Layout>
-        <DesktopContent data={data} />
-        {/* <MobileContent data={data} /> */}
-      </Layout>
-    );
-  }
-};
-
-const MobileContent: FC<TopPageProps> = ({ data }) => {
-  const router: NextRouter = useRouter();
-  return (
-    <Stack spacing={{ base: 12 }}>
-      <Firstview />
-      {/* about us ~ news */}
-      <Stack
-        sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
-        px={'5%'}
-        spacing={12}
-        pb={16}
-      >
-        {/* about */}
-        <Stack>
-          <Heading size={'2xl'}>About us</Heading>
-          <Text fontSize={18} lineHeight={2} px={4}>
-            {data.top[0].about}
-          </Text>
-          <Center>
-            <SectionButton>団体紹介はこちら</SectionButton>
-          </Center>
-        </Stack>
-        {/* awards */}
-        <Stack>
-          <Heading size={'2xl'}>Awards</Heading>
-          <Center>
-            <SectionButton>全ての活動実績を見る</SectionButton>
-          </Center>
-        </Stack>
-        {/* news */}
-        <Stack>
-          <Heading size={'2xl'}>News</Heading>
-          <HStack overflowX={'scroll'}>
-            {data.news.map((item: Article, index) => {
-              if (index > 4) return;
-              return <NewsCard key={item.id} item={item} />;
-            })}
-            <IconContext.Provider value={{ size: '36px' }}>
-              <IconButton
-                aria-label="news"
-                icon={<BsArrowRightShort />}
-                bg={'none'}
-                onClick={() => router.push('/news')}
-              />
-            </IconContext.Provider>
-          </HStack>
-        </Stack>
-      </Stack>
-      {/* join us ~ footer */}
-      <Stack bg={'#0d2c32'} h={500} position={'relative'} pt={100}>
-        {/* arrow */}
-        <Stack
-          position={'absolute'}
-          bg={'#fff'}
-          // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
-          top={-0.4}
-          left={0}
-          clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
-          h={100}
-          w={'100%'}
-        />
-        <VStack spacing={12}>
-          <HStack spacing={6}>
-            <IconContext.Provider value={{ size: '42px', color: '#81E6D9' }}>
-              <BsCheckCircle />
-            </IconContext.Provider>
-            <Heading
-              fontFamily={'serif'}
-              letterSpacing={2}
-              size={'2xl'}
-              textAlign={'center'}
-              color={'#fff'}
-            >
-              Join us
-            </Heading>
-          </HStack>
-          <Text
-            fontSize={18}
-            color={'#fff'}
-            w={'40%'}
-            textAlign={'center'}
-            minW={'80%'}
-          >
-            現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
-          </Text>
-          <Center>
-            <IconContext.Provider value={{ size: '20px' }}>
-              <Button
-                bg={'teal.200'}
-                fontSize={18}
-                py={7}
-                pl={7}
-                pr={8}
-                rightIcon={<BsArrowRight />}
-                onClick={() => router.push('/join-us')}
-              >
-                入会のお申し込みはこちら
-              </Button>
-            </IconContext.Provider>
-          </Center>
-        </VStack>
-      </Stack>
-    </Stack>
-  );
-};
-
-const DesktopContent: FC<TopPageProps> = ({ data }) => {
+const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
@@ -414,6 +289,10 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
       </Stack>
     </Stack>
   );
+};
+
+TopPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
