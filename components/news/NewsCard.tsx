@@ -21,7 +21,7 @@ const NewsCard: FC<Props> = ({ item, isLatest }) => {
   return (
     <LinkBox
       as={Stack}
-      minW={300}
+      minW={{ base: 300, md: 'unset' }}
       py={{ base: 8, md: 4 }}
       borderRadius={{ base: 8, md: 4 }}
       px={4}
