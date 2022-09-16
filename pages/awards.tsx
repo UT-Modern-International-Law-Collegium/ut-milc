@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react';
+import { Stack, useMediaQuery } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 import Layout from '../components/layout/Layout';
@@ -10,11 +10,16 @@ type Props = {
 };
 
 const AwardsPage: NextPageWithLayout<Props> = ({ data }) => {
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   return (
-    <Stack>
-      <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
-        <PageTitle minW={200}>活動実績</PageTitle>
-      </Stack>
+    <Stack
+      px={{ base: 10, md: 100 }}
+      pb={{ base: 100 }}
+      spacing={{ base: 10 }}
+      w={{ base: '100%', md: '80%' }}
+      mx={'auto'}
+    >
+      <PageTitle minW={200}>活動実績</PageTitle>
     </Stack>
   );
 };

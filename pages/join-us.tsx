@@ -9,10 +9,14 @@ type JoinUsPage = {};
 
 const JoinUsPage: NextPageWithLayout<JoinUsPage> = () => {
   return (
-    <Stack>
-      <Stack px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
-        <PageTitle>入会申し込み</PageTitle>
-      </Stack>
+    <Stack
+      px={{ base: 10, md: 100 }}
+      pb={{ base: 100 }}
+      spacing={{ base: 10 }}
+      w={{ base: '100%', md: '80%' }}
+      mx={'auto'}
+    >
+      <PageTitle>入会申し込み</PageTitle>
     </Stack>
   );
 };
