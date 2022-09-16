@@ -53,7 +53,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
         spacing={{ base: 12, md: 140 }}
         pt={{ base: 0, md: 20 }}
         pb={{ base: 16, md: 20 }}
-        px={{ base: 12, md: 0, lg: 82, xl: 200 }}
+        px={{ base: 5, md: 0, lg: 82, xl: 200 }}
         sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
       >
         {/* about */}
@@ -64,7 +64,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
           {/* タイトルとテキスト */}
           <Stack
             position={{ base: 'static', md: 'relative' }}
-            spacing={{ base: 0, md: 8 }}
+            spacing={{ base: 2, md: 8 }}
           >
             <Heading
               size={'2xl'}
@@ -157,7 +157,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
           {/* タイトルとテキスト */}
           <Stack
             w={{ base: '100%', md: '40%' }}
-            spacing={{ base: 0, md: 8 }}
+            spacing={{ base: 2, md: 8 }}
             position={'relative'}
           >
             <Heading
@@ -188,7 +188,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
           </Stack>
         </Stack>
         {/* news */}
-        <Stack spacing={8}>
+        <Stack spacing={{ base: 0, md: 8 }}>
           <Heading
             fontFamily={'serif'}
             letterSpacing={2}
@@ -267,7 +267,12 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
               Join us
             </Heading>
           </HStack>
-          <Text fontSize={18} color={'#fff'} w={'40%'} textAlign={'center'}>
+          <Text
+            fontSize={18}
+            color={'#fff'}
+            w={{ base: '80%', md: '40%' }}
+            textAlign={'center'}
+          >
             現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
           </Text>
           <Center>
