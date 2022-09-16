@@ -1,6 +1,19 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
-import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import {
+  Heading,
+  HStack,
+  Stack,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Tr,
+} from '@chakra-ui/react';
+import moment from 'moment';
 import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
@@ -10,9 +23,10 @@ import { fakeData } from '../lib/fakeData';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 
-type AboutPageProps = { data: AboutPageData[] };
+type AboutPageProps = { data: AboutPageData };
 
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
+  const { body, members } = data;
   return (
     <Stack
       px={{ base: 10, md: 100 }}
@@ -22,7 +36,7 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
       mx={'auto'}
     >
       <PageTitle minW={200}>団体紹介</PageTitle>
-      {data.map((item) => {
+      {body.map((item) => {
         return (
           <Stack key={item.id} w={{ base: '100%' }}>
             <HStack alignItems={'center'} spacing={2}>
@@ -39,6 +53,26 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
           </Stack>
         );
       })}
+      <HStack alignItems={'center'} spacing={2}>
+        <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
+          <BsFillSquareFill />
+          <Heading size={'lg'}>{`${moment().year()}年度役員紹介`}</Heading>
+        </IconContext.Provider>
+      </HStack>
+      <TableContainer w={{ base: 'none', md: '80%', lg: '50%' }}>
+        <Table>
+          <Tbody>
+            {members.map((memberInfo: string[], index: number) => {
+              return (
+                <Tr key={index}>
+                  <Th fontSize={18}>{memberInfo[0]}</Th>
+                  <Td fontSize={18}>{memberInfo[1]}</Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </Stack>
   );
 };
