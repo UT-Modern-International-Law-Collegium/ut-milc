@@ -65,7 +65,9 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
             {members.map((memberInfo: string[], index: number) => {
               return (
                 <Tr key={index}>
-                  <Th fontSize={18}>{memberInfo[0]}</Th>
+                  <Th fontSize={18} color={'#000'}>
+                    {memberInfo[0]}
+                  </Th>
                   <Td fontSize={18}>{memberInfo[1]}</Td>
                 </Tr>
               );
