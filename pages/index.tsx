@@ -366,7 +366,7 @@ const DesktopContent: FC<TopPageProps> = ({ data }) => {
           left={0}
           clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
           h={200}
-          w={'100vw'}
+          w={'100%'}
         />
         {/* join us */}
         <VStack spacing={12}>
