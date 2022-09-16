@@ -39,7 +39,7 @@ const Footer: FC = () => {
     <Grid
       templateColumns={'repeat(2, 1fr)'}
       py={12}
-      px={{ base: 8, md: 40 }}
+      px={{ base: 8, lg: 40 }}
       bg={'gray.200'}
       gap={{ base: 8, md: 0 }}
     >
