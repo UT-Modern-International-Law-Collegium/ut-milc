@@ -8,11 +8,14 @@ export type Article = {
 };
 
 export type AboutPageData = {
-  id: number;
-  title: string;
-  content: string;
-  created_at: any;
-  status: string;
+  body: Array<{
+    id: number;
+    title: string;
+    content: string;
+    created_at: any;
+    status: string;
+  }>;
+  members: string[][];
 };
 
 export type Award = {
