@@ -1,10 +1,11 @@
-import { Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
+import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { Award } from '../../lib/type';
@@ -27,15 +28,33 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
     );
   }
   return (
-    <Stack minH={'100vh'} pl={{ base: 0, md: '30%' }}>
+    <Stack minH={'100vh'} pt={36}>
       <YearNavigation years={years} />
-      {awards.map((award: Award) => {
-        return (
-          <Stack key={award.id}>
-            <Heading>{award.title}</Heading>
-          </Stack>
-        );
-      })}
+      <Box maxH={'100vh'} overflowY={'scroll'}>
+        {awards.map((award: Award) => {
+          return (
+            <Stack
+              key={award.id}
+              ml={{ base: 0, md: '28%' }}
+              mr={'10%'}
+              mb={10}
+              borderRadius={8}
+              boxShadow={'xl'}
+              minH={200}
+              pt={6}
+              pl={4}
+            >
+              <Heading>{award.title}</Heading>
+              <Box
+                dangerouslySetInnerHTML={{ __html: award.content }}
+                px={10}
+                pb={6}
+                fontSize={18}
+              />
+            </Stack>
+          );
+        })}
+      </Box>
     </Stack>
   );
 };
