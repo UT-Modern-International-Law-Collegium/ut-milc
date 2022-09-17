@@ -1,4 +1,4 @@
-import { Heading, Stack } from '@chakra-ui/react';
+import { Heading, Stack, Text } from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -19,6 +19,13 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
   awards,
   years,
 }) => {
+  if (awards.length === 0) {
+    return (
+      <Stack>
+        <Text>現在、掲載準備中です。</Text>
+      </Stack>
+    );
+  }
   return (
     <Stack minH={'100vh'} pl={{ base: 0, md: '30%' }}>
       <YearNavigation years={years} />
@@ -82,6 +89,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       if (!years.includes(moment().year())) {
         years.push(moment().year());
       }
+      // NOTE: 開発時は年度に関わらず同じawardsのデータを返す。
       return { props: { awards: fakeData.awards, years: years } };
     } else {
       const awardsRes = await axiosInstance.get(`/api/awards/${params!.year}`);
