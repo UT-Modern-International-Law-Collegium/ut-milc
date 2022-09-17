@@ -10,6 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           const response = await excuteQuery(
             'SELECT DISTINCT year FROM awards'
           );
+          return res.status(200).json(response);
         } else {
           const response = await excuteQuery('SELECT * FROM awards');
           return res.status(200).json(response);
