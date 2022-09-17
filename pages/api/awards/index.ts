@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { excuteQuery } from '../../lib/mysql';
+import { excuteQuery } from '../../../lib/mysql';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
