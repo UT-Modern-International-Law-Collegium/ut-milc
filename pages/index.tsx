@@ -28,7 +28,7 @@ import {
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
-import { Article, Award } from '../lib/type';
+import { News } from '../lib/type';
 import SectionButton from '../components/top/SectionButton';
 import { fakeData } from '../lib/fakeData';
 import NewsCard from '../components/news/NewsCard';
@@ -36,7 +36,7 @@ import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 
 type TopPageProps = {
-  data: { top: any[]; news: Article[]; awards: Award[] };
+  data: { about: string; award: string; join_us: string; news: News[] };
 };
 
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
@@ -76,7 +76,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
               About us
             </Heading>
             <Text fontSize={18} lineHeight={2}>
-              {data.top[0].about}
+              {data.about}
             </Text>
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
@@ -173,7 +173,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
               Awards
             </Heading>
             <Text fontSize={18} lineHeight={2}>
-              現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
+              {data.award}
             </Text>
             {isLargerThan768px && (
               <SectionButton
@@ -204,7 +204,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
             spacing={{ md: 8 }}
             overflowX={{ base: 'scroll', md: 'unset' }}
           >
-            {data.news.map((item: Article, index) => {
+            {data.news.map((item: News, index) => {
               if (index > 2) return;
               return <NewsCard key={item.id} item={item} />;
             })}
@@ -276,7 +276,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
             w={{ base: '80%', md: '40%' }}
             textAlign={'center'}
           >
-            現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
+            {data.join_us}
           </Text>
           <Center>
             <IconContext.Provider value={{ size: '20px' }}>
@@ -319,7 +319,9 @@ export const getStaticProps: GetStaticProps = async () => {
       const topRes = await axiosInstance.get('/api/top');
       const newsRes = await axiosInstance.get('/api/news?count=5');
       const data = {
-        top: topRes.data,
+        about: topRes.data[0].about,
+        award: topRes.data[0].award,
+        join_us: topRes.data[0].join_us,
         news: newsRes.data,
       };
       return {
