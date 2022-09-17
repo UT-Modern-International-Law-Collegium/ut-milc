@@ -309,9 +309,10 @@ export const getStaticProps: GetStaticProps = async () => {
       return {
         props: {
           data: {
-            top: fakeData.top,
+            about: fakeData.top.about,
+            award: fakeData.top.award,
+            join_us: fakeData.top.join_us,
             news: fakeData.news,
-            awards: fakeData.awards,
           },
         },
       };
