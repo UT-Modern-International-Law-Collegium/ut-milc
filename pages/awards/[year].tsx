@@ -1,7 +1,6 @@
-import { Stack } from '@chakra-ui/react';
+import { Heading, Stack } from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import path from 'path';
 import { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
@@ -14,7 +13,17 @@ type Props = {
 };
 
 const AwardPageDividedByYear: NextPageWithLayout<Props> = ({ data }) => {
-  return <Stack></Stack>;
+  return (
+    <Stack minH={'100vh'} pl={{ base: 0, md: '30%' }}>
+      {data.map((award: Award) => {
+        return (
+          <Stack key={award.id}>
+            <Heading>{award.title}</Heading>
+          </Stack>
+        );
+      })}
+    </Stack>
+  );
 };
 
 AwardPageDividedByYear.getLayout = function getLayout(page: ReactElement) {
