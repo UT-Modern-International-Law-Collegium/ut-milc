@@ -34,6 +34,7 @@ import { fakeData } from '../lib/fakeData';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+import moment from 'moment';
 
 type TopPageProps = {
   data: { about: string; award: string; join_us: string; news: News[] };
@@ -180,7 +181,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
                 position={'absolute'}
                 display={{ base: 'none', md: 'flex' }}
                 bottom={{ md: 0 }}
-                onClick={() => router.push('/awards')}
+                onClick={() => router.push(`/awards/${moment().year()}`)}
               >
                 全ての成績を見る
               </SectionButton>
