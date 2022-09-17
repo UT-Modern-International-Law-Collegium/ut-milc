@@ -2,6 +2,7 @@ import { Heading, Stack } from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
+import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
@@ -19,6 +20,7 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
 }) => {
   return (
     <Stack minH={'100vh'} pl={{ base: 0, md: '30%' }}>
+      <YearNavigation years={years} />
       {awards.map((award: Award) => {
         return (
           <Stack key={award.id}>
