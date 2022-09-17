@@ -21,12 +21,12 @@ import NewsCard from '../../components/news/NewsCard';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
-import { Article } from '../../lib/type';
 import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
+import { News } from '../../lib/type';
 
 type NewsPageProps = {
-  data: Article[];
+  data: News[];
 };
 
 const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {

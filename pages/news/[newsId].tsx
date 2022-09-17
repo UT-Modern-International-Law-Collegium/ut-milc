@@ -6,11 +6,11 @@ import { ReactElement } from 'react';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
-import { Article } from '../../lib/type';
+import { News } from '../../lib/type';
 import { NextPageWithLayout } from '../_app';
 
 type NewsDetailPageProps = {
-  data: Article[];
+  data: News[];
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
@@ -58,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
       data = res.data;
     }
-    const paths = data.map((item: Article) => ({
+    const paths = data.map((item: News) => ({
       params: { newsId: item.id.toString() },
     }));
     return { paths, fallback: false };
