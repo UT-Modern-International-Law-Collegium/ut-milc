@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
 import NextChakraLink from '../../utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
+import moment from 'moment';
 
 const Navigation: FC<StackProps> = ({ ...rest }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const stlyeLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
   ): string => {
     if (router.pathname === path) {
       return '#00FFB1';
@@ -40,7 +41,10 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       <NextChakraLink color={stlyeLinkColor('/about-us')} href={'/about-us'}>
         About us
       </NextChakraLink>
-      <NextChakraLink color={stlyeLinkColor('/awards')} href={'/awards'}>
+      <NextChakraLink
+        color={stlyeLinkColor('/awards/[year]')}
+        href={`/awards/${moment().year()}`}
+      >
         Awards
       </NextChakraLink>
       <NextChakraLink color={stlyeLinkColor('/news')} href={'/news'}>

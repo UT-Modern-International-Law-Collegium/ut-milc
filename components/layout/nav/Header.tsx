@@ -15,6 +15,7 @@ import { IconContext } from 'react-icons/lib';
 import Navigation from './Navigation';
 import { NextRouter, useRouter } from 'next/router';
 import NextChakraLink from '../../utils/NextChakraLink';
+import moment from 'moment';
 
 const Header: FC = () => {
   const router: NextRouter = useRouter();
@@ -28,7 +29,7 @@ const Header: FC = () => {
   }, [router, onClose]);
 
   const styleLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
   ): string => {
     if (router.pathname === path) {
       return 'rgb(0, 255, 177, 1)';
@@ -64,7 +65,10 @@ const Header: FC = () => {
           >
             About us
           </NextChakraLink>
-          <NextChakraLink href={'/awards'} color={styleLinkColor('/awards')}>
+          <NextChakraLink
+            href={`/awards/${moment().year()}`}
+            color={styleLinkColor('/awards/[year]')}
+          >
             Awards
           </NextChakraLink>
           <NextChakraLink href={'/news'} color={styleLinkColor('/news')}>
