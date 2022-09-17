@@ -2,8 +2,8 @@ export type News = {
   id: number;
   title: string;
   content: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | string;
+  updated_at: Date | string | null;
   tag: string;
   status: 'public' | 'draft';
 };
@@ -13,8 +13,8 @@ export type Award = {
   year: number;
   content: string;
   status: 'draft' | 'public';
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | string;
+  updated_at: Date | string | null;
   title: string;
 };
 
@@ -22,8 +22,8 @@ export type AboutUsSection = {
   id: number;
   title: string;
   content: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | string;
+  updated_at: Date | string | null;
   status: 'public' | 'draft';
 };
 
