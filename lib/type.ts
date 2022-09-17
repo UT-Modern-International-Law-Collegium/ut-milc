@@ -9,11 +9,16 @@ export type News = {
 };
 
 export type Award = {
-  name: string;
-  detail: string[];
+  id: number;
+  year: number;
+  content: string;
+  status: 'draft' | 'public';
+  created_at: Date;
+  updated_at: Date;
+  title: string;
 };
 
-export type AboutSection = {
+export type AboutUsSection = {
   id: number;
   title: string;
   content: string;
