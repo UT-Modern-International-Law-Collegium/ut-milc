@@ -106,7 +106,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
         >
           {!isLargerThan768px && (
             <SectionButton
-              display={{ base: 'block', md: 'none' }}
+              display={{ base: 'flex', md: 'none' }}
               onClick={() => router.push('/awards')}
             >
               全ての成績を見る
