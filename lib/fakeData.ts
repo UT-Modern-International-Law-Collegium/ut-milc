@@ -32,6 +32,16 @@ export const fakeData: FakeData = {
       created_at: '2022-09-17',
       updated_at: null,
     },
+    {
+      id: 3,
+      title: 'Japan Cup',
+      year: 2020,
+      content:
+        '<h2 data-mce-style="padding-left: 40px;" style="padding-left: 40px;">総合結果</h2><ul><li style="list-style-type: none;"><ul><li style="">5位<ul><li style="">弁論者 ：夏目俊之介、石井大智、清水海杜、赤木芙実加</li><li style="">弁論補佐人：前田悠輔、𠮷野天<br data-mce-bogus="1"></li></ul></li></ul></li></ul><h2 data-mce-style="padding-left: 40px;" style="padding-left: 40px;">書面結果</h2><ul><li style="list-style-type: none;"><ul><li style="">被告2位<br data-mce-bogus="1"></li></ul></li></ul><h2 data-mce-style="padding-left: 40px;" style="padding-left: 40px;">個人結果</h2><ul><li style="list-style-type: none;"><ul><li>被告１位　赤木芙実加</li><li>原告７位　石井大智</li><li>被告９位　清水海杜</li></ul></li></ul>',
+      status: 'public',
+      created_at: '2022-09-17',
+      updated_at: null,
+    },
   ],
   about: {
     sections: [
