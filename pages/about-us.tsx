@@ -5,7 +5,6 @@ import {
   HStack,
   Stack,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
@@ -18,15 +17,15 @@ import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
-import { AboutPageData } from '../lib/type';
 import { fakeData } from '../lib/fakeData';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+import { AboutSection, Member } from '../lib/type';
 
-type AboutPageProps = { data: AboutPageData };
+type AboutPageProps = { data: { sections: AboutSection[]; members: Member[] } };
 
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
-  const { body, members } = data;
+  const { sections, members } = data;
   return (
     <Stack
       px={{ base: 10, md: 100 }}
@@ -36,18 +35,18 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
       mx={'auto'}
     >
       <PageTitle minW={200}>団体紹介</PageTitle>
-      {body.map((item) => {
+      {sections.map((section) => {
         return (
-          <Stack key={item.id} w={{ base: '100%' }}>
+          <Stack key={section.id} w={{ base: '100%' }}>
             <HStack alignItems={'center'} spacing={2}>
               <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
                 <BsFillSquareFill />
-                <Heading size={'lg'}>{item.title}</Heading>
+                <Heading size={'lg'}>{section.title}</Heading>
               </IconContext.Provider>
             </HStack>
             <HStack spacing={4} borderLeft={'1px solid #ccc'} pl={5}>
               <Text fontSize={18} lineHeight={2}>
-                {item.content}
+                {section.content}
               </Text>
             </HStack>
           </Stack>
@@ -62,7 +61,7 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
       <TableContainer w={{ base: 'none', md: '80%', lg: '50%' }}>
         <Table>
           <Tbody>
-            {members.map((memberInfo: string[], index: number) => {
+            {members.map((member: Member, index: number) => {
               return (
                 <Tr key={index}>
                   <Th
@@ -72,9 +71,9 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
                     borderColor={'#fff'}
                     borderWidth={4}
                   >
-                    {memberInfo[0]}
+                    {member.position}
                   </Th>
-                  <Td fontSize={18}>{memberInfo[1]}</Td>
+                  <Td fontSize={18}>{`${member.name}（${member.grade}年）`}</Td>
                 </Tr>
               );
             })}
@@ -95,7 +94,14 @@ export const getStaticProps: GetStaticProps = async () => {
       return { props: { data: fakeData.about } };
     } else {
       const res = await axiosInstance.get('/api/about-us');
-      return { props: { data: res.data } };
+      return {
+        props: {
+          data: {
+            sections: res.data.sections,
+            members: res.data.members,
+          },
+        },
+      };
     }
   } catch (err) {
     throw new Error(`err at about page: ${err}`);

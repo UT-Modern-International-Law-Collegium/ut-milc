@@ -5,10 +5,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       try {
-        const response = await excuteQuery(
-          'SELECT * FROM api_aboutpagedata WHERE status="public"'
+        const aboutSectionsRes = await excuteQuery(
+          'SELECT * FROM aboutus_sections WHERE status="public"'
         );
-        return res.status(200).json(response);
+        const membersRes = await excuteQuery(
+          'SELECT position, name, grade FROM members WHERE position IS NOT NULL'
+        );
+        return res
+          .status(200)
+          .json({ sections: aboutSectionsRes, members: membersRes });
       } catch (err) {
         return res
           .status(500)
