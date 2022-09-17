@@ -10,10 +10,10 @@ import {
   Text,
   Badge,
 } from '@chakra-ui/react';
-import { Article } from '../../lib/type';
+import { News } from '../../lib/type';
 
 type Props = {
-  item: Article;
+  item: News;
   isLatest?: boolean;
 };
 

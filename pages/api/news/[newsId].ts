@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case 'GET':
       try {
         const { newsId } = req.query;
-        const dbQuery: string = `SELECT * FROM api_article WHERE status="public" AND id=${newsId}`;
+        const dbQuery: string = `SELECT * FROM news WHERE status="public" AND id=${newsId}`;
         const news = await excuteQuery(dbQuery);
         return res.status(200).json(news);
       } catch (err) {

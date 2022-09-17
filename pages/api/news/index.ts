@@ -8,9 +8,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const count: string = req.query['count'] as string;
         let dbQuery: string;
         if (count) {
-          dbQuery = `SELECT * FROM api_article WHERE status="public" LIMIT ${count}`;
+          dbQuery = `SELECT * FROM news WHERE status="public" LIMIT ${count}`;
         } else {
-          dbQuery = `SELECT * FROM api_article WHERE status="public"`;
+          dbQuery = `SELECT * FROM news WHERE status="public"`;
         }
         const news = await excuteQuery(dbQuery);
         return res.status(200).json(news);
