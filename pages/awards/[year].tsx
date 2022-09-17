@@ -9,7 +9,11 @@ import { fakeData } from '../../lib/fakeData';
 import { Award } from '../../lib/type';
 import { NextPageWithLayout } from '../_app';
 
-const AwardPageDividedByYear: NextPageWithLayout = () => {
+type Props = {
+  data: Award[];
+};
+
+const AwardPageDividedByYear: NextPageWithLayout<Props> = ({ data }) => {
   return <Stack></Stack>;
 };
 
@@ -46,8 +50,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    if (process.env.ENV_VAR === 'development') {
-      return { props: { data: [fakeData.awards[Number(params!.year)]] } };
+    if (process.env.ENV_VAR === 'developmen') {
+      return { props: { data: fakeData.awards } };
     } else {
       const res = await axiosInstance.get(`/api/awards/${params!.year}`);
       return { props: { data: res.data } };
