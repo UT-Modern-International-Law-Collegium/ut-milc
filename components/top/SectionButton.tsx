@@ -1,5 +1,5 @@
-import { Button, ButtonProps, Center } from '@chakra-ui/react';
 import React, { FC } from 'react';
+import { Button, ButtonProps, Center, Icon } from '@chakra-ui/react';
 import { IconContext } from 'react-icons/lib';
 import { BsArrowRight } from 'react-icons/bs';
 
@@ -13,21 +13,29 @@ const SectionButton: FC<SectionButtonProps & ButtonProps> = ({
 }) => {
   return (
     <Center>
-      <IconContext.Provider value={{ size: '20px' }}>
-        <Button
-          rightIcon={<BsArrowRight />}
-          pl={6}
-          bg={'none'}
-          fontWeight={'normal'}
-          fontSize={18}
-          textDecoration={'underline'}
-          borderRadius={'none'}
-          _hover={{}}
-          {...rest}
-        >
-          {children}
-        </Button>
-      </IconContext.Provider>
+      <Button
+        sx={{ '.btn-arrow': { opacity: 0 } }}
+        _hover={{ '.btn-arrow': { opacity: 1 }, pl: -10 }}
+        transition={'0.2s'}
+        rightIcon={
+          <Icon
+            as={BsArrowRight}
+            w={6}
+            h={6}
+            className={'btn-arrow'}
+            transition={'0.2s'}
+          />
+        }
+        pl={6}
+        bg={'none'}
+        fontWeight={'normal'}
+        fontSize={18}
+        textDecoration={'underline'}
+        borderRadius={'none'}
+        {...rest}
+      >
+        {children}
+      </Button>
     </Center>
   );
 };
