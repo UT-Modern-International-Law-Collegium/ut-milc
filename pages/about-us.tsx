@@ -30,13 +30,13 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   const { sections, members } = data;
   return (
     <Stack
-      px={{ base: 10, md: 100 }}
+      px={{ base: 4, md: 100 }}
       pb={{ base: 100 }}
       spacing={{ base: 10 }}
       w={{ base: '100%', md: '80%' }}
       mx={'auto'}
     >
-      <PageTitle minW={200}>団体紹介</PageTitle>
+      <PageTitle>団体紹介</PageTitle>
       {sections.map((section) => {
         return (
           <Stack key={section.id} w={{ base: '100%' }}>
@@ -67,6 +67,7 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
               return (
                 <Tr key={index}>
                   <Th
+                    p={3}
                     fontSize={18}
                     color={'#000'}
                     bg={'gray.50'}
@@ -75,7 +76,10 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
                   >
                     {member.position}
                   </Th>
-                  <Td fontSize={18}>{`${member.name}（${member.grade}年）`}</Td>
+                  <Td
+                    fontSize={18}
+                    p={3}
+                  >{`${member.name}（${member.grade}年）`}</Td>
                 </Tr>
               );
             })}
