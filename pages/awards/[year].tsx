@@ -1,4 +1,11 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Heading,
+  Stack,
+  Text,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -19,6 +26,7 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
   awards,
   years,
 }) => {
+  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   if (awards.length === 0) {
     return (
       <Stack>
@@ -43,19 +51,38 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
               pt={6}
               pl={4}
             >
-              <Heading pl={1} fontWeight={600}>
+              <Heading
+                px={{ base: 2, md: 4 }}
+                fontWeight={600}
+                size={{ base: 'lg', md: 'xl' }}
+              >
                 {award.title}
               </Heading>
+              <Divider
+                borderColor={{ base: 'gray.400', md: 'gray.300' }}
+                w={'90%'}
+              />
               <Box
                 dangerouslySetInnerHTML={{ __html: award.content }}
-                px={8}
-                pb={6}
+                px={{ base: 2, md: 8 }}
+                pb={{ base: 4, md: 6 }}
                 fontSize={18}
-                sx={{
-                  h3: { fontSize: 24, fontWeight: 600 },
-                  h4: { fontSize: 20, fontWeight: 500 },
-                  p: { px: 5 },
-                }}
+                sx={
+                  isLargerThan768px
+                    ? {
+                        h3: { fontSize: 24, fontWeight: 600 },
+                        h4: { fontSize: 20, fontWeight: 500 },
+                        p: { px: 5 },
+                      }
+                    : {
+                        h3: {
+                          fontSize: 20,
+                          fontWeight: 600,
+                        },
+                        h4: { fontSize: 18, fontWeight: 500 },
+                        p: { px: 2 },
+                      }
+                }
               />
             </Stack>
           );
