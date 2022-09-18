@@ -14,8 +14,8 @@ const YearNavigation: FC<Props> = ({ years }) => {
   };
 
   return (
-    <Stack position={'absolute'} left={0} top={0} spacing={8}>
-      <PageTitle pl={100}>活動実績</PageTitle>
+    <Stack position={'sticky'} left={0} top={0} spacing={8} pb={100} zIndex={2}>
+      <PageTitle pl={{ md: 18, lg: 100 }}>活動実績</PageTitle>
       <Stack spacing={3}>
         {orderedYears.map((year) => {
           return (
@@ -23,7 +23,7 @@ const YearNavigation: FC<Props> = ({ years }) => {
               <NextChakraLink
                 href={`/awards/${year}`}
                 fontSize={24}
-                pl={110}
+                pl={{ md: 25, lg: 110 }}
                 fontWeight={isCurrentPage(year.toString()) ? 'bold' : 'inherit'}
               >
                 {`${year}年度`}
