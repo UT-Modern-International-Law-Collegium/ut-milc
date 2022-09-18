@@ -114,8 +114,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       if (!years.includes(moment().year())) {
         years.push(moment().year());
       }
-      // NOTE: 開発時は年度に関わらず同じawardsのデータを返す。
-      return { props: { awards: fakeData.awards, years: years } };
+      return {
+        props: {
+          awards: fakeData.awards.filter(
+            (award: Award) => award.year.toString() === params!.year
+          ),
+          years: years,
+        },
+      };
     } else {
       const awardsRes = await axiosInstance.get(`/api/awards/${params!.year}`);
       const yearsRes: AxiosResponse<any, any> = await axiosInstance.get(
