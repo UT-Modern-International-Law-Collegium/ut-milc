@@ -43,7 +43,7 @@ const Header: FC = () => {
       <HStack
         py={4}
         position={'fixed'}
-        zIndex={1}
+        zIndex={3}
         bg={'rgb(255,255,255,0.9)'}
         w={'100vw'}
         justifyContent={'right'}
