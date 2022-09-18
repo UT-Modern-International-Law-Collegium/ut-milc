@@ -67,7 +67,8 @@ const YearNavigation: FC<Props> = ({ years }) => {
     );
   } else {
     return (
-      <Stack pt={20}>
+      <Stack>
+        <PageTitle>活動実績</PageTitle>
         <Divider />
         <HStack>
           <Button fontSize={18} bg={'teal.100'} onClick={onOpen}>
