@@ -19,6 +19,7 @@ import {
 import { BsTwitter, BsInstagram } from 'react-icons/bs';
 import { IconContext } from 'react-icons/lib';
 import NextChakraLink from '../utils/NextChakraLink';
+import moment from 'moment';
 
 type ContactForm = {
   email: string;
@@ -54,7 +55,9 @@ const Footer: FC = () => {
           </HStack>
           <NextChakraLink href={'/'}>Top</NextChakraLink>
           <NextChakraLink href={'/about-us'}>About us</NextChakraLink>
-          <NextChakraLink href={'/awards'}>Awards</NextChakraLink>
+          <NextChakraLink href={`/awards/${moment().year()}`}>
+            Awards
+          </NextChakraLink>
           <NextChakraLink href={'/news'}>News</NextChakraLink>
           <NextChakraLink href={'/join-us'}>Join us</NextChakraLink>
         </Stack>

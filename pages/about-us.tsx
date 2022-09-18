@@ -20,9 +20,11 @@ import { axiosInstance } from '../lib/axios';
 import { fakeData } from '../lib/fakeData';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
-import { AboutSection, Member } from '../lib/type';
+import { AboutUsSection, Member } from '../lib/type';
 
-type AboutPageProps = { data: { sections: AboutSection[]; members: Member[] } };
+type AboutPageProps = {
+  data: { sections: AboutUsSection[]; members: Member[] };
+};
 
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   const { sections, members } = data;
