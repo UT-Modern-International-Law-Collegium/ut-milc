@@ -27,15 +27,15 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
     );
   }
   return (
-    <Stack minH={'100vh'}>
+    <Stack minH={'100vh'} px={{ base: 3, sm: 10, md: 0 }}>
       <YearNavigation years={years} />
-      <Box position={{ md: 'relative' }} top={-260}>
+      <Box position={{ md: 'relative' }} top={{ md: -260 }}>
         {awards.map((award: Award) => {
           return (
             <Stack
               key={award.id}
               ml={{ base: 0, md: '32%', lg: '30%' }}
-              mr={'10%'}
+              mr={{ md: '10%' }}
               mb={10}
               borderRadius={8}
               boxShadow={'xl'}
