@@ -5,7 +5,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
-import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { Award } from '../../lib/type';
@@ -50,6 +49,10 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
                 px={10}
                 pb={6}
                 fontSize={18}
+                sx={{
+                  h2: { fontSize: 28, fontWeight: 700 },
+                  h3: { fontSize: 20, fontWeight: 600 },
+                }}
               />
             </Stack>
           );
