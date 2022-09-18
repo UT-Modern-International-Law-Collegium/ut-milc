@@ -43,15 +43,18 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
               pt={6}
               pl={4}
             >
-              <Heading>{award.title}</Heading>
+              <Heading pl={1} fontWeight={600}>
+                {award.title}
+              </Heading>
               <Box
                 dangerouslySetInnerHTML={{ __html: award.content }}
-                px={10}
+                px={8}
                 pb={6}
                 fontSize={18}
                 sx={{
-                  h2: { fontSize: 28, fontWeight: 700 },
-                  h3: { fontSize: 20, fontWeight: 600 },
+                  h3: { fontSize: 24, fontWeight: 600 },
+                  h4: { fontSize: 20, fontWeight: 500 },
+                  p: { px: 5 },
                 }}
               />
             </Stack>
