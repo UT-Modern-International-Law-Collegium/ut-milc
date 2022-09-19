@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import {
+  Box,
   CircularProgress,
   Heading,
   Stack,
@@ -23,6 +24,11 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
 
   return (
     <Stack
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: [0, 0, 1],
+      }}
       h={'100vh'}
       bg={'#092025'}
       position={'relative'}
@@ -34,7 +40,15 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       {...rest}
     >
       {/* 新歓 */}
-      <Stack bg={'rgb(129, 230, 217, 0.9)'} zIndex={3} pt={{ base: 16, md: 0 }}>
+      <Stack
+        position={'absolute'}
+        w={'100%'}
+        top={0}
+        left={0}
+        bg={'rgb(129, 230, 217, 0.9)'}
+        zIndex={3}
+        pt={{ base: 16, md: 0 }}
+      >
         <Text
           fontSize={{ base: 18, md: 20 }}
           textAlign={'center'}
