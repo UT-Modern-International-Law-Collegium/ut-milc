@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Box,
   CircularProgress,
@@ -10,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import Navigation from '../layout/nav/Navigation';
 import NextChakraLink from '../utils/NextChakraLink';
-import { motion } from 'framer-motion';
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
@@ -32,7 +32,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         as={motion.div}
         initial={{ translateY: -100 }}
         animate={{ translateY: [-80, -60, -40, -20, 0] }}
-        transition={'1s'}
+        transition={'0.6s'}
         position={'absolute'}
         w={'100%'}
         top={0}
@@ -59,7 +59,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         as={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
-        transition={'2s'}
+        transition={'0.6s'}
       >
         {isLargetThan768px && <Navigation zIndex={2} />}
       </Box>
@@ -68,7 +68,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         as={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
-        transition={'2s'}
+        transition={'0.8s'}
       >
         <CircularProgress
           thickness={'0.1px'}
@@ -98,7 +98,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         as={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
-        transition={'2s'}
+        transition={'0.6s'}
       >
         <TopTitle />
       </Box>
