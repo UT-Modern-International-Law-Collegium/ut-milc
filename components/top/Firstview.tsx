@@ -9,9 +9,17 @@ import {
 } from '@chakra-ui/react';
 import Navigation from '../layout/nav/Navigation';
 import NextChakraLink from '../utils/NextChakraLink';
+import { motion } from 'framer-motion';
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   return (
     <Stack
@@ -91,6 +99,7 @@ const TopTitle: FC = () => {
   if (isLargetThan1280px) {
     return (
       <Heading
+        as={motion.h2}
         h={'100vh'}
         color={'#fff'}
         style={{ writingMode: 'vertical-rl' }}
@@ -103,6 +112,8 @@ const TopTitle: FC = () => {
         top={'62%'}
         left={'50%'}
         transform={'translate(-50%,-50%)'}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
         <Text
           style={{
@@ -123,6 +134,7 @@ const TopTitle: FC = () => {
   } else {
     return (
       <Heading
+        as={motion.h2}
         style={{ writingMode: 'vertical-rl' }}
         size={{ base: '2xl', md: 'xl' }}
         pt={titlePtValue} /* ヘッダーの高さ分 */
@@ -135,6 +147,8 @@ const TopTitle: FC = () => {
         top={'50%'}
         left={'50%'}
         transform={'translate(-50%,-50%)'}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
         現代国際法研究会
       </Heading>
