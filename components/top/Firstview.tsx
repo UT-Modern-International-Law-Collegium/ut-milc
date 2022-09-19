@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
+  Box,
   CircularProgress,
   Heading,
   Stack,
@@ -26,7 +28,19 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       {...rest}
     >
       {/* 新歓 */}
-      <Stack bg={'rgb(129, 230, 217, 0.9)'} zIndex={3} pt={{ base: 16, md: 0 }}>
+      <Stack
+        as={motion.div}
+        initial={{ translateY: -100 }}
+        animate={{ translateY: [-80, -60, -40, -20, 0] }}
+        transition={'0.6s'}
+        position={'absolute'}
+        w={'100%'}
+        top={0}
+        left={0}
+        bg={'rgb(129, 230, 217, 0.9)'}
+        zIndex={3}
+        pt={{ base: 16, md: 0 }}
+      >
         <Text
           fontSize={{ base: 18, md: 20 }}
           textAlign={'center'}
@@ -41,32 +55,53 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         </Text>
       </Stack>
       {/* ナビゲーション */}
-      {isLargetThan768px && <Navigation zIndex={2} />}
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'0.6s'}
+      >
+        {isLargetThan768px && <Navigation zIndex={2} />}
+      </Box>
       {/* 内側の円 */}
-      <CircularProgress
-        thickness={'0.1px'}
-        value={100}
-        size={isLargetThan768px ? '245px' : '100px'}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        color={'#C9C9C9'}
-      />
-      {/* 外側の円 */}
-      <CircularProgress
-        thickness={'0.01px'}
-        value={100}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        size={
-          isLargetThan768px ? '1400px' : '400px'
-        } /* TODO: resize when mobile. */
-        color={'#C9C9C9'}
-      />
-      <TopTitle />
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'0.8s'}
+      >
+        <CircularProgress
+          thickness={'0.1px'}
+          value={100}
+          size={isLargetThan768px ? '245px' : '100px'}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          color={'#C9C9C9'}
+        />
+        {/* 外側の円 */}
+        <CircularProgress
+          thickness={'0.01px'}
+          value={100}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          size={
+            isLargetThan768px ? '1400px' : '400px'
+          } /* TODO: resize when mobile. */
+          color={'#C9C9C9'}
+        />
+      </Box>
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'0.6s'}
+      >
+        <TopTitle />
+      </Box>
     </Stack>
   );
 };
@@ -91,6 +126,7 @@ const TopTitle: FC = () => {
   if (isLargetThan1280px) {
     return (
       <Heading
+        as={motion.h2}
         h={'100vh'}
         color={'#fff'}
         style={{ writingMode: 'vertical-rl' }}
@@ -103,6 +139,8 @@ const TopTitle: FC = () => {
         top={'62%'}
         left={'50%'}
         transform={'translate(-50%,-50%)'}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
         <Text
           style={{
@@ -123,6 +161,7 @@ const TopTitle: FC = () => {
   } else {
     return (
       <Heading
+        as={motion.h2}
         style={{ writingMode: 'vertical-rl' }}
         size={{ base: '2xl', md: 'xl' }}
         pt={titlePtValue} /* ヘッダーの高さ分 */
@@ -135,6 +174,8 @@ const TopTitle: FC = () => {
         top={'50%'}
         left={'50%'}
         transform={'translate(-50%,-50%)'}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
         現代国際法研究会
       </Heading>

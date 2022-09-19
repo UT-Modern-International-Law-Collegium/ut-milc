@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import { IconContext } from 'react-icons/lib';
+import moment from 'moment';
 import {
   BsArrowRight,
   BsFillCaretRightFill,
@@ -34,7 +35,6 @@ import { fakeData } from '../lib/fakeData';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
-import moment from 'moment';
 
 type TopPageProps = {
   data: { about: string; award: string; join_us: string; news: News[] };
@@ -299,7 +299,6 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
     </Stack>
   );
 };
-
 TopPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
