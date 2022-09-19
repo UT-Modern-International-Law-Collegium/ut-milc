@@ -35,6 +35,7 @@ import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import moment from 'moment';
+import LoadingUI from '../components/top/LoadingUI';
 
 type TopPageProps = {
   data: { about: string; award: string; join_us: string; news: News[] };
@@ -46,6 +47,8 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
+      {/* ローディング画面 */}
+      <LoadingUI />
       {/* ファーストビュー */}
       <Firstview />
       {/* about us ~ news */}

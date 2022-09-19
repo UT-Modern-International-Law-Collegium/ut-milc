@@ -13,22 +13,10 @@ import NextChakraLink from '../utils/NextChakraLink';
 import { motion } from 'framer-motion';
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
 
   return (
     <Stack
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: [0, 0, 1],
-      }}
       h={'100vh'}
       bg={'#092025'}
       position={'relative'}
@@ -41,6 +29,10 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
     >
       {/* 新歓 */}
       <Stack
+        as={motion.div}
+        initial={{ translateY: -100 }}
+        animate={{ translateY: [-80, -60, -40, -20, 0] }}
+        transition={'1s'}
         position={'absolute'}
         w={'100%'}
         top={0}
@@ -63,32 +55,53 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
         </Text>
       </Stack>
       {/* ナビゲーション */}
-      {isLargetThan768px && <Navigation zIndex={2} />}
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'2s'}
+      >
+        {isLargetThan768px && <Navigation zIndex={2} />}
+      </Box>
       {/* 内側の円 */}
-      <CircularProgress
-        thickness={'0.1px'}
-        value={100}
-        size={isLargetThan768px ? '245px' : '100px'}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        color={'#C9C9C9'}
-      />
-      {/* 外側の円 */}
-      <CircularProgress
-        thickness={'0.01px'}
-        value={100}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        size={
-          isLargetThan768px ? '1400px' : '400px'
-        } /* TODO: resize when mobile. */
-        color={'#C9C9C9'}
-      />
-      <TopTitle />
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'2s'}
+      >
+        <CircularProgress
+          thickness={'0.1px'}
+          value={100}
+          size={isLargetThan768px ? '245px' : '100px'}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          color={'#C9C9C9'}
+        />
+        {/* 外側の円 */}
+        <CircularProgress
+          thickness={'0.01px'}
+          value={100}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          size={
+            isLargetThan768px ? '1400px' : '400px'
+          } /* TODO: resize when mobile. */
+          color={'#C9C9C9'}
+        />
+      </Box>
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+        transition={'2s'}
+      >
+        <TopTitle />
+      </Box>
     </Stack>
   );
 };
