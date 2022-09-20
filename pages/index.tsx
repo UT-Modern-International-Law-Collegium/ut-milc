@@ -207,7 +207,13 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
           >
             {data.news.map((item: News, index) => {
               if (index > 2) return;
-              return <NewsCard key={item.id} item={item} />;
+              return (
+                <NewsCard
+                  key={item.id}
+                  item={item}
+                  maxW={{ base: 'unset', md: '30%' }}
+                />
+              );
             })}
             {isLargerThan768px ? (
               <LinkBox

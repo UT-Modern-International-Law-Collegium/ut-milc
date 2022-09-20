@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   Badge,
+  StackProps,
 } from '@chakra-ui/react';
 import { News } from '../../lib/type';
 
@@ -17,7 +18,7 @@ type Props = {
   isLatest?: boolean;
 };
 
-const NewsCard: FC<Props> = ({ item, isLatest }) => {
+const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
   return (
     <LinkBox
       as={Stack}
@@ -31,6 +32,7 @@ const NewsCard: FC<Props> = ({ item, isLatest }) => {
         img: { transform: 'scale(1.1,1.1)' },
         textDecoration: 'underline',
       }}
+      {...rest}
     >
       <Image
         src={
