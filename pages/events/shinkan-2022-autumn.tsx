@@ -70,11 +70,12 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
 
 const UTMilcIcon: React.FC = () => {
     let icon_size = useBreakpointValue([300, 500])
-    if (icon_size == undefined) {
+    if (icon_size === undefined) {
         icon_size = 300
     }
+    const half_icon_size = icon_size/2
     let scale_size = useBreakpointValue([200, 300])
-    if (scale_size == undefined) {
+    if (scale_size === undefined) {
         scale_size = 200
     }
     const text_string: string = "University  of  Tokyo  Modern  International  Law  College  "
@@ -104,7 +105,7 @@ const UTMilcIcon: React.FC = () => {
                                 position="absolute"
                                 left=""
                                 width={icon_size}
-                                height={icon_size / 2}
+                                height={half_icon_size}
                                 transformOrigin="center bottom"
                                 transform={"rotate(" + (idx * 360 / text_length) + "deg)"}
                                 key={idx}>{elem}</Box>)}
