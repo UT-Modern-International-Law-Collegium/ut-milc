@@ -59,7 +59,7 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
             <UTMilcIcon />
             <Box margin="50vh 100px">
                 <Center>
-                    <Text>{data.content}</Text>
+                    {data.map((elem, idx) => <Text>{elem.content}</Text>)}
                 </Center>
             </Box>
         </Box >
