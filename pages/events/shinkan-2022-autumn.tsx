@@ -8,6 +8,8 @@ import {
     Text,
     keyframes,
     usePrefersReducedMotion,
+    Flex,
+    HStack,
 } from "@chakra-ui/react"
 import { NextPageWithLayout } from "../_app"
 import Layout from "../../components/layout/Layout"
@@ -37,15 +39,29 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
     const [transform, setTransform] = useState(false)
 
     return (
-        <Box bgColor="black" height="100vh" width="100xw" textAlign="center">
-            <Box marginTop="40vh" textColor="white" fontFamily="serif" zIndex={100}>
-                <Text fontSize="6xl" fontWeight="bold">世界へ挑む者よ、来たれ。</Text>
-                <Box marginTop="5vh">
-                    <Text fontSize="2xl">日程：いつ？</Text>
-                    <Text fontSize="2xl">場所：どこ？</Text>
-                </Box>
+        <Box bgColor="black" height="200vh" width="100xw" textColor="white" >
+            <Box marginTop="30vh" fontFamily="serif">
+                <Center>
+                    <Text
+                        zIndex={2}
+                        fontSize="6xl"
+                        fontWeight="bold">
+                        ふと、<br />「世界に<span style={{ color: "#81E6D9" }}>挑</span>んでやろうか」<br />と思ったあなたへ。
+                    </Text>
+                </Center>
+                <Center>
+                    <Box marginTop="5vh">
+                        <Text fontSize="2xl">日程：いつ？</Text>
+                        <Text fontSize="2xl">場所：どこ？</Text>
+                    </Box>
+                </Center>
             </Box>
             <UTMilcIcon />
+            <Box margin="50vh 100px">
+                <Center>
+                    <Text>{data.content}</Text>
+                </Center>
+            </Box>
         </Box >
     )
 }
@@ -58,7 +74,7 @@ const UTMilcIcon: React.FC = () => {
     const text_length = text_array.length
     return (
         <Box>
-            <Box marginTop="-50vh" marginLeft={"calc(50vw - " + (icon_size / 2) + "px)"} width={icon_size} height={icon_size} opacity={0.5}>
+            <Box marginTop="calc(-120px - 50vh)" marginLeft={"calc(50vw - " + (icon_size / 2) + "px)"} width={icon_size} height={icon_size} opacity={0.3}>
                 <motion.div
                     animate={{
                         rotate: [0, 180, 360]
@@ -86,9 +102,9 @@ const UTMilcIcon: React.FC = () => {
                     </Box>
                 </motion.div>
             </Box>
-            <Box position="absolute" left={"calc(50vw - "+scale_size/2+"px)"} top={"calc(-13vh + "+scale_size+"px)"}>
+            <Box position="absolute" left={"calc(50vw - " + scale_size / 2 + "px)"} top={"calc(-13vh + " + scale_size + "px)"}>
                 <motion.div>
-                    <GiScales color="white" size={scale_size}  opacity={0.5}/>
+                    <GiScales color="white" size={scale_size} opacity={0.2} />
                 </motion.div>
             </Box>
         </Box>
