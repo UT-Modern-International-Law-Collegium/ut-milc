@@ -59,7 +59,7 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
             <UTMilcIcon />
             <Box margin="50vh 100px">
                 <Center>
-                    {data.map((elem, idx) => <Text key={idx}>{elem.content}</Text>)}
+                    <Text>[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！</Text>
                 </Center>
             </Box>
         </Box >
@@ -135,9 +135,13 @@ ShinkanPage2022Autumn.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps = async () => {
     try {
         if (process.env.ENV_VAR = "development") {
-            return { props: { data: fakeData.events.find((e) => e.name === "Shinkan-2022-Autumn") } }
+            return {
+                props: {
+                    data: fakeData.events.find((e) => e.name === "Shinkan-2022-Autumn")
+                }
+            }
         } else {
-            const res = await axiosInstance.get("what?")
+            const res = await axiosInstance.get("/api/events")
             return {
                 props: {
                     data: {
