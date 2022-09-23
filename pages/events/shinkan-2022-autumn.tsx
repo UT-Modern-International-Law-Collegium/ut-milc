@@ -10,6 +10,8 @@ import {
     usePrefersReducedMotion,
     Flex,
     HStack,
+    useMediaQuery,
+    useBreakpointValue,
 } from "@chakra-ui/react"
 import { NextPageWithLayout } from "../_app"
 import Layout from "../../components/layout/Layout"
@@ -39,25 +41,25 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
     const [transform, setTransform] = useState(false)
 
     return (
-        <Box bgColor="black" height="200vh" width="100xw" textColor="white" >
-            <Box marginTop="30vh" fontFamily="serif">
+        <Box backgroundColor="black" height="200vh" textColor="white" overflow="hidden">
+            <Box marginTop={["60vh", "30vh"]} fontFamily="serif">
                 <Center>
                     <Text
                         zIndex={2}
-                        fontSize="6xl"
+                        fontSize={["3xl", "6xl"]}
                         fontWeight="bold">
-                        ふと、<br />「世界に<span style={{ color: "#81E6D9" }}>挑</span>んでやろうか」<br />と思ったあなたへ。
+                        ふと、<br />「世界に<span style={{ color: "#81E6D9" }}>挑</span>んでやろう」<br />と思ったあなたへ。
                     </Text>
                 </Center>
                 <Center>
-                    <Box marginTop="5vh">
-                        <Text fontSize="2xl">日程：いつ？</Text>
-                        <Text fontSize="2xl">場所：どこ？</Text>
+                    <Box marginTop="5vh" fontSize={["xl", "2xl"]}>
+                        <Text>日程：いつ？</Text>
+                        <Text>場所：どこ？</Text>
                     </Box>
                 </Center>
             </Box>
             <UTMilcIcon />
-            <Box margin="50vh 100px">
+            <Box margin={["80vh 50px", "50vh 100px"]}>
                 <Center>
                     <Text>[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！</Text>
                 </Center>
@@ -67,14 +69,21 @@ const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({
 }
 
 const UTMilcIcon: React.FC = () => {
-    const icon_size = 500
-    const scale_size = 300
+    let icon_size = useBreakpointValue([300, 500])
+    if (icon_size == undefined) {
+        icon_size = 300
+    }
+    let scale_size = useBreakpointValue([200, 300])
+    if (scale_size == undefined) {
+        scale_size = 200
+    }
     const text_string: string = "University  of  Tokyo  Modern  International  Law  College  "
     const text_array = Array.from(text_string)
     const text_length = text_array.length
+
     return (
         <Box>
-            <Box marginTop="calc(-120px - 50vh)" marginLeft={"calc(50vw - " + (icon_size / 2) + "px)"} width={icon_size} height={icon_size} opacity={0.3}>
+            <Box marginTop={["-70vh", "calc(-120px - 50vh)"]} marginLeft={"calc(50vw - " + (icon_size / 2) + "px)"} width={icon_size} height={icon_size} opacity={[0.8, 0.3]}>
                 <motion.div
                     animate={{
                         rotate: [0, 180, 360]
@@ -102,9 +111,9 @@ const UTMilcIcon: React.FC = () => {
                     </Box>
                 </motion.div>
             </Box>
-            <Box position="absolute" left={"calc(50vw - " + scale_size / 2 + "px)"} top={"calc(-13vh + " + scale_size + "px)"}>
+            <Box position="absolute" left={"calc(50vw - " + scale_size / 2 + "px)"} top={["23vh", "calc(-13vh + " + scale_size + "px)"]} opacity={[0.9, 0.2]} >
                 <motion.div>
-                    <GiScales color="white" size={scale_size} opacity={0.2} />
+                    <GiScales color="white" size={scale_size} />
                 </motion.div>
             </Box>
         </Box>
