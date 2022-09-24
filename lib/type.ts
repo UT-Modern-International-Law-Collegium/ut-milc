@@ -33,3 +33,8 @@ export type Member = {
   name: string;
   grade: number;
 };
+
+export type Event = {
+  name: string;
+  content: string;
+}

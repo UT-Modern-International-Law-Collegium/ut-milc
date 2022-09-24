@@ -49,7 +49,7 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
           color={'gray.800'}
         >
           2022年度秋新歓の詳細は
-          <NextChakraLink href={'#'} textDecoration={'underline'}>
+          <NextChakraLink href={'/events/shinkan-2022-autumn'} textDecoration={'underline'}>
             こちら
           </NextChakraLink>
         </Text>

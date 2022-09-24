@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { AboutUsSection, Award, Member, News } from './type';
+import { AboutUsSection, Award, Member, News,Event } from './type';
 
 type FakeData = {
   top: {
@@ -10,6 +10,7 @@ type FakeData = {
   awards: Award[];
   about: { sections: AboutUsSection[]; members: Member[] };
   news: News[];
+  events: Event[];
 };
 
 export const fakeData: FakeData = {
@@ -178,4 +179,10 @@ export const fakeData: FakeData = {
       status: 'public',
     },
   ],
+  events: [
+    {
+      name: "Shinkan-2022-Autumn",
+      content: "[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！"
+    }
+  ]
 };
