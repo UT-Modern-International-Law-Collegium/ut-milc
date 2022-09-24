@@ -13,6 +13,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           return res.status(200).json(response);
         } else {
           const response = await excuteQuery('SELECT * FROM awards');
+          console.log('##################');
+          console.log({ response });
+          console.log('##################');
+
           return res.status(200).json(response);
         }
       } catch (err) {
