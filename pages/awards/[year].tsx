@@ -128,7 +128,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
     return { paths, fallback: false };
   } catch (err) {
-    throw new Error(`error at [year],tsx getStaticPaths: ${err}`);
+    throw new Error(`error at [year].tsx getStaticPaths: ${err}`);
   }
 };
 
