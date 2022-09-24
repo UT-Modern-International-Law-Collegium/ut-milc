@@ -58,6 +58,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
       data = res.data;
     }
+    console.log('######################');
+    console.log({ data });
+    console.log('######################');
+
     const paths = data.map((item: News) => ({
       params: { newsId: item.id.toString() },
     }));
