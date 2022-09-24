@@ -116,6 +116,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
         '/api/awards?path=true'
       );
       const data: { [year: string]: number }[] = res.data;
+      console.log('########################');
+      console.log({ data });
+      console.log('########################');
       let tmpYears: number[] = data.map(
         (yearObj: { [key: string]: number }) => yearObj.year
       );
@@ -128,7 +131,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
     return { paths, fallback: false };
   } catch (err) {
-    throw new Error(`error at [year],tsx getStaticPaths: ${err}`);
+    throw new Error(`error at [year].tsx getStaticPaths: ${err}`);
   }
 };
 
