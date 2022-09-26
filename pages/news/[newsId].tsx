@@ -1,8 +1,21 @@
 import React, { ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
 import { AxiosResponse } from 'axios';
-import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Button,
+  ButtonGroup,
+  Divider,
+  Heading,
+  HStack,
+  Icon,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
+import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
@@ -14,6 +27,7 @@ type NewsDetailPageProps = {
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
+  const router: NextRouter = useRouter();
   return (
     <Stack
       spacing={{ base: 4, md: 6 }}
@@ -29,16 +43,19 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
         justifyContent={{ base: 'unset' }}
         spacing={{ base: 10 }}
       >
-        <Heading size={'2xl'}>{data[0].title}</Heading>
+        <Heading size={'xl'}>{data[0].title}</Heading>
         <HStack
           spacing={{ base: 0, md: 8 }}
           width={{ base: '100%', md: 'unset' }}
           pr={{ base: 0, md: 10 }}
           justifyContent={{ base: 'space-between', md: 'unset' }}
         >
-          <Text fontSize={18}>
-            {moment(data[0].created_at).format('YYYY-MM-DD')}
-          </Text>
+          <HStack>
+            <Icon as={MdDateRange} w={18} h={18} />
+            <Text fontSize={18}>
+              {moment(data[0].created_at).format('YYYY-MM-DD')}
+            </Text>
+          </HStack>
           <Badge fontSize={16} colorScheme={'teal'}>
             {data[0].tag}
           </Badge>
@@ -47,8 +64,23 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
       <Divider />
       {/* 本文 */}
       <Stack w={'100%'}>
-        <Text fontSize={18}>{data[0].content}</Text>
+        <Box
+          fontSize={18}
+          sx={{ a: { textDecoration: 'underline', color: 'blue' } }}
+          lineHeight={2}
+          dangerouslySetInnerHTML={{ __html: data[0].content }}
+        />
       </Stack>
+      {/* 戻るボタン */}
+      <ButtonGroup
+        justifyContent={{ base: 'center', md: 'right' }}
+        pr={2}
+        py={8}
+      >
+        <Button w={200} bg={'teal.100'} onClick={() => router.push('/news')}>
+          記事一覧に戻る
+        </Button>
+      </ButtonGroup>
     </Stack>
   );
 };

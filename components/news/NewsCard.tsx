@@ -10,7 +10,9 @@ import {
   Text,
   Badge,
   StackProps,
+  Icon,
 } from '@chakra-ui/react';
+import { MdDateRange } from 'react-icons/md';
 import { News } from '../../lib/type';
 
 type Props = {
@@ -50,9 +52,12 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
         </LinkOverlay>
       </NextLink>
       <HStack justifyContent={'space-between'}>
-        <Text fontSize={16}>
-          {moment(item.created_at).format('YYYY-MM-DD')}
-        </Text>
+        <HStack spacing={1}>
+          <Icon as={MdDateRange} w={4} h={4} />
+          <Text fontSize={16}>
+            {moment(item.created_at).format('YYYY-MM-DD')}
+          </Text>
+        </HStack>
         <HStack>
           <Badge fontSize={14}>{item.tag}</Badge>
           {isLatest && (

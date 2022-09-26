@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { AboutUsSection, Award, Member, News,Event } from './type';
+import { AboutUsSection, Award, Member, News, Event } from './type';
 
 type FakeData = {
   top: {
@@ -117,72 +117,20 @@ export const fakeData: FakeData = {
   news: [
     {
       id: 0,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().toString(),
+      title: 'ホームページをリニューアルしてます！',
+      content:
+        '<p>ホームページをリニューアルしてます。</p>\r\n<p>HP制作過程の詳細は<a href="https://yakan.blog/" rel="noopener" target="_blank">こちら</a>でいろいろ書いてます。ぜひご一読いただけると嬉しいです！<br/><br/></p>\r\n\r\n<p>「ホームページのリニューアル」と言ってもまだ初版リリースをしただけで、絶賛制作中です。まだいろいろ雑な部分が多いんですよね。。今後しっかり詰めていきます。テキトーなところがはびこってるのが現状ですが、どうか多めに見ていただけると。。</p>',
+      created_at: moment('2022-09-26').toString(),
       updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 1,
-      title: '昨日はこれをしました。',
-      content: '昨日はこれをしました。',
-      created_at: moment().add(-1, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 2,
-      title: 'おとといはこれをしました。',
-      content: 'おとといはこれをしました。',
-      created_at: moment().add(-2, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 3,
-      title: '3日前はこれをしました。',
-      content: '3日前はこれをしました。',
-      created_at: moment().add(-3, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 4,
-      title: '4日前はこれをしました。',
-      content: '4日前はこれをしました。',
-      created_at: moment().add(-4, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 5,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().add(-5, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 6,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().add(-6, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
+      tag: '',
       status: 'public',
     },
   ],
   events: [
     {
-      name: "Shinkan-2022-Autumn",
-      content: "[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！"
-    }
-  ]
+      name: 'Shinkan-2022-Autumn',
+      content:
+        '[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！',
+    },
+  ],
 };
