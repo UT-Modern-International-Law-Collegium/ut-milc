@@ -28,7 +28,7 @@ export const fakeData: FakeData = {
       title: 'Japan Cup',
       year: 2021,
       content:
-        '<h3>総合結果</h3>\r\n<p>５位<br />弁論者 ：夏目俊之介、石井大智、清水海杜、赤木芙実加<br />弁論補佐人：前田悠輔、𠮷野天</p>\r\n<h3>書面結果</h3>\r\n<p>被告２位</p>\r\n<h3>個人結果</h3>\r\n<p>被告１位　赤木芙実加<br />原告７位　石井大智<br />被告９位　清水海杜</p>',
+        '<h2>Jpan cup</h2>\r\n<h3>総合結果</h3>\r\n<p>５位<br />弁論者 ：夏目俊之介、石井大智、清水海杜、赤木芙実加<br />弁論補佐人：前田悠輔、𠮷野天</p>\r\n<h3>書面結果</h3>\r\n<p>被告２位</p>\r\n<h3>個人結果</h3>\r\n<p>被告１位　赤木芙実加<br />原告７位　石井大智<br />被告９位　清水海杜</p>',
       status: 'public',
       created_at: '2022-09-17',
       updated_at: null,
@@ -57,11 +57,22 @@ export const fakeData: FakeData = {
       id: 6,
       title:
         '2022 Philip C. Jessup International Law Moot Court Competition National Round',
-      year: 2022,
+      year: 2021,
       content:
-        '<h3>National Round (国内予選)</h3>\r\n<h4>総合結果</h4>\r\n<p>優勝 (国際大会進出)<br /><br />弁論者:<br />原告:清水海杜、夏目俊之介<br />被告:石井大智、田雨昕<br />チームマネージャー:小林一也</p>\r\n<h4>個人結果</h4>\r\n<p>原告1位　清水海杜<br />原告2位　夏目俊之介</p>\r\n<h3>International Round (世界大会)</h3>\r\n<h4>Preliminary Rounds Top50 Oralists選出</h4>\r\n<p>夏目俊之介（世界6位)<br />清水海杜（世界7位）</p>',
+        '<h3>National Round (国内予選)</h3>\r\n<h4>総合結果</h4>\r\n<p>優勝 (国際大会進出)<br /><br />弁論者:<br />原告:清水海杜、夏目俊之介<br />被告:石井大智、田雨昕<br />チームマネージャー:小林一也</p>\r\n<h4>個人結果</h4>\r\n<p>原告1位　清水海杜<br />原告2位　夏目俊之介</p>',
       status: 'public',
       created_at: '2022-09-18',
+      updated_at: null,
+    },
+    {
+      id: 7,
+      title:
+        '2022 Philip C. Jessup International Law Moot Court Competition International Round',
+      year: 2022,
+      content:
+        '<h3>International Round (世界大会)</h3>\r\n<h4>Preliminary Rounds Top50 Oralists選出</h4>\r\n<p>夏目俊之介（世界6位)<br />清水海杜（世界7位）</p>',
+      status: 'public',
+      created_at: '2022-09-26',
       updated_at: null,
     },
   ],
