@@ -2,12 +2,23 @@ import React, { ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import moment from 'moment';
 import { AxiosResponse } from 'axios';
-import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Button,
+  ButtonGroup,
+  Divider,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { News } from '../../lib/type';
 import { NextPageWithLayout } from '../_app';
+import NextChakraLink from '../../components/utils/NextChakraLink';
 
 type NewsDetailPageProps = {
   data: News[];
@@ -47,8 +58,25 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
       <Divider />
       {/* 本文 */}
       <Stack w={'100%'}>
-        <Text fontSize={18}>{data[0].content}</Text>
+        <Box
+          fontSize={18}
+          sx={{ a: { textDecoration: 'underline' } }}
+          lineHeight={2}
+          dangerouslySetInnerHTML={{ __html: data[0].content }}
+        />
       </Stack>
+      {/* 戻るボタン */}
+      <ButtonGroup justifyContent={'right'} pr={2} py={8}>
+        <Button
+          as={NextChakraLink}
+          w={200}
+          bg={'teal.100'}
+          href={'/news'}
+          passHref
+        >
+          記事一覧に戻る
+        </Button>
+      </ButtonGroup>
     </Stack>
   );
 };

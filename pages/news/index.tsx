@@ -24,6 +24,7 @@ import { fakeData } from '../../lib/fakeData';
 import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
 import { News } from '../../lib/type';
+import { restrictStringCount } from '../../utils/restrictStringCount';
 
 type NewsPageProps = {
   data: News[];
@@ -31,6 +32,7 @@ type NewsPageProps = {
 
 const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+
   return (
     <Stack
       spacing={{ base: 2, md: 10 }}
@@ -47,6 +49,14 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
         {data.map((item, index) => {
           if (index === 0) {
             if (isLargerThan768px) {
+              const tmpParsedContent: string = item.content.replace(
+                /<("[^"]*"|'[^']*'|[^'">])*>/g,
+                ''
+              );
+              const parsedContent: string = restrictStringCount(
+                tmpParsedContent,
+                140
+              );
               return (
                 <GridItem key={item.id} colSpan={3} p={4}>
                   <Divider mb={4} borderColor={'blackAlpha.800'} />
@@ -95,7 +105,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
                         </HStack>
                       </HStack>
                       <Divider />
-                      <Text>{item.content}</Text>
+                      <Text>{parsedContent}</Text>
                     </Stack>
                   </LinkBox>
                   <Divider mt={4} borderColor={'blackAlpha.800'} />
