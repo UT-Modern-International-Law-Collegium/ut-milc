@@ -1,8 +1,8 @@
-import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
-import { AxiosResponse } from 'axios';
+import React, { ReactElement } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import moment from 'moment';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { ReactElement } from 'react';
+import { AxiosResponse } from 'axios';
+import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
@@ -15,31 +15,39 @@ type NewsDetailPageProps = {
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
   return (
-    <Stack>
-      <Stack pt={{ base: 20 }} px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
-        {/* タイトルと日付とタグ */}
-        <Stack
-          maxW={850}
-          w={'70%'}
-          direction={'row'}
-          justifyContent={'space-between'}
-          alignItems={'end'}
+    <Stack
+      spacing={{ base: 4, md: 6 }}
+      w={{ base: '100%', sm: '100%', md: '80%', lg: '60%' }}
+      mx={'auto'}
+      px={{ base: 4, md: 0 }}
+      pb={{ base: 40, md: 100 }}
+      pt={20}
+    >
+      {/* タイトルと日付とタグ */}
+      <Stack
+        direction={{ base: 'column' }}
+        justifyContent={{ base: 'unset' }}
+        spacing={{ base: 10 }}
+      >
+        <Heading size={'2xl'}>{data[0].title}</Heading>
+        <HStack
+          spacing={{ base: 0, md: 8 }}
+          width={{ base: '100%', md: 'unset' }}
+          pr={{ base: 0, md: 10 }}
+          justifyContent={{ base: 'space-between', md: 'unset' }}
         >
-          <Heading size={'2xl'}>{data[0].title}</Heading>
-          <HStack spacing={4}>
-            <Text fontSize={18}>
-              {moment(data[0].created_at).format('YYYY-MM-DD')}
-            </Text>
-            <Badge fontSize={16} colorScheme={'teal'}>
-              {data[0].tag}
-            </Badge>
-          </HStack>
-        </Stack>
-        <Divider maxW={850} />
-        {/* 本文 */}
-        <HStack maxW={850} w={'80%'}>
-          <Text fontSize={18}>{data[0].content}</Text>
+          <Text fontSize={18}>
+            {moment(data[0].created_at).format('YYYY-MM-DD')}
+          </Text>
+          <Badge fontSize={16} colorScheme={'teal'}>
+            {data[0].tag}
+          </Badge>
         </HStack>
+      </Stack>
+      <Divider />
+      {/* 本文 */}
+      <Stack w={'100%'}>
+        <Text fontSize={18}>{data[0].content}</Text>
       </Stack>
     </Stack>
   );
