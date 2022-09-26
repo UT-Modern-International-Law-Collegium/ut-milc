@@ -65,7 +65,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
       <Stack w={'100%'}>
         <Box
           fontSize={18}
-          sx={{ a: { textDecoration: 'underline' } }}
+          sx={{ a: { textDecoration: 'underline', color: 'blue' } }}
           lineHeight={2}
           dangerouslySetInnerHTML={{ __html: data[0].content }}
         />
