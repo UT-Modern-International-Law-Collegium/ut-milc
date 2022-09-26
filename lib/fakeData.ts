@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { AboutUsSection, Award, Member, News } from './type';
+import { AboutUsSection, Award, Member, News, Event } from './type';
 
 type FakeData = {
   top: {
@@ -10,6 +10,7 @@ type FakeData = {
   awards: Award[];
   about: { sections: AboutUsSection[]; members: Member[] };
   news: News[];
+  events: Event[];
 };
 
 export const fakeData: FakeData = {
@@ -27,7 +28,7 @@ export const fakeData: FakeData = {
       title: 'Japan Cup',
       year: 2021,
       content:
-        '<h3>総合結果</h3>\r\n<p>５位<br />弁論者 ：夏目俊之介、石井大智、清水海杜、赤木芙実加<br />弁論補佐人：前田悠輔、𠮷野天</p>\r\n<h3>書面結果</h3>\r\n<p>被告２位</p>\r\n<h3>個人結果</h3>\r\n<p>被告１位　赤木芙実加<br />原告７位　石井大智<br />被告９位　清水海杜</p>',
+        '<h2>Jpan cup</h2>\r\n<h3>総合結果</h3>\r\n<p>５位<br />弁論者 ：夏目俊之介、石井大智、清水海杜、赤木芙実加<br />弁論補佐人：前田悠輔、𠮷野天</p>\r\n<h3>書面結果</h3>\r\n<p>被告２位</p>\r\n<h3>個人結果</h3>\r\n<p>被告１位　赤木芙実加<br />原告７位　石井大智<br />被告９位　清水海杜</p>',
       status: 'public',
       created_at: '2022-09-17',
       updated_at: null,
@@ -56,11 +57,22 @@ export const fakeData: FakeData = {
       id: 6,
       title:
         '2022 Philip C. Jessup International Law Moot Court Competition National Round',
-      year: 2022,
+      year: 2021,
       content:
-        '<h3>National Round (国内予選)</h3>\r\n<h4>総合結果</h4>\r\n<p>優勝 (国際大会進出)<br /><br />弁論者:<br />原告:清水海杜、夏目俊之介<br />被告:石井大智、田雨昕<br />チームマネージャー:小林一也</p>\r\n<h4>個人結果</h4>\r\n<p>原告1位　清水海杜<br />原告2位　夏目俊之介</p>\r\n<h3>International Round (世界大会)</h3>\r\n<h4>Preliminary Rounds Top50 Oralists選出</h4>\r\n<p>夏目俊之介（世界6位)<br />清水海杜（世界7位）</p>',
+        '<h3>National Round (国内予選)</h3>\r\n<h4>総合結果</h4>\r\n<p>優勝 (国際大会進出)<br /><br />弁論者:<br />原告:清水海杜、夏目俊之介<br />被告:石井大智、田雨昕<br />チームマネージャー:小林一也</p>\r\n<h4>個人結果</h4>\r\n<p>原告1位　清水海杜<br />原告2位　夏目俊之介</p>',
       status: 'public',
       created_at: '2022-09-18',
+      updated_at: null,
+    },
+    {
+      id: 7,
+      title:
+        '2022 Philip C. Jessup International Law Moot Court Competition International Round',
+      year: 2022,
+      content:
+        '<h3>International Round (世界大会)</h3>\r\n<h4>Preliminary Rounds Top50 Oralists選出</h4>\r\n<p>夏目俊之介（世界6位)<br />清水海杜（世界7位）</p>',
+      status: 'public',
+      created_at: '2022-09-26',
       updated_at: null,
     },
   ],
@@ -116,66 +128,20 @@ export const fakeData: FakeData = {
   news: [
     {
       id: 0,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().toString(),
+      title: 'ホームページをリニューアルしてます！',
+      content:
+        '<p>ホームページをリニューアルしてます。</p>\r\n<p>HP制作過程の詳細は<a href="https://yakan.blog/" rel="noopener" target="_blank">こちら</a>でいろいろ書いてます。ぜひご一読いただけると嬉しいです！<br/><br/></p>\r\n\r\n<p>「ホームページのリニューアル」と言ってもまだ初版リリースをしただけで、絶賛制作中です。まだいろいろ雑な部分が多いんですよね。。今後しっかり詰めていきます。テキトーなところがはびこってるのが現状ですが、どうか多めに見ていただけると。。</p>',
+      created_at: moment('2022-09-26').toString(),
       updated_at: null,
-      tag: 'テストデータ',
+      tag: '',
       status: 'public',
     },
+  ],
+  events: [
     {
-      id: 1,
-      title: '昨日はこれをしました。',
-      content: '昨日はこれをしました。',
-      created_at: moment().add(-1, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 2,
-      title: 'おとといはこれをしました。',
-      content: 'おとといはこれをしました。',
-      created_at: moment().add(-2, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 3,
-      title: '3日前はこれをしました。',
-      content: '3日前はこれをしました。',
-      created_at: moment().add(-3, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 4,
-      title: '4日前はこれをしました。',
-      content: '4日前はこれをしました。',
-      created_at: moment().add(-4, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 5,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().add(-5, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
-    },
-    {
-      id: 6,
-      title: '今日はこれをしました。',
-      content: '今日はこれをしました。',
-      created_at: moment().add(-6, 'd').toString(),
-      updated_at: null,
-      tag: 'テストデータ',
-      status: 'public',
+      name: 'Shinkan-2022-Autumn',
+      content:
+        '[国際法研のすごさを伝えるテキスト]国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！国際法研すごい！',
     },
   ],
 };
