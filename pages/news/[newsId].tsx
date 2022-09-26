@@ -71,7 +71,11 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
         />
       </Stack>
       {/* 戻るボタン */}
-      <ButtonGroup justifyContent={'right'} pr={2} py={8}>
+      <ButtonGroup
+        justifyContent={{ base: 'center', md: 'right' }}
+        pr={2}
+        py={8}
+      >
         <Button
           as={NextChakraLink}
           w={200}
