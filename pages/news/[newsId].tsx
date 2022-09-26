@@ -10,9 +10,11 @@ import {
   Divider,
   Heading,
   HStack,
+  Icon,
   Stack,
   Text,
 } from '@chakra-ui/react';
+import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
@@ -47,9 +49,12 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
           pr={{ base: 0, md: 10 }}
           justifyContent={{ base: 'space-between', md: 'unset' }}
         >
-          <Text fontSize={18}>
-            {moment(data[0].created_at).format('YYYY-MM-DD')}
-          </Text>
+          <HStack>
+            <Icon as={MdDateRange} w={18} h={18} />
+            <Text fontSize={18}>
+              {moment(data[0].created_at).format('YYYY-MM-DD')}
+            </Text>
+          </HStack>
           <Badge fontSize={16} colorScheme={'teal'}>
             {data[0].tag}
           </Badge>

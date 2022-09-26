@@ -1,21 +1,22 @@
+import React, { ReactElement } from 'react';
+import { GetStaticProps } from 'next';
+import NextLink from 'next/link';
+import Image from 'next/image';
 import {
   Badge,
-  Box,
   Divider,
   Grid,
   GridItem,
   Heading,
   HStack,
+  Icon,
   LinkBox,
   LinkOverlay,
   Stack,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { GetStaticProps, NextPage } from 'next';
-import NextLink from 'next/link';
-import Image from 'next/image';
-import { ReactElement } from 'react';
+import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import NewsCard from '../../components/news/NewsCard';
 import PageTitle from '../../components/utils/PageTitle';
@@ -88,9 +89,12 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
                       </Heading>
                       {/* 日付とタグ */}
                       <HStack justifyContent={'space-between'}>
-                        <Text fontSize={18}>
-                          {moment(item.created_at).format('YYYY-MM-DD')}
-                        </Text>
+                        <HStack>
+                          <Icon as={MdDateRange} w={18} h={18} />
+                          <Text fontSize={18}>
+                            {moment(item.created_at).format('YYYY-MM-DD')}
+                          </Text>
+                        </HStack>
                         <HStack>
                           <Badge fontSize={16} borderRadius={4}>
                             {item.tag}
