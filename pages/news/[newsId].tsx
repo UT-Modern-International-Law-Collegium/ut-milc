@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
 import { AxiosResponse } from 'axios';
 import {
@@ -20,13 +21,13 @@ import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
 import { News } from '../../lib/type';
 import { NextPageWithLayout } from '../_app';
-import NextChakraLink from '../../components/utils/NextChakraLink';
 
 type NewsDetailPageProps = {
   data: News[];
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
+  const router: NextRouter = useRouter();
   return (
     <Stack
       spacing={{ base: 4, md: 6 }}
@@ -76,14 +77,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
         pr={2}
         py={8}
       >
-        <Button
-          as={NextChakraLink}
-          // TODO: ここの書き方は間違っているから修正
-          w={200}
-          bg={'teal.100'}
-          href={'/news'}
-          passHref
-        >
+        <Button w={200} bg={'teal.100'} onClick={() => router.push('/news')}>
           記事一覧に戻る
         </Button>
       </ButtonGroup>
