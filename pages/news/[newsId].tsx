@@ -40,7 +40,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
         justifyContent={{ base: 'unset' }}
         spacing={{ base: 10 }}
       >
-        <Heading size={'2xl'}>{data[0].title}</Heading>
+        <Heading size={'xl'}>{data[0].title}</Heading>
         <HStack
           spacing={{ base: 0, md: 8 }}
           width={{ base: '100%', md: 'unset' }}
