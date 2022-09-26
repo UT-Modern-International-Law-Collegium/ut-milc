@@ -34,7 +34,14 @@ export type Member = {
   grade: number;
 };
 
+export type Session = {
+  desc: string;
+  time: string;
+};
+
 export type Event = {
   name: string;
-  content: string;
-}
+  sessions: Session[];
+  comment: string;
+};
+
