@@ -78,6 +78,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
       >
         <Button
           as={NextChakraLink}
+          // TODO: ここの書き方は間違っているから修正
           w={200}
           bg={'teal.100'}
           href={'/news'}
