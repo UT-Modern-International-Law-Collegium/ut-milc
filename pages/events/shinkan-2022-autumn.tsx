@@ -34,12 +34,10 @@ import {
 const ChakraBox = chakra(motion.div, { shouldForwardProp: isValidMotionProp })
 
 type ShinkanPage2022AutumnProps = {
-  data: Event[]
+  data: Event
 }
 
 const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({ data }) => {
-  const [transform, setTransform] = useState(false)
-
   return (
     <Box backgroundColor="black" textColor="white" overflow="hidden">
       <Box marginTop={["45vh", "15vh"]} marginBottom={100} fontFamily="serif">
