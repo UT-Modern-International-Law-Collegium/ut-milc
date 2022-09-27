@@ -19,8 +19,6 @@ import { fakeData } from "../../lib/fakeData"
 import { axiosInstance } from "../../lib/axios"
 import { Event } from "../../lib/type"
 import Image from "next/image"
-import tsuka from "../../lib/images/tsuka.png"
-import sara from "../../lib/images/sara.png"
 import { motion, isValidMotionProp } from "framer-motion"
 import {
   GiScales
