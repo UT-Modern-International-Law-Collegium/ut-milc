@@ -37,7 +37,7 @@ type ShinkanPage2022AutumnProps = {
 
 const ShinkanPage2022Autumn: NextPageWithLayout<ShinkanPage2022AutumnProps> = ({ data }) => {
   return (
-    <Box backgroundColor="black" textColor="white" overflow="hidden">
+    <Box backgroundColor="black" textColor="white" overflow="hidden" width="100%" position="relative">
       <Box marginTop={["45vh", "15vh"]} marginBottom={100} fontFamily="serif">
         <Center>
           <Text
@@ -94,7 +94,7 @@ const UTMilcIcon: React.FC = () => {
   const text_length = text_array.length
 
   return (
-    <Box>
+    <Box overflowX="hidden">
       <Box width={icon_size} height={icon_size} opacity={[0.8, 0.3]} position="absolute" left={["calc(50vw - " + (50 + scale_size / 2) + "px)","calc(50vw - " + (100 + scale_size / 2) + "px)"]} top={["calc(15vh - 50px)", "calc(-13vh - " + (100 - scale_size) + "px)"]}>
         <motion.div
           animate={{
