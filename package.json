@@ -22,7 +22,8 @@
     "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
     "serverless-mysql": "^1.5.4",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "tunnel-ssh": "^4.1.6"
   },
   "devDependencies": {
     "@types/node": "18.7.1",
