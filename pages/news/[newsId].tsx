@@ -1,8 +1,21 @@
-import { Badge, Divider, Heading, HStack, Stack, Text } from '@chakra-ui/react';
-import { AxiosResponse } from 'axios';
+import React, { ReactElement } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { ReactElement } from 'react';
+import { AxiosResponse } from 'axios';
+import {
+  Badge,
+  Box,
+  Button,
+  ButtonGroup,
+  Divider,
+  Heading,
+  HStack,
+  Icon,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
+import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
@@ -14,33 +27,60 @@ type NewsDetailPageProps = {
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
+  const router: NextRouter = useRouter();
   return (
-    <Stack>
-      <Stack pt={{ base: 20 }} px={{ base: 10, md: 10 }} spacing={{ base: 10 }}>
-        {/* タイトルと日付とタグ */}
-        <Stack
-          maxW={850}
-          w={'70%'}
-          direction={'row'}
-          justifyContent={'space-between'}
-          alignItems={'end'}
+    <Stack
+      spacing={{ base: 4, md: 6 }}
+      w={{ base: '100%', sm: '100%', md: '80%', lg: '60%' }}
+      mx={'auto'}
+      px={{ base: 4, md: 0 }}
+      pb={{ base: 40, md: 100 }}
+      pt={20}
+    >
+      {/* タイトルと日付とタグ */}
+      <Stack
+        direction={{ base: 'column' }}
+        justifyContent={{ base: 'unset' }}
+        spacing={{ base: 10 }}
+      >
+        <Heading size={'xl'}>{data[0].title}</Heading>
+        <HStack
+          spacing={{ base: 0, md: 8 }}
+          width={{ base: '100%', md: 'unset' }}
+          pr={{ base: 0, md: 10 }}
+          justifyContent={{ base: 'space-between', md: 'unset' }}
         >
-          <Heading size={'2xl'}>{data[0].title}</Heading>
-          <HStack spacing={4}>
+          <HStack>
+            <Icon as={MdDateRange} w={18} h={18} />
             <Text fontSize={18}>
               {moment(data[0].created_at).format('YYYY-MM-DD')}
             </Text>
-            <Badge fontSize={16} colorScheme={'teal'}>
-              {data[0].tag}
-            </Badge>
           </HStack>
-        </Stack>
-        <Divider maxW={850} />
-        {/* 本文 */}
-        <HStack maxW={850} w={'80%'}>
-          <Text fontSize={18}>{data[0].content}</Text>
+          <Badge fontSize={16} colorScheme={'teal'}>
+            {data[0].tag}
+          </Badge>
         </HStack>
       </Stack>
+      <Divider />
+      {/* 本文 */}
+      <Stack w={'100%'}>
+        <Box
+          fontSize={18}
+          sx={{ a: { textDecoration: 'underline', color: 'blue' } }}
+          lineHeight={2}
+          dangerouslySetInnerHTML={{ __html: data[0].content }}
+        />
+      </Stack>
+      {/* 戻るボタン */}
+      <ButtonGroup
+        justifyContent={{ base: 'center', md: 'right' }}
+        pr={2}
+        py={8}
+      >
+        <Button w={200} bg={'teal.100'} onClick={() => router.push('/news')}>
+          記事一覧に戻る
+        </Button>
+      </ButtonGroup>
     </Stack>
   );
 };
