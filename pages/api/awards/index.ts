@@ -7,7 +7,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const isPath: boolean = (req.query['path'] as string) === 'true';
         if (isPath) {
-          console.log('isPath has passed.');
           const response = await excuteQuery(
             'SELECT DISTINCT year FROM awards'
           );
