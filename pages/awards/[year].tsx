@@ -115,9 +115,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const res: AxiosResponse<any, any> = await axiosInstance.get(
         '/api/awards?path=true'
       );
-      console.log('########################');
-      console.log({ res });
-      console.log('########################');
       const data: { [year: string]: number }[] = res.data;
       let tmpYears: number[] = data.map(
         (yearObj: { [key: string]: number }) => yearObj.year
