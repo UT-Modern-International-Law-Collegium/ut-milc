@@ -1,3 +1,7 @@
+import React, { ReactElement } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { AxiosResponse } from 'axios';
+import moment from 'moment';
 import {
   Box,
   Divider,
@@ -6,14 +10,9 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { AxiosResponse } from 'axios';
-import moment from 'moment';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { ReactElement } from 'react';
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
-import { fakeData } from '../../lib/fakeData';
 import { DynamicRouteObj } from '../../lib/type/api';
 import { Award } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
@@ -121,36 +120,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    if (process.env.ENV_VAR === 'development') {
-      const data: Award[] = fakeData.awards;
-      const tmpYears: number[] = data.map((award: Award) => award.year);
-      let years: number[] = Array.from(new Set(tmpYears));
-      if (!years.includes(moment().year())) {
-        years.push(moment().year());
-      }
-      return {
-        props: {
-          awards: fakeData.awards.filter(
-            (award: Award) => award.year.toString() === params!.year
-          ),
-          years: years,
-        },
-      };
-    } else {
-      const awardsRes = await axiosInstance.get(`/api/awards/${params!.year}`);
-      const yearsRes: AxiosResponse<any, any> = await axiosInstance.get(
-        '/api/awards?path=true'
-      );
-      let years: number[] = yearsRes.data.map(
-        (yearObj: { [key: string]: number }) => yearObj.year
-      );
-      if (!years.includes(moment().year())) {
-        years.push(moment().year());
-      }
-      return {
-        props: { awards: awardsRes.data, years: years },
-      };
+    const awardsRes: AxiosResponse<any, any> = await axiosInstance.get(
+      `/api/awards/${params!.year}`
+    );
+    const yearsRes: AxiosResponse<any, any> = await axiosInstance.get(
+      '/api/awards?path=true'
+    );
+    let years: number[] = yearsRes.data.map(
+      (yearObj: { [key: string]: number }) => yearObj.year
+    );
+    if (!years.includes(moment().year())) {
+      years.push(moment().year());
     }
+    return {
+      props: { awards: awardsRes.data, years: years },
+    };
   } catch (err) {
     throw new Error(`error at [year].tsx getStaticProps: ${err}`);
   }
