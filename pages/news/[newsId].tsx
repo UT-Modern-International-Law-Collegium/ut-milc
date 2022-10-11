@@ -90,7 +90,7 @@ NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
+    const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
     const data: News[] = res.data;
     const paths = data.map((item: News) => ({
       params: { newsId: item.id.toString() },
@@ -104,7 +104,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get(
-      `/api/news/${params!.newsId}`
+      `/news/${params!.newsId}`
     );
     return { props: { data: res.data } };
   } catch (err) {

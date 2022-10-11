@@ -96,9 +96,7 @@ AboutPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res: AxiosResponse<any, any> = await axiosInstance.get(
-      '/api/about-us'
-    );
+    const res: AxiosResponse<any, any> = await axiosInstance.get('/about-us');
     return {
       props: {
         data: {

@@ -99,7 +99,7 @@ AwardPageDividedByYear.getLayout = function getLayout(page: ReactElement) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get(
-      '/api/awards?path=true'
+      '/awards?path=true'
     );
     const data: { [key: string]: number }[] = res.data;
     let tmpYears: number[] = data.map(
@@ -121,10 +121,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const awardsRes: AxiosResponse<any, any> = await axiosInstance.get(
-      `/api/awards/${params!.year}`
+      `/awards/${params!.year}`
     );
     const yearsRes: AxiosResponse<any, any> = await axiosInstance.get(
-      '/api/awards?path=true'
+      '/awards?path=true'
     );
     let years: number[] = yearsRes.data.map(
       (yearObj: { [key: string]: number }) => yearObj.year

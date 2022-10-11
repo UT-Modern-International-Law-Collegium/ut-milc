@@ -208,7 +208,7 @@ export const getStaticProps: GetStaticProps = async () => {
         },
       };
     } else {
-      const res = await axiosInstance.get('/api/events');
+      const res = await axiosInstance.get('/events');
       return {
         props: {
           data: {

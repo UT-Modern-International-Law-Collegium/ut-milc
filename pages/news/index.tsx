@@ -141,7 +141,7 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await axiosInstance.get('/api/news');
+    const res = await axiosInstance.get('/news');
     return { props: { data: res.data } };
   } catch (err) {
     throw new Error(`error at news page: ${err}`);
