@@ -14,7 +14,7 @@ import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
-import { Award } from '../../lib/type';
+import { Award } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
 
 type Props = {

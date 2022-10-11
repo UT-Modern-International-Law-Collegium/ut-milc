@@ -20,7 +20,7 @@ import { axiosInstance } from '../lib/axios';
 import { fakeData } from '../lib/fakeData';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
-import { AboutUsSection, Member } from '../lib/type';
+import { AboutUsSection, Member } from '../lib/type/page';
 
 type AboutPageProps = {
   data: { sections: AboutUsSection[]; members: Member[] };

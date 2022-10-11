@@ -19,7 +19,7 @@ import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { fakeData } from '../../lib/fakeData';
-import { News } from '../../lib/type';
+import { News } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
 
 type NewsDetailPageProps = {
