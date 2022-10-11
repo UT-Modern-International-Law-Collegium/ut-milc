@@ -7,3 +7,13 @@ export type TopRes = {
 };
 
 export type AboutRes = { sections: AboutUsSection[]; members: Member[] };
+
+export type DynamicRouteObj = {
+  params: {
+    year: string;
+  };
+}[];
+
+export type AwardYearsRes = {
+  [key: string]: number;
+}[];
