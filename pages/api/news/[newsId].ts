@@ -6,8 +6,11 @@ import { News } from '../../../lib/type/page';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { newsId } = req.query;
   if (process.env.ENV_VAR === 'development') {
-    const newsRes: News = fakeData.news[Number(newsId)];
-    res.status(200).json(newsRes);
+    let newsRes: News;
+    for (const news of fakeData.news) {
+      if (news.id === Number(newsId)) newsRes = news;
+    }
+    res.status(200).json(newsRes!);
   } else {
     switch (req.method) {
       case 'GET':

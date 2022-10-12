@@ -21,7 +21,6 @@ import Layout from '../../components/layout/Layout';
 import NewsCard from '../../components/news/NewsCard';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
-import { fakeData } from '../../lib/fakeData';
 import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
 import { News } from '../../lib/type/page';
@@ -141,12 +140,8 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    if (process.env.ENV_VAR === 'development') {
-      return { props: { data: fakeData.news } };
-    } else {
-      const res = await axiosInstance.get('/api/news');
-      return { props: { data: res.data } };
-    }
+    const res = await axiosInstance.get('/news');
+    return { props: { data: res.data } };
   } catch (err) {
     throw new Error(`error at news page: ${err}`);
   }
