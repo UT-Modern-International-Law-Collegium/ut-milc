@@ -17,10 +17,11 @@ import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
 import { axiosInstance } from '../lib/axios';
-import { fakeData } from '../lib/fakeData';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
-import { AboutUsSection, Member } from '../lib/type';
+import { AboutUsSection, Member } from '../lib/type/page';
+import { AxiosResponse } from 'axios';
+import { fakeData } from '../lib/fakeData';
 
 type AboutPageProps = {
   data: { sections: AboutUsSection[]; members: Member[] };

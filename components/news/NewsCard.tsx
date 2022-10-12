@@ -13,7 +13,7 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { MdDateRange } from 'react-icons/md';
-import { News } from '../../lib/type';
+import { News } from '../../lib/type/page';
 
 type Props = {
   item: News;
