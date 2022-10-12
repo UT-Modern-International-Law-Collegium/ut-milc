@@ -1,19 +1,27 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { fakeData } from '../../../lib/fakeData';
 import { excuteQuery } from '../../../lib/mysql';
+import { News } from '../../../lib/type/page';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  switch (req.method) {
-    case 'GET':
-      try {
-        const { newsId } = req.query;
-        const dbQuery: string = `SELECT * FROM news WHERE status="public" AND id=${newsId}`;
-        const news = await excuteQuery(dbQuery);
-        return res.status(200).json(news);
-      } catch (err) {
-        throw new Error(`error at /api/news :${err}`);
-      }
-    default:
-      throw new Error(`method must be only GET at /api/news`);
+  const { newsId } = req.query;
+  if (process.env.ENV_VAR === 'development') {
+    const newsRes: News = fakeData.news[Number(newsId)];
+    res.status(200).json(newsRes);
+  } else {
+    switch (req.method) {
+      case 'GET':
+        try {
+          const dbQuery: string = `SELECT * FROM news WHERE status="public" AND id=${newsId}`;
+          const response = await excuteQuery(dbQuery);
+          const newsRes: News = response[0];
+          res.status(200).json(newsRes);
+        } catch (err) {
+          throw new Error(`error at /api/news :${err}`);
+        }
+      default:
+        throw new Error(`method must be only GET at /api/news`);
+    }
   }
 };
 

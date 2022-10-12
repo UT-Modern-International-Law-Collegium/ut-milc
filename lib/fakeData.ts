@@ -1,7 +1,8 @@
 import moment from 'moment';
-import { AboutUsSection, Award, Member, News, Event } from './type';
+import { AboutUsSection, Award, Member, News, Event } from './type/page';
 
-type FakeData = {
+// NOTE: fakeDataのの型は想定される使用が限定的だから、type.tsではなくここで定義する。
+export type FakeData = {
   top: {
     about: string;
     award: string;
@@ -142,16 +143,15 @@ export const fakeData: FakeData = {
       name: 'Shinkan-2022-Autumn',
       sessions: [
         {
-          "desc": "サークルの概要・説明・質疑応答・交流会",
-          "time": "9月26日 20:00-"
+          desc: 'サークルの概要・説明・質疑応答・交流会',
+          time: '9月26日 20:00-',
         },
         {
-          "desc": "昨年度秋入会者3名によるサークル紹介・交流会",
-          "time": "10月2日 20:00-"
-        }
+          desc: '昨年度秋入会者3名によるサークル紹介・交流会',
+          time: '10月2日 20:00-',
+        },
       ],
-      comment:
-        `UTbaseの新歓で目に入りました。国際法研究会といいつつさまざまな企画を実施しているのが魅力です。セメスターおきに企画が変わるので、年度頭に入らなかった人でも馴染みやすいです。イベント等の交流の機会もあるので入会時期を問わず会員とは仲良くできます。
+      comment: `UTbaseの新歓で目に入りました。国際法研究会といいつつさまざまな企画を実施しているのが魅力です。セメスターおきに企画が変わるので、年度頭に入らなかった人でも馴染みやすいです。イベント等の交流の機会もあるので入会時期を問わず会員とは仲良くできます。
 
         わたしは一年生の秋からの入会でした。半年遅れで入って知識がない分、勉強会などについていけるか不安でしたが、初心者の私にも参加しやすい企画が多く、とくにハンディキャップを感じることはありませんでした。また、既存メンバーとも親しくなることができ、充実したサークル生活を送ることができています。
         

@@ -29,12 +29,12 @@ import {
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
-import { News } from '../lib/type';
+import { News } from '../lib/type/page';
 import SectionButton from '../components/top/SectionButton';
-import { fakeData } from '../lib/fakeData';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+import { fakeData } from '../lib/fakeData';
 
 type TopPageProps = {
   data: { about: string; award: string; join_us: string; news: News[] };
