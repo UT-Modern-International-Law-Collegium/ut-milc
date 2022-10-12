@@ -20,6 +20,7 @@ import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { News } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
+import { fakeData } from '../../lib/fakeData';
 
 type NewsDetailPageProps = {
   data: News;
@@ -90,8 +91,13 @@ NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
-    const data: News[] = res.data;
+    let data: any;
+    if (process.env.ENV_VAR === 'development') {
+      data = fakeData.news;
+    } else {
+      const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
+      data = res.data;
+    }
     const paths = data.map((item: News) => ({
       params: { newsId: item.id.toString() },
     }));
@@ -103,10 +109,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const res: AxiosResponse<any, any> = await axiosInstance.get(
-      `/news/${params!.newsId}`
-    );
-    return { props: { data: res.data } };
+    if (process.env.ENV_VAR === 'development') {
+      return { props: { data: [fakeData.news[Number(params!.newsId)]] } };
+    } else {
+      const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
+      return { props: { data: res.data } };
+    }
   } catch (err) {
     throw new Error(`error at [newsId].tsx getStaticProps: ${err}`);
   }
