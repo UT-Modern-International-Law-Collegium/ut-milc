@@ -21,6 +21,7 @@ import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import { AboutUsSection, Member } from '../lib/type/page';
 import { AxiosResponse } from 'axios';
+import { fakeData } from '../lib/fakeData';
 
 type AboutPageProps = {
   data: { sections: AboutUsSection[]; members: Member[] };
@@ -96,15 +97,19 @@ AboutPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res: AxiosResponse<any, any> = await axiosInstance.get('/about-us');
-    return {
-      props: {
-        data: {
-          sections: res.data.sections,
-          members: res.data.members,
+    if (process.env.ENV_VAR === 'development') {
+      return { props: { data: fakeData.about } };
+    } else {
+      const res = await axiosInstance.get('/api/about-us');
+      return {
+        props: {
+          data: {
+            sections: res.data.sections,
+            members: res.data.members,
+          },
         },
-      },
-    };
+      };
+    }
   } catch (err) {
     throw new Error(`err at about page: ${err}`);
   }
