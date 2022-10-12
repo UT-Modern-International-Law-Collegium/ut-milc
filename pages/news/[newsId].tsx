@@ -18,12 +18,11 @@ import {
 import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
-import { fakeData } from '../../lib/fakeData';
-import { News } from '../../lib/type';
+import { News } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
 
 type NewsDetailPageProps = {
-  data: News[];
+  data: News;
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
@@ -43,7 +42,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
         justifyContent={{ base: 'unset' }}
         spacing={{ base: 10 }}
       >
-        <Heading size={'xl'}>{data[0].title}</Heading>
+        <Heading size={'xl'}>{data.title}</Heading>
         <HStack
           spacing={{ base: 0, md: 8 }}
           width={{ base: '100%', md: 'unset' }}
@@ -53,11 +52,11 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
           <HStack>
             <Icon as={MdDateRange} w={18} h={18} />
             <Text fontSize={18}>
-              {moment(data[0].created_at).format('YYYY-MM-DD')}
+              {moment(data.created_at).format('YYYY-MM-DD')}
             </Text>
           </HStack>
           <Badge fontSize={16} colorScheme={'teal'}>
-            {data[0].tag}
+            {data.tag}
           </Badge>
         </HStack>
       </Stack>
@@ -68,7 +67,7 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
           fontSize={18}
           sx={{ a: { textDecoration: 'underline', color: 'blue' } }}
           lineHeight={2}
-          dangerouslySetInnerHTML={{ __html: data[0].content }}
+          dangerouslySetInnerHTML={{ __html: data.content }}
         />
       </Stack>
       {/* 戻るボタン */}
@@ -91,13 +90,8 @@ NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    let data: any;
-    if (process.env.ENV_VAR === 'development') {
-      data = fakeData.news;
-    } else {
-      const res: AxiosResponse<any, any> = await axiosInstance.get('/api/news');
-      data = res.data;
-    }
+    const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
+    const data: News[] = res.data;
     const paths = data.map((item: News) => ({
       params: { newsId: item.id.toString() },
     }));
@@ -109,12 +103,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    if (process.env.ENV_VAR === 'development') {
-      return { props: { data: [fakeData.news[Number(params!.newsId)]] } };
-    } else {
-      const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
-      return { props: { data: res.data } };
-    }
+    const res: AxiosResponse<any, any> = await axiosInstance.get(
+      `/news/${params!.newsId}`
+    );
+    return { props: { data: res.data } };
   } catch (err) {
     throw new Error(`error at [newsId].tsx getStaticProps: ${err}`);
   }

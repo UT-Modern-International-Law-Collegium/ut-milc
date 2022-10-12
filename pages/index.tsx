@@ -29,9 +29,8 @@ import {
 } from '@chakra-ui/react';
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
-import { News } from '../lib/type';
+import { News } from '../lib/type/page';
 import SectionButton from '../components/top/SectionButton';
-import { fakeData } from '../lib/fakeData';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
@@ -311,32 +310,19 @@ TopPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    if (process.env.ENV_VAR === 'development') {
-      return {
-        props: {
-          data: {
-            about: fakeData.top.about,
-            award: fakeData.top.award,
-            join_us: fakeData.top.join_us,
-            news: fakeData.news,
-          },
-        },
-      };
-    } else {
-      const topRes = await axiosInstance.get('/api/top');
-      const newsRes = await axiosInstance.get('/api/news?count=5');
-      const data = {
-        about: topRes.data[0].about,
-        award: topRes.data[0].award,
-        join_us: topRes.data[0].join_us,
-        news: newsRes.data,
-      };
-      return {
-        props: {
-          data: data,
-        },
-      };
-    }
+    const topRes = await axiosInstance.get('/top');
+    const newsRes = await axiosInstance.get('/news?count=5');
+    const data = {
+      about: topRes.data.about,
+      award: topRes.data.award,
+      join_us: topRes.data.join_us,
+      news: newsRes.data,
+    };
+    return {
+      props: {
+        data: data,
+      },
+    };
   } catch (err) {
     console.error({ err });
     throw new Error(`err: ${err}`);
