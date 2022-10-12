@@ -7,7 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { newsId } = req.query;
   if (process.env.ENV_VAR === 'development') {
     const newsRes: News = fakeData.news[Number(newsId)];
-    return res.status(200).json(newsRes);
+    res.status(200).json(newsRes);
   } else {
     switch (req.method) {
       case 'GET':
@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           const dbQuery: string = `SELECT * FROM news WHERE status="public" AND id=${newsId}`;
           const response = await excuteQuery(dbQuery);
           const newsRes: News = response[0];
-          return res.status(200).json(newsRes);
+          res.status(200).json(newsRes);
         } catch (err) {
           throw new Error(`error at /api/news :${err}`);
         }

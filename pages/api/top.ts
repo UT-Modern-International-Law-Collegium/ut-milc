@@ -14,7 +14,7 @@ const handler = async (
       award: fakeData.top.award,
       join_us: fakeData.top.join_us,
     };
-    return res.status(200).json(topRes);
+    res.status(200).json(topRes);
   } else {
     // 本番環境においてはdbからデータを取得。
     switch (req.method) {
@@ -24,7 +24,7 @@ const handler = async (
             'SELECT about, award, join_us FROM top_content ORDER BY id DESC LIMIT 1'
           );
           const topRes: TopRes = response[0];
-          return res.status(200).json(topRes);
+          res.status(200).json(topRes);
         } catch (err) {
           throw new Error(`error at /api/top :${err}`);
         }

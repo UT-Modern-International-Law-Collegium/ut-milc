@@ -9,7 +9,7 @@ const handler = async (
 ): Promise<void> => {
   if (process.env.ENV_VAR === 'development') {
     const aboutRes: AboutRes = fakeData.about;
-    return res.status(200).json(aboutRes);
+    res.status(200).json(aboutRes);
   } else {
     switch (req.method) {
       case 'GET':
@@ -24,9 +24,9 @@ const handler = async (
             sections: aboutSectionsRes,
             members: membersRes,
           };
-          return res.status(200).json(aboutRes);
+          res.status(200).json(aboutRes);
         } catch (err) {
-          return res
+          res
             .status(500)
             .json({ message: `error at /api/about-us err: ${err}` });
         }

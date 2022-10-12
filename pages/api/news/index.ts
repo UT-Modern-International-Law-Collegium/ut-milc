@@ -9,7 +9,7 @@ const handler = async (
 ): Promise<void> => {
   if (process.env.ENV_VAR === 'development') {
     const newsListRes: News[] = fakeData.news;
-    return res.status(200).json(newsListRes);
+    res.status(200).json(newsListRes);
   } else {
     switch (req.method) {
       case 'GET':
@@ -23,7 +23,7 @@ const handler = async (
           }
           const response = await excuteQuery(dbQuery);
           const newsListRes: News[] = response;
-          return res.status(200).json(newsListRes);
+          res.status(200).json(newsListRes);
         } catch (err) {
           throw new Error(`error at /api/news :${err}`);
         }

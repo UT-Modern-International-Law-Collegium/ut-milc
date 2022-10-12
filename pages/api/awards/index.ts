@@ -18,7 +18,7 @@ const handler = async (
       let awardYearsRes: AwardYearsRes = years.map((year: number) => ({
         year: year,
       }));
-      return res.status(200).json(awardYearsRes);
+      res.status(200).json(awardYearsRes);
     } else {
       // NOTE: 使用場面がないので未実装
     }
@@ -30,7 +30,7 @@ const handler = async (
             const awardYearsRes: AwardYearsRes = await excuteQuery(
               'SELECT DISTINCT year FROM awards'
             );
-            return res.status(200).json(awardYearsRes);
+            res.status(200).json(awardYearsRes);
           } else {
             /**  NOTE: 使用場面がないので未実装
              * const response = await excuteQuery('SELECT * FROM awards');
