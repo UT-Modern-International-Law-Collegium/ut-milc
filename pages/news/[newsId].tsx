@@ -110,7 +110,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     if (process.env.ENV_VAR === 'development') {
-      return { props: { data: [fakeData.news[Number(params!.newsId)]] } };
+      return { props: { data: fakeData.news[Number(params!.newsId)] } };
     } else {
       const res = await axiosInstance.get(`/api/news/${params!.newsId}`);
       return { props: { data: res.data } };
