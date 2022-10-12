@@ -8,7 +8,9 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   if (process.env.ENV_VAR === 'development') {
-    const newsListRes: News[] = fakeData.news;
+    const newsListRes: News[] = fakeData.news.sort(
+      (a: News, b: News) => b.id - a.id
+    );
     res.status(200).json(newsListRes);
   } else {
     switch (req.method) {
