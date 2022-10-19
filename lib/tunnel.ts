@@ -12,6 +12,7 @@ type Config = {
   dstPort: number;
   privateKey: any;
   passphrase: string;
+  keepAlive: boolean;
 };
 
 class Tunnel {
