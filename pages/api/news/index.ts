@@ -7,7 +7,7 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  if (process.env.ENV_VAR === 'development') {
+  if (process.env.ENV_VAR === 'development' && false) {
     const newsListRes: News[] = fakeData.news;
     res.status(200).json(newsListRes);
   } else {
