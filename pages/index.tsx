@@ -40,8 +40,6 @@ type TopPageProps = {
 };
 
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
-  console.log({ data });
-
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
