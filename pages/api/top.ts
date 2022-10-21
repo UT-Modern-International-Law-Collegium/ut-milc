@@ -7,6 +7,7 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
+  // NOTE: 開発の便宜上この出力は残しておく。
   if (process.env.ENV_VAR === 'development') {
     // 開発環境においてはfakeDataを返す。
     const topRes: TopRes = {
@@ -17,19 +18,18 @@ const handler = async (
     res.status(200).json(topRes);
   } else {
     // 本番環境においてはdbからデータを取得。
-    switch (req.method) {
-      case 'GET':
-        try {
-          const response = await excuteQuery(
-            'SELECT about, award, join_us FROM top_content ORDER BY id DESC LIMIT 1'
-          );
-          const topRes: TopRes = response[0];
-          res.status(200).json(topRes);
-        } catch (err) {
-          throw new Error(`error at /api/top :${err}`);
-        }
-      default:
-        throw new Error(`method must be only GET at /api/top`);
+    if (req.method === 'GET') {
+      try {
+        const response: any[] = await excuteQuery(
+          'SELECT about, award, join_us FROM top_content ORDER BY id DESC LIMIT 1'
+        );
+        const topRes: TopRes = response[0];
+        res.status(200).json(topRes);
+      } catch (err) {
+        throw new Error(`error at /api/top :${err}`);
+      }
+    } else {
+      throw new Error(`method must be only GET at /api/top: ${req.method}`);
     }
   }
 };
