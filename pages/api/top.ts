@@ -8,9 +8,6 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   // NOTE: 開発の便宜上この出力は残しておく。
-  console.log('#########################');
-  console.log(`ENV_VAR is ${process.env.ENV_VAR}`);
-  console.log('#########################');
   if (process.env.ENV_VAR === 'development') {
     // 開発環境においてはfakeDataを返す。
     const topRes: TopRes = {
