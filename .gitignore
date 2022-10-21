@@ -40,6 +40,3 @@ next-env.d.ts
 
 # yarn.lock
 yarn.lock
-
-# secret key path
-utmilc.key
