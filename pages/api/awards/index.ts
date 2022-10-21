@@ -23,25 +23,24 @@ const handler = async (
       // NOTE: 使用場面がないので未実装
     }
   } else {
-    switch (req.method) {
-      case 'GET':
-        try {
-          if (isPath) {
-            const awardYearsRes: AwardYearsRes = await excuteQuery(
-              'SELECT DISTINCT year FROM awards'
-            );
-            res.status(200).json(awardYearsRes);
-          } else {
-            /**  NOTE: 使用場面がないので未実装
-             * const response = await excuteQuery('SELECT * FROM awards');
-             * ↑このように全件取得するのがapi的に妥当だと思われる。
-             */
-          }
-        } catch (err) {
-          throw new Error(`error at /api/awards: ${err}`);
+    if (req.method === 'GET') {
+      try {
+        if (isPath) {
+          const awardYearsRes: AwardYearsRes = await excuteQuery(
+            'SELECT DISTINCT year FROM awards'
+          );
+          res.status(200).json(awardYearsRes);
+        } else {
+          /**  NOTE: 使用場面がないので未実装
+           * const response = await excuteQuery('SELECT * FROM awards');
+           * ↑このように全件取得するのがapi的に妥当だと思われる。
+           */
         }
-      default:
-        throw new Error(`method can only be GET`);
+      } catch (err) {
+        throw new Error(`error at /api/awards: ${err}`);
+      }
+    } else {
+      throw new Error(`method can only be GET`);
     }
   }
 };
