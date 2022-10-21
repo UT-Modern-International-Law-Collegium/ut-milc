@@ -10,6 +10,7 @@ const handler = async (
   if (process.env.ENV_VAR === 'development') {
     const aboutRes: AboutRes = fakeData.about;
     res.status(200).json(aboutRes);
+    res.end();
   } else {
     if (req.method === 'GET') {
       try {
@@ -24,8 +25,10 @@ const handler = async (
           members: membersRes,
         };
         res.status(200).json(aboutRes);
+        res.end();
       } catch (err) {
         res.status(500).json({ message: `error at /api/about-us err: ${err}` });
+        res.end();
       }
     } else {
       throw new Error('method must be only GET at /api/about-us');

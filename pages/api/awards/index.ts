@@ -19,6 +19,7 @@ const handler = async (
         year: year,
       }));
       res.status(200).json(awardYearsRes);
+      res.end();
     } else {
       // NOTE: 使用場面がないので未実装
     }
@@ -30,6 +31,7 @@ const handler = async (
             'SELECT DISTINCT year FROM awards'
           );
           res.status(200).json(awardYearsRes);
+          res.end();
         } else {
           /**  NOTE: 使用場面がないので未実装
            * const response = await excuteQuery('SELECT * FROM awards');

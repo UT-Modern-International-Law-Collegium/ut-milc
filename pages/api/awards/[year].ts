@@ -13,12 +13,14 @@ const handler = async (
       (award: Award) => award.year === Number(year)
     );
     res.status(200).json(awardsRes);
+    res.end();
   } else {
     if (req.method === 'GET') {
       try {
         const dbQuery: string = `SELECT * FROM awards WHERE year=${year}`;
         const awardsRes: Award[] = await excuteQuery(dbQuery);
         res.status(200).json(awardsRes);
+        res.end();
       } catch (err) {
         throw new Error(`error at /api/awards/[year]: ${err}`);
       }

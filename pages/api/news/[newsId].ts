@@ -11,6 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (news.id === Number(newsId)) newsRes = news;
     }
     res.status(200).json(newsRes!);
+    res.end();
   } else {
     if (req.method === 'GET') {
       try {
@@ -18,6 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const response: any[] = await excuteQuery(dbQuery);
         const newsRes: News = response[0];
         res.status(200).json(newsRes);
+        res.end();
       } catch (err) {
         throw new Error(`error at /api/news :${err}`);
       }

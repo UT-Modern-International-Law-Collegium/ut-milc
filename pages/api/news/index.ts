@@ -12,6 +12,7 @@ const handler = async (
       (a: News, b: News) => b.id - a.id
     );
     res.status(200).json(newsListRes);
+    res.end();
   } else {
     if (req.method === 'GET') {
       try {
@@ -25,6 +26,7 @@ const handler = async (
         const response: any[] = await excuteQuery(dbQuery);
         const newsListRes: News[] = response;
         res.status(200).json(newsListRes);
+        res.end();
       } catch (err) {
         throw new Error(`error at /api/news :${err}`);
       }

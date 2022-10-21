@@ -16,6 +16,7 @@ const handler = async (
       join_us: fakeData.top.join_us,
     };
     res.status(200).json(topRes);
+    res.end();
   } else {
     // 本番環境においてはdbからデータを取得。
     if (req.method === 'GET') {
@@ -25,6 +26,7 @@ const handler = async (
         );
         const topRes: TopRes = response[0];
         res.status(200).json(topRes);
+        res.end();
       } catch (err) {
         throw new Error(`error at /api/top :${err}`);
       }
