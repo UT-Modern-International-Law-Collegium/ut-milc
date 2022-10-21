@@ -20,7 +20,7 @@ const handler = async (
         } else {
           dbQuery = `SELECT * FROM news WHERE status="public"`;
         }
-        const response = await excuteQuery(dbQuery);
+        const response: any[] = await excuteQuery(dbQuery);
         const newsListRes: News[] = response;
         res.status(200).json(newsListRes);
       } catch (err) {

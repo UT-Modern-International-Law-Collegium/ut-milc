@@ -20,7 +20,7 @@ const handler = async (
     // 本番環境においてはdbからデータを取得。
     if (req.method === 'GET') {
       try {
-        const response = await excuteQuery(
+        const response: any[] = await excuteQuery(
           'SELECT about, award, join_us FROM top_content ORDER BY id DESC LIMIT 1'
         );
         const topRes: TopRes = response[0];

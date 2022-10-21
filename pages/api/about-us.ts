@@ -13,10 +13,10 @@ const handler = async (
   } else {
     if (req.method === 'GET') {
       try {
-        const aboutSectionsRes = await excuteQuery(
+        const aboutSectionsRes: any = await excuteQuery(
           'SELECT * FROM aboutus_sections WHERE status="public"'
         );
-        const membersRes = await excuteQuery(
+        const membersRes: any = await excuteQuery(
           'SELECT position, name, grade FROM members WHERE position IS NOT NULL'
         );
         const aboutRes: AboutRes = {
