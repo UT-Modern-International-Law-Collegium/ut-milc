@@ -28,6 +28,7 @@ type AboutPageProps = {
 
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   const { sections, members } = data;
+  return <></>;
   return (
     <Stack
       px={{ base: 4, md: 100 }}

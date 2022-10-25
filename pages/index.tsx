@@ -42,6 +42,7 @@ type TopPageProps = {
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+  return <></>
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
