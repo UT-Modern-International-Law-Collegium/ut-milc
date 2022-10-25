@@ -25,6 +25,7 @@ import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
 import { News } from '../../lib/type/page';
 import { restrictStringCount } from '../../utils/restrictStringCount';
+import { fakeData } from '../../lib/fakeData';
 
 type NewsPageProps = {
   data: News[];
@@ -139,6 +140,7 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  return { props: { data: fakeData.news } };
   try {
     const res = await axiosInstance.get('/news');
     return { props: { data: res.data } };

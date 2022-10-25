@@ -16,6 +16,7 @@ import { axiosInstance } from '../../lib/axios';
 import { Award } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
 import { DynamicRouteObj } from '../../lib/type/api';
+import { fakeData } from '../../lib/fakeData';
 
 type Props = {
   awards: Award[];
@@ -97,6 +98,10 @@ AwardPageDividedByYear.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { year: '2022' } }, { params: { year: '2021' } }],
+    fallback: false,
+  };
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get(
       '/awards?path=true'
@@ -119,6 +124,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  return {
+    props: { awards: fakeData.awards, years: [2021, 2022] },
+  };
   try {
     const awardsRes: AxiosResponse<any, any> = await axiosInstance.get(
       `/awards/${params!.year}`

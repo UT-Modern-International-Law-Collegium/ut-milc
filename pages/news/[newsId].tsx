@@ -20,6 +20,7 @@ import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
 import { News } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
+import { fakeData } from '../../lib/fakeData';
 
 type NewsDetailPageProps = {
   data: News;
@@ -89,6 +90,10 @@ NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { newsId: '0' } }, { params: { newsId: '1' } }],
+    fallback: false,
+  };
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
     const data: News[] = res.data;
@@ -102,6 +107,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  return {
+    props: {
+      data: fakeData.news[0],
+    },
+  };
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get(
       `/news/${params!.newsId}`

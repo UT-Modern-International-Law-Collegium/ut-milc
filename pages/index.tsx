@@ -34,6 +34,8 @@ import SectionButton from '../components/top/SectionButton';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+// TODO: remove fakeData from this file.
+import { fakeData } from '../lib/fakeData';
 
 type TopPageProps = {
   data: { about: string; award: string; join_us: string; news: News[] };
@@ -309,6 +311,16 @@ TopPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      data: {
+        about: fakeData.top.about,
+        award: fakeData.top.award,
+        join_us: fakeData.top.join_us,
+        news: fakeData.news,
+      },
+    },
+  };
   try {
     const topRes = await axiosInstance.get('/top');
     const newsRes = await axiosInstance.get('/news?count=5');

@@ -21,6 +21,8 @@ import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import { AboutUsSection, Member } from '../lib/type/page';
 import { AxiosResponse } from 'axios';
+// TODO: remove fakeData from this file.
+import { fakeData } from '../lib/fakeData';
 
 type AboutPageProps = {
   data: { sections: AboutUsSection[]; members: Member[] };
@@ -95,6 +97,11 @@ AboutPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      data: fakeData.about,
+    },
+  };
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get('/about-us');
     return {
