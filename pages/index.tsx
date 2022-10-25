@@ -309,6 +309,7 @@ TopPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} };
   try {
     const topRes = await axiosInstance.get('/top');
     const newsRes = await axiosInstance.get('/news?count=5');
