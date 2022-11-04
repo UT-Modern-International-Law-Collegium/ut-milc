@@ -14,20 +14,11 @@ export type Award = {
 };
 
 export type AboutUsSection = {
-  id: number;
   title: string;
   content: string;
-  created_at: Date | string;
-  updated_at: Date | string | null;
-  status: 'public' | 'draft';
 };
 
-export type Member = {
-  id: number;
-  position: string;
-  name: string;
-  grade: number;
-};
+export type Member = string[];
 
 export type Session = {
   desc: string;

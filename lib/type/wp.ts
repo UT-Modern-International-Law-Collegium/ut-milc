@@ -37,3 +37,10 @@ export type WpAwardRes = {
   content: WpPostContent;
   title: WpPostTitle;
 };
+
+export type WpAboutRes = {
+  id: number;
+  date: string;
+  modified: string;
+  content: WpPostContent;
+};

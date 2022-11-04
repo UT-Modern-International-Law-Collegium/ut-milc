@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
 import {
+  Box,
   Heading,
   HStack,
   Stack,
@@ -12,7 +13,6 @@ import {
   Th,
   Tr,
 } from '@chakra-ui/react';
-import moment from 'moment';
 import { IconContext } from 'react-icons/lib';
 import { BsFillSquareFill } from 'react-icons/bs';
 import PageTitle from '../components/utils/PageTitle';
@@ -29,17 +29,16 @@ type AboutPageProps = {
 const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
   const { sections, members } = data;
   return (
-    <Stack
+    <Box
       px={{ base: 4, md: 100 }}
       pb={{ base: 100 }}
-      spacing={{ base: 10 }}
       w={{ base: '100%', md: '80%' }}
       mx={'auto'}
     >
       <PageTitle>団体紹介</PageTitle>
-      {sections.map((section) => {
+      {sections.map((section, index) => {
         return (
-          <Stack key={section.id} w={{ base: '100%' }}>
+          <Stack key={index} w={{ base: '100%' }} mt={{ base: 10 }}>
             <HStack alignItems={'center'} spacing={2}>
               <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
                 <BsFillSquareFill />
@@ -54,13 +53,10 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
           </Stack>
         );
       })}
-      <HStack alignItems={'center'} spacing={2}>
-        <IconContext.Provider value={{ size: '18', color: '#4A5568' }}>
-          <BsFillSquareFill />
-          <Heading size={'lg'}>{`${moment().year()}年度役員紹介`}</Heading>
-        </IconContext.Provider>
-      </HStack>
-      <TableContainer w={{ base: 'none', md: '80%', lg: '50%' }}>
+      <TableContainer
+        w={{ base: 'none', md: '80%', lg: '50%' }}
+        mt={{ base: 5 }}
+      >
         <Table>
           <Tbody>
             {members.map((member: Member, index: number) => {
@@ -74,19 +70,18 @@ const AboutPage: NextPageWithLayout<AboutPageProps> = ({ data }) => {
                     borderColor={'#fff'}
                     borderWidth={4}
                   >
-                    {member.position}
+                    {member[0]}
                   </Th>
-                  <Td
-                    fontSize={18}
-                    p={3}
-                  >{`${member.name}（${member.grade}年）`}</Td>
+                  <Td fontSize={18} p={3}>
+                    {member[1]}
+                  </Td>
                 </Tr>
               );
             })}
           </Tbody>
         </Table>
       </TableContainer>
-    </Stack>
+    </Box>
   );
 };
 
