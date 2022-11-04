@@ -52,12 +52,14 @@ const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
           <HStack>
             <Icon as={MdDateRange} w={18} h={18} />
             <Text fontSize={18}>
-              {moment(data.created_at).format('YYYY-MM-DD')}
+              {moment(data.createdAt).format('YYYY-MM-DD')}
             </Text>
           </HStack>
-          <Badge fontSize={16} colorScheme={'teal'}>
-            {data.tag}
-          </Badge>
+          {data.tags.map((tag: string, index: number) => (
+            <Badge key={index} fontSize={16} colorScheme={'teal'}>
+              {tag}
+            </Badge>
+          ))}
         </HStack>
       </Stack>
       <Divider />
