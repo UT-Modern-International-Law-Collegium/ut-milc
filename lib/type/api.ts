@@ -15,5 +15,5 @@ export type DynamicRouteObj = {
 }[];
 
 export type AwardYearsRes = {
-  [key: string]: number;
-}[];
+  year: number;
+};

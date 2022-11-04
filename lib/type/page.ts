@@ -10,9 +10,7 @@ export type Award = {
   id: number;
   year: number;
   content: string;
-  status: 'draft' | 'public';
-  created_at: Date | string;
-  updated_at: Date | string | null;
+  createdAt: Date | string;
   title: string;
 };
 

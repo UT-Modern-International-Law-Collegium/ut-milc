@@ -24,3 +24,10 @@ export type WpNewsRes = {
 export type WpTagName = {
   name: string;
 };
+
+export type WpAwardRes = {
+  id: number;
+  title: WpPostTitle;
+  content: WpPostContent;
+  tags: number[];
+};
