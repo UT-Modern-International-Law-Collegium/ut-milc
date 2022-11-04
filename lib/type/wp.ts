@@ -25,9 +25,15 @@ export type WpTagName = {
   name: string;
 };
 
-export type WpAwardRes = {
+export type WpAwardYearRes = {
   id: number;
   title: WpPostTitle;
   content: WpPostContent;
   tags: number[];
+};
+
+export type WpAwardRes = {
+  id: number;
+  content: WpPostContent;
+  title: WpPostTitle;
 };

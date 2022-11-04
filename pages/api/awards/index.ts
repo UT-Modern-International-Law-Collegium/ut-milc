@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../../lib/axios';
 import { AwardYearsRes } from '../../../lib/type/api';
-import { WpAwardRes, WpTagName } from '../../../lib/type/wp';
+import { WpAwardYearRes, WpTagName } from '../../../lib/type/wp';
 
 const handler = async (
   req: NextApiRequest,
@@ -16,9 +16,9 @@ const handler = async (
         const wpRes: AxiosResponse<any, any> = await axiosWpInstance.get(
           `/posts?&categories=3&_fields=id,content,title,tags`
         );
-        const wpResData: WpAwardRes[] = wpRes.data;
+        const wpResData: WpAwardYearRes[] = wpRes.data;
         const tmpYears: number[] = await Promise.all(
-          wpResData.map(async (data: WpAwardRes) => {
+          wpResData.map(async (data: WpAwardYearRes) => {
             const tmpWpYearRes: AxiosResponse<any, any> =
               await axiosWpInstance.get(`/tags/${data.tags[0]}?_fields=name`);
             const tmpWpYearResData: WpTagName = tmpWpYearRes.data;

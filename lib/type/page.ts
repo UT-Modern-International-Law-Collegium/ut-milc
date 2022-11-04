@@ -10,7 +10,6 @@ export type Award = {
   id: number;
   year: number;
   content: string;
-  createdAt: Date | string;
   title: string;
 };
 

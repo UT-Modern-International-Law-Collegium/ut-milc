@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
-import { axiosInstance } from '../../lib/axios';
+import { axiosInstance, axiosWpInstance } from '../../lib/axios';
 import { Award } from '../../lib/type/page';
 import { NextPageWithLayout } from '../_app';
 import { DynamicRouteObj } from '../../lib/type/api';
@@ -119,9 +119,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const tagDictRes: AxiosResponse<any, any> = await axiosWpInstance.get(
+    `/tags?_fields=id,name`
+  );
+  const tagDictResData: { name: string; id: number }[] = tagDictRes.data;
+  let tagId: number = -1;
+  for (const item of tagDictResData) {
+    if (params!.year === item.name) {
+      tagId = item.id;
+    }
+  }
+  if (tagId === -1) throw new Error(`err at [year].tsx getStaticProps`);
   try {
     const awardsRes: AxiosResponse<any, any> = await axiosInstance.get(
-      `/awards/${params!.year}`
+      `/awards/${params!.year}?tagId=${tagId}`
     );
     const yearsRes: AxiosResponse<any, any> = await axiosInstance.get(
       '/awards?path=true'
