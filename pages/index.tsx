@@ -34,9 +34,10 @@ import SectionButton from '../components/top/SectionButton';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+import { TopRes } from '../lib/type/api';
 
 type TopPageProps = {
-  data: { about: string; award: string; join_us: string; news: News[] };
+  data: { aboutUs: string; award: string; joinUs: string; news: News[] };
 };
 
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
@@ -76,7 +77,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
               About us
             </Heading>
             <Text fontSize={18} lineHeight={2}>
-              {data.about}
+              {data.aboutUs}
             </Text>
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
@@ -282,7 +283,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
             w={{ base: '80%', md: '40%' }}
             textAlign={'center'}
           >
-            {data.join_us}
+            {data.joinUs}
           </Text>
           <Center>
             <IconContext.Provider value={{ size: '20px' }}>
@@ -311,11 +312,12 @@ TopPage.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const topRes = await axiosInstance.get('/top');
+    const topResData: TopRes = topRes.data;
     const newsRes = await axiosInstance.get('/news?count=5');
     const data = {
-      about: topRes.data.about,
-      award: topRes.data.award,
-      join_us: topRes.data.join_us,
+      aboutUs: topResData.aboutUs,
+      award: topResData.awards,
+      joinUs: topResData.joinUs,
       news: newsRes.data,
     };
     return {
