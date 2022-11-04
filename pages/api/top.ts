@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../lib/axios';
 import { TopRes } from '../../lib/type/api';
-import { Content } from '../../lib/type/wp';
+import { WpPostContent } from '../../lib/type/wp';
 import { sliceListByNumber } from '../../utils/sliceListByNumber';
 
 const handler = async (
@@ -14,7 +14,7 @@ const handler = async (
       const wpRes: AxiosResponse<any, any> = await axiosWpInstance.get(
         '/pages?slug=top'
       );
-      const content: string = (wpRes.data[0].content as Content).rendered;
+      const content: string = (wpRes.data[0].content as WpPostContent).rendered;
       const splitedContent: string[] = content
         .split(/<\/h2>|<\/p>/g)
         .filter((item: string) => item.match(/<h2|<p/g));

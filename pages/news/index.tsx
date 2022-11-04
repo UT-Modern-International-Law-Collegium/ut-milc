@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import { AxiosResponse } from 'axios';
 import {
   Badge,
   Divider,
@@ -91,13 +92,15 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
                         <HStack>
                           <Icon as={MdDateRange} w={18} h={18} />
                           <Text fontSize={18}>
-                            {moment(item.created_at).format('YYYY-MM-DD')}
+                            {moment(item.createdAt).format('YYYY-MM-DD')}
                           </Text>
                         </HStack>
                         <HStack>
-                          <Badge fontSize={16} borderRadius={4}>
-                            {item.tag}
-                          </Badge>
+                          {item.tags.map((tag: string, index: number) => (
+                            <Badge key={index} fontSize={16} borderRadius={4}>
+                              {tag}
+                            </Badge>
+                          ))}
                           <Badge
                             fontSize={16}
                             borderRadius={4}
@@ -140,7 +143,7 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await axiosInstance.get('/news');
+    const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
     return { props: { data: res.data } };
   } catch (err) {
     throw new Error(`error at news page: ${err}`);

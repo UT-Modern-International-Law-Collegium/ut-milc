@@ -2,10 +2,8 @@ export type News = {
   id: number;
   title: string;
   content: string;
-  created_at: Date | string;
-  updated_at: Date | string | null;
-  tag: string;
-  status: 'public' | 'draft';
+  createdAt: Date | string;
+  tags: string[];
 };
 
 export type Award = {
@@ -44,4 +42,3 @@ export type Event = {
   sessions: Session[];
   comment: string;
 };
-
