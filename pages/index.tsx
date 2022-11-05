@@ -5,6 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import { IconContext } from 'react-icons/lib';
 import moment from 'moment';
+import { AxiosResponse } from 'axios';
 import {
   BsArrowRight,
   BsFillCaretRightFill,
@@ -311,14 +312,16 @@ TopPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const topRes = await axiosInstance.get('/top');
+    const topRes: AxiosResponse<any, any> = await axiosInstance.get('/top');
     const topResData: TopRes = topRes.data;
-    const newsRes = await axiosInstance.get('/news?count=5');
+    const newsRes: AxiosResponse<any, any> = await axiosInstance.get(
+      '/news?count=5'
+    );
     const data = {
       aboutUs: topResData.aboutUs,
       award: topResData.awards,
       joinUs: topResData.joinUs,
-      news: newsRes.data,
+      news: newsRes.data as News[],
     };
     return {
       props: {
@@ -326,7 +329,6 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     };
   } catch (err) {
-    console.error({ err });
     throw new Error(`err: ${err}`);
   }
 };
