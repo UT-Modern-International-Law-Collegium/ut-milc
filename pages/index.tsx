@@ -44,7 +44,6 @@ type TopPageProps = {
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-  return <p>hello</p>;
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
@@ -309,6 +308,29 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
 };
 TopPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const topRes: AxiosResponse<any, any> = await axiosInstance.get('/top');
+    const topResData: TopRes = topRes.data;
+    const newsRes: AxiosResponse<any, any> = await axiosInstance.get(
+      '/news?count=5'
+    );
+    const data = {
+      aboutUs: topResData.aboutUs,
+      award: topResData.awards,
+      joinUs: topResData.joinUs,
+      news: newsRes.data as News[],
+    };
+    return {
+      props: {
+        data: data,
+      },
+    };
+  } catch (err) {
+    throw new Error(`err: ${err}`);
+  }
 };
 
 export default TopPage;
