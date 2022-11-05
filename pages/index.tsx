@@ -5,6 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import { IconContext } from 'react-icons/lib';
 import moment from 'moment';
+import { AxiosResponse } from 'axios';
 import {
   BsArrowRight,
   BsFillCaretRightFill,
@@ -34,14 +35,16 @@ import SectionButton from '../components/top/SectionButton';
 import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
+import { TopRes } from '../lib/type/api';
 
 type TopPageProps = {
-  data: { about: string; award: string; join_us: string; news: News[] };
+  data: { aboutUs: string; award: string; joinUs: string; news: News[] };
 };
 
 const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+  return <p>hello</p>;
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
@@ -76,7 +79,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
               About us
             </Heading>
             <Text fontSize={18} lineHeight={2}>
-              {data.about}
+              {data.aboutUs}
             </Text>
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
@@ -282,7 +285,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
             w={{ base: '80%', md: '40%' }}
             textAlign={'center'}
           >
-            {data.join_us}
+            {data.joinUs}
           </Text>
           <Center>
             <IconContext.Provider value={{ size: '20px' }}>
@@ -306,27 +309,6 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
 };
 TopPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const topRes = await axiosInstance.get('/top');
-    const newsRes = await axiosInstance.get('/news?count=5');
-    const data = {
-      about: topRes.data.about,
-      award: topRes.data.award,
-      join_us: topRes.data.join_us,
-      news: newsRes.data,
-    };
-    return {
-      props: {
-        data: data,
-      },
-    };
-  } catch (err) {
-    console.error({ err });
-    throw new Error(`err: ${err}`);
-  }
 };
 
 export default TopPage;
