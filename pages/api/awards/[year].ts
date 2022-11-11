@@ -1,30 +1,31 @@
+import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fakeData } from '../../../lib/fakeData';
-import { excuteQuery } from '../../../lib/mysql';
+import { axiosWpInstance } from '../../../lib/axios';
 import { Award } from '../../../lib/type/page';
+import { WpAwardRes } from '../../../lib/type/wp';
 
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
   const { year } = req.query;
-  if (process.env.ENV_VAR === 'development') {
-    const awardsRes: Award[] = fakeData.awards.filter(
-      (award: Award) => award.year === Number(year)
+  if (req.method === 'GET') {
+    const tagId: string = req.query['tagId'] as string;
+    const wpRes: AxiosResponse<any, any> = await axiosWpInstance.get(
+      `/posts?tags=${tagId}&_fields=id,content,title`
     );
-    res.status(200).json(awardsRes);
+    const wpResData: WpAwardRes[] = wpRes.data;
+    const awardRes: Award[] = wpResData.map((item: WpAwardRes) => {
+      return {
+        id: item.id,
+        year: Number(year),
+        content: item.content.rendered,
+        title: item.title.rendered,
+      };
+    });
+    return res.status(200).json(awardRes);
   } else {
-    if (req.method === 'GET') {
-      try {
-        const dbQuery: string = `SELECT * FROM awards WHERE year=${year}`;
-        const awardsRes: Award[] = await excuteQuery(dbQuery);
-        res.status(200).json(awardsRes);
-      } catch (err) {
-        throw new Error(`error at /api/awards/[year]: ${err}`);
-      }
-    } else {
-      throw new Error('method must be only GET at /api/awards/[year]');
-    }
+    return res.status(405).json({ err: 'method not allowed.' });
   }
 };
 

@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { MdDateRange } from 'react-icons/md';
 import { News } from '../../lib/type/page';
+import { restrictStringCount } from '../../utils/restrictStringCount';
 
 type Props = {
   item: News;
@@ -46,8 +47,8 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
       />
       <NextLink href={`/news/${item.id}`} passHref>
         <LinkOverlay>
-          <Text fontSize={18} fontWeight={'bold'}>
-            {item.title}
+          <Text fontSize={18} fontWeight={'bold'} wordBreak={'break-all'}>
+            {restrictStringCount(item.title, 24)}
           </Text>
         </LinkOverlay>
       </NextLink>
@@ -55,11 +56,15 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
         <HStack spacing={1}>
           <Icon as={MdDateRange} w={4} h={4} />
           <Text fontSize={16}>
-            {moment(item.created_at).format('YYYY-MM-DD')}
+            {moment(item.createdAt).format('YYYY-MM-DD')}
           </Text>
         </HStack>
         <HStack>
-          <Badge fontSize={14}>{item.tag}</Badge>
+          {item.tags.map((tag: string, index: number) => (
+            <Badge key={index} fontSize={14}>
+              {tag}
+            </Badge>
+          ))}
           {isLatest && (
             <Badge colorScheme={'teal'} fontSize={14}>
               最新記事

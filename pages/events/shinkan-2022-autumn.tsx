@@ -1,16 +1,10 @@
-import React, { isValidElement, ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
 import {
   chakra,
   Box,
   Center,
-  VStack,
   Text,
-  keyframes,
-  usePrefersReducedMotion,
-  Flex,
-  HStack,
-  useMediaQuery,
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { NextPageWithLayout } from '../_app';
@@ -18,14 +12,8 @@ import Layout from '../../components/layout/Layout';
 import { fakeData } from '../../lib/fakeData';
 import { axiosInstance } from '../../lib/axios';
 import { Event } from '../../lib/type/page';
-import Image from 'next/image';
 import { motion, isValidMotionProp } from 'framer-motion';
 import { GiScales } from 'react-icons/gi';
-import {
-  FaBalanceScale,
-  FaBalanceScaleLeft,
-  FaBalanceScaleRight,
-} from 'react-icons/fa';
 
 const ChakraBox = chakra(motion.div, { shouldForwardProp: isValidMotionProp });
 
@@ -204,7 +192,7 @@ export const getStaticProps: GetStaticProps = async () => {
     if ((process.env.ENV_VAR = 'development')) {
       return {
         props: {
-          data: fakeData.events.find((e) => e.name === 'Shinkan-2022-Autumn'),
+          data: fakeData.events!.find((e) => e.name === 'Shinkan-2022-Autumn'),
         },
       };
     } else {
