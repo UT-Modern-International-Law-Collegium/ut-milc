@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { MdDateRange } from 'react-icons/md';
 import { News } from '../../lib/type/page';
+import { restrictStringCount } from '../../utils/restrictStringCount';
 
 type Props = {
   item: News;
@@ -46,8 +47,8 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
       />
       <NextLink href={`/news/${item.id}`} passHref>
         <LinkOverlay>
-          <Text fontSize={18} fontWeight={'bold'}>
-            {item.title}
+          <Text fontSize={18} fontWeight={'bold'} wordBreak={'break-all'}>
+            {restrictStringCount(item.title, 24)}
           </Text>
         </LinkOverlay>
       </NextLink>
