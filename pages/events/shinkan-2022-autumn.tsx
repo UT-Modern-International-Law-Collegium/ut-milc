@@ -10,7 +10,6 @@ import {
 import { NextPageWithLayout } from '../_app';
 import Layout from '../../components/layout/Layout';
 import { fakeData } from '../../lib/fakeData';
-import { axiosInstance } from '../../lib/axios';
 import { Event } from '../../lib/type/page';
 import { motion, isValidMotionProp } from 'framer-motion';
 import { GiScales } from 'react-icons/gi';
@@ -189,24 +188,11 @@ ShinkanPage2022Autumn.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    if ((process.env.ENV_VAR = 'development')) {
-      return {
-        props: {
-          data: fakeData.events!.find((e) => e.name === 'Shinkan-2022-Autumn'),
-        },
-      };
-    } else {
-      const res = await axiosInstance.get('/events');
-      return {
-        props: {
-          data: {
-            name: res.data.name,
-            sessions: res.data.sessions,
-            comment: res.data.comment,
-          },
-        },
-      };
-    }
+    return {
+      props: {
+        data: fakeData.events!.find((e) => e.name === 'Shinkan-2022-Autumn'),
+      },
+    };
   } catch (err) {
     throw new Error('error at about page: ${err}');
   }
