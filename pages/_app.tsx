@@ -1,10 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
-import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
-import { NextRouter, useRouter } from 'next/router';
+import GA4 from '../lib/ga4';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -15,29 +15,12 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const router: NextRouter = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url: string): void => {
-      (window as any).gtag(
-        'config',
-        process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
-        {
-          page_path: url,
-        }
-      );
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
   const getlayout: (page: ReactElement) => ReactNode =
     Component.getLayout ?? ((page) => page);
 
   return (
     <>
+      <GA4 />
       <Head>
         <title>東京大学現代国際法研究会</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
