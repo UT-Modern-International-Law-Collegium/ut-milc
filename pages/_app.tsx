@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
-import GA4 from '../lib/ga4';
+import GA4 from '../components/head/GA4';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
