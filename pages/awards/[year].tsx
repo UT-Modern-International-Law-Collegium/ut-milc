@@ -70,16 +70,15 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
                 sx={
                   isLargerThan768px
                     ? {
-                        h3: { fontSize: 24, fontWeight: 600 },
-                        h4: { fontSize: 20, fontWeight: 500 },
+                        h2: { fontSize: 24, my: 2 },
+                        h3: { fontSize: 20, my: 1 },
+                        h4: { fontSize: 18, my: 1 },
                         p: { px: 5 },
                       }
                     : {
-                        h3: {
-                          fontSize: 20,
-                          fontWeight: 600,
-                        },
-                        h4: { fontSize: 18, fontWeight: 500 },
+                        h2: { fontSize: 22, my: 2 },
+                        h3: { fontSize: 20, my: 1 },
+                        h4: { fontSize: 18, my: 1 },
                         p: { px: 2 },
                       }
                 }
