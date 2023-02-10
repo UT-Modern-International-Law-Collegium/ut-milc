@@ -30,9 +30,14 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   if (awards.length === 0) {
     return (
-      <VStack py={20} minH={'100vh'}>
-        <Text fontSize={24}>現在、掲載準備中です。</Text>
-      </VStack>
+      <Stack minH={'100vh'} px={{ base: 3, sm: 10, md: 0 }}>
+        <YearNavigation years={years} />
+        <Box position={{ md: 'relative' }} top={{ md: -260 }}>
+          <Text fontSize={24} ml={{ base: 0, md: '32%', lg: '30%' }}>
+            現在、掲載準備中です。
+          </Text>
+        </Box>
+      </Stack>
     );
   }
   return (
