@@ -9,8 +9,8 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
+
 import Navigation from '../layout/nav/Navigation';
-import NextChakraLink from '../utils/NextChakraLink';
 
 const Firstview: FC<StackProps> = ({ ...rest }) => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
@@ -27,33 +27,6 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       boxSizing={'content-box'}
       {...rest}
     >
-      {/* 新歓 */}
-      <Stack
-        as={motion.div}
-        initial={{ translateY: -100 }}
-        animate={{ translateY: [-80, -60, -40, -20, 0] }}
-        transition={'0.6s'}
-        position={'absolute'}
-        w={'100%'}
-        top={0}
-        left={0}
-        bg={'rgb(129, 230, 217, 0.9)'}
-        zIndex={3}
-        pt={{ base: 16, md: 0 }}
-      >
-        <Text
-          fontSize={{ base: 18, md: 20 }}
-          textAlign={'center'}
-          py={{ base: 2, md: 4 }}
-          fontWeight={'bold'}
-          color={'gray.800'}
-        >
-          2022年度秋新歓の詳細は
-          <NextChakraLink href={'/events/shinkan-2022-autumn'} textDecoration={'underline'}>
-            こちら
-          </NextChakraLink>
-        </Text>
-      </Stack>
       {/* ナビゲーション */}
       <Box
         as={motion.div}
