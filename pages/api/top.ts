@@ -53,6 +53,7 @@ const handler = async (
       }
       return res.status(200).json(topRes);
     } catch (err) {
+      console.error({ err });
       return res.status(500).json(err);
     }
   } else {

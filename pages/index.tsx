@@ -28,6 +28,7 @@ import {
   IconButton,
   Icon,
 } from '@chakra-ui/react';
+
 import Firstview from '../components/top/Firstview';
 import { axiosInstance } from '../lib/axios';
 import { News } from '../lib/type/page';
@@ -37,11 +38,11 @@ import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import { TopRes } from '../lib/type/api';
 
-type TopPageProps = {
+type Props = {
   data: { aboutUs: string; award: string; joinUs: string; news: News[] };
 };
 
-const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
+const Page: NextPageWithLayout<Props> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
@@ -306,7 +307,7 @@ const TopPage: NextPageWithLayout<TopPageProps> = ({ data }) => {
     </Stack>
   );
 };
-TopPage.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
@@ -333,4 +334,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 };
 
-export default TopPage;
+export default Page;
