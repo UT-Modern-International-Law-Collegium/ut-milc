@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   useMediaQuery,
+  VStack,
 } from '@chakra-ui/react';
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
@@ -29,8 +30,13 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
   if (awards.length === 0) {
     return (
-      <Stack>
-        <Text>現在、掲載準備中です。</Text>
+      <Stack minH={'100vh'} px={{ base: 3, sm: 10, md: 0 }}>
+        <YearNavigation years={years} />
+        <Box position={{ md: 'relative' }} top={{ md: -260 }}>
+          <Text fontSize={24} ml={{ base: 0, md: '32%', lg: '30%' }}>
+            現在、掲載準備中です。
+          </Text>
+        </Box>
       </Stack>
     );
   }
@@ -128,8 +134,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       tagId = item.id;
     }
   }
-  if (tagId === -1) throw new Error(`err at [year].tsx getStaticProps`);
   try {
+    // NOTE: tagIdが-1の場合は、awardsResに何も返却されない。
     const awardsRes: AxiosResponse<any, any> = await axiosInstance.get(
       `/awards/${params!.year}?tagId=${tagId}`
     );
