@@ -24,7 +24,6 @@ import {
   VStack,
   HStack,
   LinkBox,
-  LinkOverlay,
   IconButton,
   Icon,
 } from '@chakra-ui/react';
@@ -224,10 +223,8 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
                 _hover={{ textDecoration: 'underline' }}
               >
                 <IconContext.Provider value={{ size: '24px' }}>
-                  <NextLink href={'/news'} passHref>
-                    <LinkOverlay>
-                      <BsFillCaretRightFill />
-                    </LinkOverlay>
+                  <NextLink href={'/news'}>
+                    <BsFillCaretRightFill />
                   </NextLink>
                 </IconContext.Provider>
                 <Text display={{ md: 'none', lg: 'block' }}>全て見る</Text>
