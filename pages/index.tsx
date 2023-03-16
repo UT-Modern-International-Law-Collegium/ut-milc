@@ -26,7 +26,7 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 
-import Firstview from '../components/top/Firstview';
+import Firstview from '../app/components/FirstView';
 import { axiosInstance } from '../lib/axios';
 import { News } from '../lib/type/page';
 import SectionButton from '../components/top/SectionButton';
