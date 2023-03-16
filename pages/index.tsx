@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import type { GetStaticProps } from 'next';
 import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
@@ -35,14 +35,31 @@ import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import { TopRes } from '../lib/type/api';
 import AwardCard from '../app/components/AwardCard';
+import { TopData } from '../lib/type/topData';
+import { prefix } from '../lib/prefix';
 
 type Props = {
-  data: { aboutUs: string; award: string; joinUs: string; news: News[] };
+  data: { news: News[] };
 };
 
 const Page: NextPageWithLayout<Props> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+
+  const [topData, setTopData] = useState<TopData>();
+
+  useEffect(() => {
+    const f = async () => {
+      const res = await fetch(`${prefix()}/top`);
+      const data: { data: TopData } = await res.json();
+      setTopData(data.data);
+    };
+    f();
+  }, []);
+
+  if (!topData) {
+    return <Firstview />;
+  }
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
@@ -76,9 +93,11 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               About us
             </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.aboutUs}
-            </Text>
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
+            />
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
               bottom={{ md: 0 }}
@@ -132,9 +151,11 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               Awards
             </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.award}
-            </Text>
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              dangerouslySetInnerHTML={{ __html: topData?.awards }}
+            />
             {isLargerThan768px && (
               <SectionButton
                 position={'absolute'}
@@ -239,9 +260,8 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             color={'#fff'}
             w={{ base: '80%', md: '40%' }}
             textAlign={'center'}
-          >
-            {data.joinUs}
-          </Text>
+            dangerouslySetInnerHTML={{ __html: topData.joinUs }}
+          />
           <Center>
             <IconContext.Provider value={{ size: '20px' }}>
               <Button
@@ -268,16 +288,10 @@ Page.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const topRes: AxiosResponse<any, any> = await axiosInstance.get('/top');
-
-    const topResData: TopRes = topRes.data.data;
     const newsRes: AxiosResponse<any, any> = await axiosInstance.get(
       '/news?count=5'
     );
     const data = {
-      aboutUs: topResData.aboutUs,
-      award: topResData.awards,
-      joinUs: topResData.joinUs,
       news: newsRes.data as News[],
     };
     return {
