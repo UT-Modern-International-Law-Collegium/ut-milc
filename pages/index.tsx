@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import type { GetStaticProps } from 'next';
 import NextLink from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
@@ -11,7 +11,6 @@ import {
   BsFillCaretRightFill,
   BsCheckCircle,
   BsArrowRightShort,
-  BsAward,
 } from 'react-icons/bs';
 import {
   Heading,
@@ -24,12 +23,10 @@ import {
   VStack,
   HStack,
   LinkBox,
-  LinkOverlay,
   IconButton,
-  Icon,
 } from '@chakra-ui/react';
 
-import Firstview from '../components/top/Firstview';
+import Firstview from '../app/components/FirstView';
 import { axiosInstance } from '../lib/axios';
 import { News } from '../lib/type/page';
 import SectionButton from '../components/top/SectionButton';
@@ -37,14 +34,32 @@ import NewsCard from '../components/news/NewsCard';
 import { NextPageWithLayout } from './_app';
 import Layout from '../components/layout/Layout';
 import { TopRes } from '../lib/type/api';
+import AwardCard from '../app/components/AwardCard';
+import { TopData } from '../lib/type/topData';
+import { prefix } from '../lib/prefix';
 
 type Props = {
-  data: { aboutUs: string; award: string; joinUs: string; news: News[] };
+  data: { news: News[] };
 };
 
 const Page: NextPageWithLayout<Props> = ({ data }) => {
   const router: NextRouter = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+
+  const [topData, setTopData] = useState<TopData>();
+
+  useEffect(() => {
+    const f = async () => {
+      const res = await fetch(`${prefix()}/top`);
+      const data: { data: TopData } = await res.json();
+      setTopData(data.data);
+    };
+    f();
+  }, []);
+
+  if (!topData) {
+    return <Firstview />;
+  }
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
@@ -78,9 +93,11 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               About us
             </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.aboutUs}
-            </Text>
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
+            />
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
               bottom={{ md: 0 }}
@@ -115,48 +132,7 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
               全ての成績を見る
             </SectionButton>
           )}
-          <VStack
-            w={{ base: 'none', md: '60%' }}
-            spacing={{ base: 2, md: 4 }}
-            py={{ base: 4, md: 8 }}
-            px={4}
-            borderRadius={8}
-            border={'solid'}
-            borderColor={'gray.300'}
-            position={'relative'}
-          >
-            <Icon
-              as={BsAward}
-              position={'absolute'}
-              top={-6}
-              left={-8}
-              color={'yellow.300'}
-              opacity={0.6}
-              w={{ base: 100, md: 140 }}
-              h={{ base: 100, md: 140 }}
-            />
-            <Heading
-              fontWeight={'light'}
-              textAlign={'center'}
-              fontSize={{ base: 22, md: 30 }}
-              zIndex={1}
-            >
-              2022 Philip C. Jessup International Law Moot Court Competition
-              National Round
-            </Heading>
-            <Text fontSize={{ base: 18, md: 20 }}>
-              ~ NationalRound（国内予選） ~
-            </Text>
-            <HStack alignItems={'baseline'}>
-              <Text fontSize={{ base: 18, md: 20 }}>総合結果</Text>
-              <Text fontSize={{ base: 24, md: 32 }} pl={{ base: 2, md: 4 }}>
-                優勝
-              </Text>
-              <Text as="span" fontSize={{ base: 18, md: 20 }}>
-                （国際大会進出）
-              </Text>
-            </HStack>
-          </VStack>
+          <AwardCard />
           {/* タイトルとテキスト */}
           <Stack
             w={{ base: '100%', md: '40%' }}
@@ -175,9 +151,11 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               Awards
             </Heading>
-            <Text fontSize={18} lineHeight={2}>
-              {data.award}
-            </Text>
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              dangerouslySetInnerHTML={{ __html: topData?.awards }}
+            />
             {isLargerThan768px && (
               <SectionButton
                 position={'absolute'}
@@ -224,10 +202,8 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
                 _hover={{ textDecoration: 'underline' }}
               >
                 <IconContext.Provider value={{ size: '24px' }}>
-                  <NextLink href={'/news'} passHref>
-                    <LinkOverlay>
-                      <BsFillCaretRightFill />
-                    </LinkOverlay>
+                  <NextLink href={'/news'}>
+                    <BsFillCaretRightFill />
                   </NextLink>
                 </IconContext.Provider>
                 <Text display={{ md: 'none', lg: 'block' }}>全て見る</Text>
@@ -284,9 +260,8 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             color={'#fff'}
             w={{ base: '80%', md: '40%' }}
             textAlign={'center'}
-          >
-            {data.joinUs}
-          </Text>
+            dangerouslySetInnerHTML={{ __html: topData.joinUs }}
+          />
           <Center>
             <IconContext.Provider value={{ size: '20px' }}>
               <Button
@@ -313,15 +288,10 @@ Page.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const topRes: AxiosResponse<any, any> = await axiosInstance.get('/top');
-    const topResData: TopRes = topRes.data;
     const newsRes: AxiosResponse<any, any> = await axiosInstance.get(
       '/news?count=5'
     );
     const data = {
-      aboutUs: topResData.aboutUs,
-      award: topResData.awards,
-      joinUs: topResData.joinUs,
       news: newsRes.data as News[],
     };
     return {

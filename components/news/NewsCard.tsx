@@ -46,11 +46,9 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
         height={600}
       />
       <NextLink href={`/news/${item.id}`} passHref>
-        <LinkOverlay>
-          <Text fontSize={18} fontWeight={'bold'} wordBreak={'break-all'}>
-            {restrictStringCount(item.title, 24)}
-          </Text>
-        </LinkOverlay>
+        <Text fontSize={18} fontWeight={'bold'} wordBreak={'break-all'}>
+          {restrictStringCount(item.title, 24)}
+        </Text>
       </NextLink>
       <HStack justifyContent={'space-between'}>
         <HStack spacing={1}>

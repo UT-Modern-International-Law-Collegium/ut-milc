@@ -1,19 +1,36 @@
-import React, { FC, useEffect, useState } from 'react';
+'use client';
+
+import { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 import {
   Box,
   CircularProgress,
   Heading,
   Stack,
-  StackProps,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import Navigation from '../layout/nav/Navigation';
+import Navigation from '../../components/layout/nav/Navigation';
+import { prefix } from '../../lib/prefix';
+import NextChakraLink from '../../components/utils/NextChakraLink';
 
-const Firstview: FC<StackProps> = ({ ...rest }) => {
+const Firstview: FC = () => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
+
+  const [isWelcomePageExisting, setIsWelcomePageExisting] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const f = async () => {
+      const res = await fetch(`${prefix()}/events/welcome`);
+      if (res.status === 200) {
+        setIsWelcomePageExisting(true);
+      }
+    };
+    f();
+  }, []);
 
   return (
     <Stack
@@ -25,8 +42,39 @@ const Firstview: FC<StackProps> = ({ ...rest }) => {
       borderBottom={'4px solid'}
       borderColor={'teal.500'}
       boxSizing={'content-box'}
-      {...rest}
     >
+      {/* 新歓 */}
+      {isWelcomePageExisting && (
+        <Stack
+          as={motion.div}
+          initial={{ translateY: -100 }}
+          animate={{ translateY: [-80, -60, -40, -20, 0] }}
+          transition={'0.6s'}
+          position={'absolute'}
+          w={'100%'}
+          top={0}
+          left={0}
+          bg={'rgb(129, 230, 217, 0.9)'}
+          zIndex={3}
+          pt={{ base: 16, md: 0 }}
+        >
+          <Text
+            fontSize={{ base: 18, md: 20 }}
+            textAlign={'center'}
+            py={{ base: 2, md: 4 }}
+            fontWeight={'bold'}
+            color={'gray.800'}
+          >
+            {`${moment().year()}年度新歓の詳細は`}
+            <NextChakraLink
+              href={'/events/welcome'}
+              textDecoration={'underline'}
+            >
+              こちら
+            </NextChakraLink>
+          </Text>
+        </Stack>
+      )}
       {/* ナビゲーション */}
       <Box
         as={motion.div}

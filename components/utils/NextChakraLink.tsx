@@ -12,9 +12,9 @@ const NextChakraLink: FC<NextChakraLink & LinkProps & ChakraLinkProps> = ({
   ...rest
 }) => {
   return (
-    <NextLink href={href} passHref>
-      <Link {...rest}>{children}</Link>
-    </NextLink>
+    <Link as={NextLink} href={href} {...rest}>
+      {children}
+    </Link>
   );
 };
 
