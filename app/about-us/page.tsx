@@ -49,7 +49,22 @@ const Page = () => {
       w={{ base: '100%', md: '80%' }}
       mx={'auto'}
     >
-      {/* <PageTitle>団体紹介</PageTitle> */}
+      <Stack
+        direction={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        pt={{ base: 20, md: 100 }}
+        w={{ base: '100%' }}
+        spacing={{ base: 0, md: 8 }}
+      >
+        <Heading
+          fontFamily={'serif'}
+          size={{ base: 'xl', md: '2xl' }}
+          letterSpacing={2}
+        >
+          団体紹介
+        </Heading>
+      </Stack>
       {aboutUsData.sections.map((section, index) => {
         return (
           <Stack key={index} w={{ base: '100%' }} mt={{ base: 10 }}>
