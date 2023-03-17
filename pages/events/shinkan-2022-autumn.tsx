@@ -9,9 +9,19 @@ import {
 } from '@chakra-ui/react';
 import { NextPageWithLayout } from '../_app';
 import Layout from '../../components/layout/Layout';
-import { Event } from '../../lib/type/page';
 import { motion, isValidMotionProp } from 'framer-motion';
 import { GiScales } from 'react-icons/gi';
+
+type Session = {
+  desc: string;
+  time: string;
+};
+
+type Event = {
+  name: string;
+  sessions: Session[];
+  comment: string;
+};
 
 const fakeData = {
   events: [
