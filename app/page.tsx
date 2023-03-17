@@ -2,7 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
+import NextLink from 'next/link';
+import {
+  BsArrowRight,
+  BsArrowRightShort,
+  BsCheckCircle,
+  BsFillCaretRightFill,
+} from 'react-icons/bs';
 import moment from 'moment';
 import {
   Heading,
@@ -15,6 +21,8 @@ import {
   HStack,
   Icon,
   Box,
+  LinkBox,
+  IconButton,
 } from '@chakra-ui/react';
 
 import { prefix } from '../lib/prefix';
@@ -136,15 +144,7 @@ const Page = () => {
         </Stack>
         {/* news */}
         <Stack spacing={{ base: 0, md: 8 }}>
-          <Heading
-            fontFamily={'serif'}
-            letterSpacing={2}
-            size={'2xl'}
-            textShadow={{
-              base: 'none',
-              md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
-            }}
-          >
+          <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
             News
           </Heading>
           <HStack
@@ -161,6 +161,30 @@ const Page = () => {
                 />
               );
             })}
+            {isLargerThan768px ? (
+              <LinkBox
+                as={VStack}
+                minW={{ md: 'unset', lg: 100 }}
+                _hover={{ textDecoration: 'underline' }}
+              >
+                <NextLink href={'/news'}>
+                  <Icon as={BsFillCaretRightFill} h={6} w={6} />
+                </NextLink>
+                <Text
+                  display={{ md: 'none', lg: 'block' }}
+                  _hover={{ cursor: 'pointer' }}
+                >
+                  全て見る
+                </Text>
+              </LinkBox>
+            ) : (
+              <IconButton
+                aria-label="news"
+                icon={<Icon as={BsArrowRightShort} h={10} w={10} />}
+                bg={'none'}
+                onClick={() => router.push('/news')}
+              />
+            )}
           </HStack>
         </Stack>
       </Stack>
