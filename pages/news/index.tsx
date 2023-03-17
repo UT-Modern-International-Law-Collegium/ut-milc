@@ -25,7 +25,7 @@ import { axiosInstance } from '../../lib/axios';
 import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
 import { NewsData } from '../../lib/type/newsData';
-import { restrictStringCount } from '../../utils/restrictStringCount';
+import { restrictStringCount } from '../../lib/restrictStringCount';
 
 type NewsPageProps = {
   data: NewsData[];

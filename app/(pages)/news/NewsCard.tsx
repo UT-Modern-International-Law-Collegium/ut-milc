@@ -15,7 +15,7 @@ import {
   Icon,
 } from '@chakra-ui/react';
 
-import { restrictStringCount } from '../../../utils/restrictStringCount';
+import { restrictStringCount } from '../../../lib/restrictStringCount';
 import { NewsData } from '../../../lib/type/newsData';
 
 type Props = {
