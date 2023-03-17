@@ -15,6 +15,8 @@ import {
   Th,
   Tr,
   Icon,
+  Center,
+  Spinner,
 } from '@chakra-ui/react';
 
 import { prefix } from '../../lib/prefix';
@@ -25,7 +27,7 @@ const Page = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await fetch(`${prefix()}/about-us2`);
+      const res = await fetch(`${prefix()}/about-us`);
       const data: { data: AboutUsData } = await res.json();
       setAboutUsData(data.data);
     };
@@ -33,8 +35,13 @@ const Page = () => {
   }, []);
 
   if (!aboutUsData) {
-    return <Box />;
+    return (
+      <Center minH={'100vh'}>
+        <Spinner color="teal" h={24} w={24} />
+      </Center>
+    );
   }
+
   return (
     <Box
       px={{ base: 4, md: 100 }}

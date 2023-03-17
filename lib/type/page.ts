@@ -13,13 +13,6 @@ export type Award = {
   title: string;
 };
 
-export type AboutUsSection = {
-  title: string;
-  content: string;
-};
-
-export type Member = string[];
-
 export type Session = {
   desc: string;
   time: string;
