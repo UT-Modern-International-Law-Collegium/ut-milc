@@ -1,17 +1,8 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import type { GetStaticProps } from 'next';
-import NextLink from 'next/link';
-import { NextRouter, useRouter } from 'next/router';
-import Image from 'next/image';
-import { IconContext } from 'react-icons/lib';
-import moment from 'moment';
-import { AxiosResponse } from 'axios';
-import {
-  BsArrowRight,
-  BsFillCaretRightFill,
-  BsCheckCircle,
-  BsArrowRightShort,
-} from 'react-icons/bs';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
 import {
   Heading,
   Stack,
@@ -19,31 +10,20 @@ import {
   Button,
   Center,
   useMediaQuery,
-  Box,
   VStack,
   HStack,
-  LinkBox,
-  IconButton,
+  Icon,
+  Box,
 } from '@chakra-ui/react';
 
-import Firstview from '../app/components/FirstView';
-import { axiosInstance } from '../lib/axios';
-import { News } from '../lib/type/page';
-import SectionButton from '../components/top/SectionButton';
-import NewsCard from '../components/news/NewsCard';
-import { NextPageWithLayout } from './_app';
-import Layout from '../components/layout/Layout';
-import { TopRes } from '../lib/type/api';
-import AwardCard from '../app/components/AwardCard';
-import { TopData } from '../lib/type/topData';
 import { prefix } from '../lib/prefix';
+import { TopData } from '../lib/type/topData';
+import AwardCard from './components/AwardCard';
+import Firstview from './components/FirstView';
+import SectionButton from './components/SectionButton';
 
-type Props = {
-  data: { news: News[] };
-};
-
-const Page: NextPageWithLayout<Props> = ({ data }) => {
-  const router: NextRouter = useRouter();
+const Page = () => {
+  const router = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const [topData, setTopData] = useState<TopData>();
@@ -58,14 +38,12 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
   }, []);
 
   if (!topData) {
-    return <Firstview />;
+    return <Box bg={'#092025'} minH={'100vh'} />;
   }
 
   return (
     <Stack spacing={{ base: 12, md: 4 }}>
-      {/* ファーストビュー */}
       <Firstview />
-      {/* about us ~ news */}
       <Stack
         position={{ base: 'static', md: 'relative' }}
         spacing={{ base: 12, md: 140 }}
@@ -79,7 +57,6 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
           spacing={{ base: 0, md: 20 }}
           direction={{ base: 'column', md: 'row' }}
         >
-          {/* タイトルとテキスト */}
           <Stack
             position={{ base: 'static', md: 'relative' }}
             spacing={{ base: 2, md: 8 }}
@@ -93,11 +70,13 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               About us
             </Heading>
-            <Text
-              fontSize={18}
-              lineHeight={2}
-              dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
-            />
+            {topData && (
+              <Text
+                fontSize={18}
+                lineHeight={2}
+                dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
+              />
+            )}
             <SectionButton
               position={{ base: 'static', md: 'absolute' }}
               bottom={{ md: 0 }}
@@ -106,17 +85,6 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
               団体紹介はこちら
             </SectionButton>
           </Stack>
-          {/* 画像 */}
-          <Box display={{ base: 'none', md: 'block' }}>
-            <Image
-              src={
-                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-              }
-              alt={'東京大学国際法研究会HPのabout画像'}
-              width={800}
-              height={800}
-            />
-          </Box>
         </Stack>
         {/* awards */}
         <Stack
@@ -133,7 +101,6 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             </SectionButton>
           )}
           <AwardCard />
-          {/* タイトルとテキスト */}
           <Stack
             w={{ base: '100%', md: '40%' }}
             spacing={{ base: 2, md: 8 }}
@@ -151,17 +118,20 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             >
               Awards
             </Heading>
-            <Text
-              fontSize={18}
-              lineHeight={2}
-              dangerouslySetInnerHTML={{ __html: topData?.awards }}
-            />
+            {topData && (
+              <Text
+                fontSize={18}
+                lineHeight={2}
+                textAlign={'right'}
+                dangerouslySetInnerHTML={{ __html: topData?.awards }}
+              />
+            )}
             {isLargerThan768px && (
               <SectionButton
                 position={'absolute'}
                 display={{ base: 'none', md: 'flex' }}
                 bottom={{ md: 0 }}
-                onClick={() => router.push(`/awards/${moment().year()}`)}
+                // onClick={() => router.push(`/awards/${moment().year()}`)}
               >
                 全ての成績を見る
               </SectionButton>
@@ -185,7 +155,7 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
             spacing={{ md: 8 }}
             overflowX={{ base: 'scroll', md: 'unset' }}
           >
-            {data.news.map((item: News, index) => {
+            {/* {data.news.map((item: News, index) => {
               if (index > 2) return;
               return (
                 <NewsCard
@@ -194,41 +164,16 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
                   maxW={{ base: 'unset', md: '30%' }}
                 />
               );
-            })}
-            {isLargerThan768px ? (
-              <LinkBox
-                as={VStack}
-                minW={{ md: 'unset', lg: 100 }}
-                _hover={{ textDecoration: 'underline' }}
-              >
-                <IconContext.Provider value={{ size: '24px' }}>
-                  <NextLink href={'/news'}>
-                    <BsFillCaretRightFill />
-                  </NextLink>
-                </IconContext.Provider>
-                <Text display={{ md: 'none', lg: 'block' }}>全て見る</Text>
-              </LinkBox>
-            ) : (
-              <IconContext.Provider value={{ size: '36px' }}>
-                <IconButton
-                  aria-label="news"
-                  icon={<BsArrowRightShort />}
-                  bg={'none'}
-                  onClick={() => router.push('/news')}
-                />
-              </IconContext.Provider>
-            )}
+            })} */}
           </HStack>
         </Stack>
       </Stack>
-      {/* join us ~ footer */}
       <Stack
         bg={'#092025'}
         position={'relative'}
         h={{ base: 500, md: 700 }}
         pt={{ base: 100, md: 200 }}
       >
-        {/* arrow */}
         <Stack
           position={'absolute'}
           bg={'#fff'}
@@ -242,9 +187,7 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
         {/* join us */}
         <VStack spacing={12}>
           <HStack spacing={6}>
-            <IconContext.Provider value={{ size: '42px', color: '#81E6D9' }}>
-              <BsCheckCircle />
-            </IconContext.Provider>
+            <Icon as={BsCheckCircle} h={10} w={10} color={'#81E6D9'} />
             <Heading
               fontFamily={'serif'}
               letterSpacing={2}
@@ -255,53 +198,32 @@ const Page: NextPageWithLayout<Props> = ({ data }) => {
               Join us
             </Heading>
           </HStack>
-          <Text
-            fontSize={18}
-            color={'#fff'}
-            w={{ base: '80%', md: '40%' }}
-            textAlign={'center'}
-            dangerouslySetInnerHTML={{ __html: topData.joinUs }}
-          />
+          {topData && (
+            <Text
+              fontSize={18}
+              color={'#fff'}
+              w={{ base: '80%', md: '40%' }}
+              textAlign={'center'}
+              dangerouslySetInnerHTML={{ __html: topData?.joinUs }}
+            />
+          )}
           <Center>
-            <IconContext.Provider value={{ size: '20px' }}>
-              <Button
-                bg={'teal.200'}
-                fontSize={18}
-                py={7}
-                pl={7}
-                pr={8}
-                rightIcon={<BsArrowRight />}
-                onClick={() => router.push('/join-us')}
-              >
-                入会のお申し込みはこちら
-              </Button>
-            </IconContext.Provider>
+            <Button
+              bg={'teal.200'}
+              fontSize={18}
+              py={7}
+              pl={7}
+              pr={8}
+              rightIcon={<BsArrowRight />}
+              onClick={() => router.push('/join-us')}
+            >
+              入会のお申し込みはこちら
+            </Button>
           </Center>
         </VStack>
       </Stack>
     </Stack>
   );
-};
-Page.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const newsRes: AxiosResponse<any, any> = await axiosInstance.get(
-      '/news?count=5'
-    );
-    const data = {
-      news: newsRes.data as News[],
-    };
-    return {
-      props: {
-        data: data,
-      },
-    };
-  } catch (err) {
-    throw new Error(`err: ${err}`);
-  }
 };
 
 export default Page;

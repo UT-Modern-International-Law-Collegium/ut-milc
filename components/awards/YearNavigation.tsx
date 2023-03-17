@@ -18,7 +18,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import NextChakraLink from '../utils/NextChakraLink';
+import NextChakraLink from '../../app/components/utils/NextChakraLink';
 import PageTitle from '../utils/PageTitle';
 
 type Props = { years: number[] };

@@ -12,9 +12,9 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import Navigation from '../../components/layout/nav/Navigation';
+import Navigation from './layout/Navigation';
 import { prefix } from '../../lib/prefix';
-import NextChakraLink from '../../components/utils/NextChakraLink';
+import NextChakraLink from './utils/NextChakraLink';
 
 const Firstview: FC = () => {
   const [isLargetThan768px] = useMediaQuery('(min-width:768px)');

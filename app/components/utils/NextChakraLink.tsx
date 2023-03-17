@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC } from 'react';
 import NextLink, { LinkProps } from 'next/link';
 import { LinkProps as ChakraLinkProps, Link } from '@chakra-ui/react';

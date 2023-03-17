@@ -1,18 +1,21 @@
+'use client';
+
 import React, { FC } from 'react';
-import { NextRouter, useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import moment from 'moment';
 import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
 
-import NextChakraLink from '../../../components/utils/NextChakraLink';
+import NextChakraLink from '../utils/NextChakraLink';
 
 const Navigation: FC<StackProps> = ({ ...rest }) => {
-  const router: NextRouter = useRouter();
+  const pathname = usePathname();
+
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const stlyeLinkColor = (
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
   ): string => {
-    if (router.pathname === path) {
+    if (pathname === path) {
       return '#00FFB1';
     } else {
       if (isLargerThan768px) {

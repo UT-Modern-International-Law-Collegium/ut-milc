@@ -1,7 +1,7 @@
 import { Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import { ReactElement } from 'react';
 import Layout from '../components/layout/Layout';
-import NextChakraLink from '../components/utils/NextChakraLink';
+import NextChakraLink from '../app/components/utils/NextChakraLink';
 import PageTitle from '../components/utils/PageTitle';
 import { NextPageWithLayout } from './_app';
 

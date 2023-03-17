@@ -1,7 +1,7 @@
 import { Button, Heading, Text, VStack } from '@chakra-ui/react';
 import { ReactElement } from 'react';
 import Layout from '../components/layout/Layout';
-import NextChakraLink from '../components/utils/NextChakraLink';
+import NextChakraLink from '../app/components/utils/NextChakraLink';
 import { NextPageWithLayout } from './_app';
 
 const Custom404: NextPageWithLayout = () => {

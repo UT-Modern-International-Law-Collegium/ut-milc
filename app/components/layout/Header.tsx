@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import moment from 'moment';
 import { RiMenu3Fill } from 'react-icons/ri';
 import { IconContext } from 'react-icons/lib';
@@ -16,10 +16,9 @@ import {
 } from '@chakra-ui/react';
 
 import Navigation from './Navigation';
-import NextChakraLink from '../../../components/utils/NextChakraLink';
+import NextChakraLink from '../utils/NextChakraLink';
 
 const Header: FC = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
-import NextChakraLink from '../../utils/NextChakraLink';
+import NextChakraLink from '../../../app/components/utils/NextChakraLink';
 import { NextRouter, useRouter } from 'next/router';
 import moment from 'moment';
 
