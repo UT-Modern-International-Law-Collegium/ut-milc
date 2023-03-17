@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
+import moment from 'moment';
 import {
   Heading,
   Stack,
@@ -71,24 +72,16 @@ const Page = () => {
             position={{ base: 'static', md: 'relative' }}
             spacing={{ base: 2, md: 8 }}
           >
-            <Heading
-              size={'2xl'}
-              textShadow={{
-                base: 'none',
-                md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
-              }}
-            >
-              About us
-            </Heading>
-            {topData && (
-              <Text
-                fontSize={18}
-                lineHeight={2}
-                dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
-              />
-            )}
+            <Heading size={'2xl'}>About us</Heading>
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              pl={{ md: 5 }}
+              borderLeft={{ md: '1px solid #ccc' }}
+              dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
+            />
             <SectionButton
-              position={{ base: 'static', md: 'absolute' }}
+              position={{ base: 'static' }}
               bottom={{ md: 0 }}
               onClick={() => router.push('/about-us')}
             >
@@ -98,19 +91,10 @@ const Page = () => {
         </Stack>
         {/* awards */}
         <Stack
-          direction={{ base: 'column-reverse', md: 'row' }}
+          direction={{ base: 'column', md: 'row' }}
           justifyContent={{ base: 'center', md: 'space-between' }}
           spacing={{ base: 4, md: 20 }}
         >
-          {!isLargerThan768px && (
-            <SectionButton
-              display={{ base: 'flex', md: 'none' }}
-              onClick={() => router.push('/awards')}
-            >
-              全ての成績を見る
-            </SectionButton>
-          )}
-          <AwardCard />
           <Stack
             w={{ base: '100%', md: '40%' }}
             spacing={{ base: 2, md: 8 }}
@@ -120,33 +104,35 @@ const Page = () => {
               fontFamily={'serif'}
               letterSpacing={2}
               size={'2xl'}
-              textAlign={{ base: 'inherit', md: 'right' }}
-              textShadow={{
-                base: 'none',
-                md: '6px 4px 1px rgb(0, 255, 177, 0.6)',
-              }}
+              textAlign={{ base: 'inherit' }}
             >
               Awards
             </Heading>
-            {topData && (
-              <Text
-                fontSize={18}
-                lineHeight={2}
-                textAlign={'right'}
-                dangerouslySetInnerHTML={{ __html: topData?.awards }}
-              />
-            )}
-            {isLargerThan768px && (
-              <SectionButton
-                position={'absolute'}
-                display={{ base: 'none', md: 'flex' }}
-                bottom={{ md: 0 }}
-                // onClick={() => router.push(`/awards/${moment().year()}`)}
-              >
-                全ての成績を見る
-              </SectionButton>
-            )}
+            <Text
+              fontSize={18}
+              lineHeight={2}
+              pl={{ md: 5 }}
+              borderLeft={{ md: '1px solid #ccc' }}
+              dangerouslySetInnerHTML={{ __html: topData?.awards }}
+            />
+            <SectionButton
+              position={'absolute'}
+              display={{ base: 'none', md: 'flex' }}
+              bottom={{ md: 0 }}
+              onClick={() => router.push(`/awards/${moment().year()}`)}
+            >
+              全ての成績を見る
+            </SectionButton>
           </Stack>
+          <AwardCard />
+          {!isLargerThan768px && (
+            <SectionButton
+              display={{ base: 'flex', md: 'none' }}
+              onClick={() => router.push(`/awards/${moment().year()}`)}
+            >
+              全ての成績を見る
+            </SectionButton>
+          )}
         </Stack>
         {/* news */}
         <Stack spacing={{ base: 0, md: 8 }}>
