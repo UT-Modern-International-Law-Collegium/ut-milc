@@ -19,8 +19,8 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 
-import { prefix } from '../../lib/prefix';
-import { AboutUsData } from '../../lib/type/aboutUsData';
+import { prefix } from '../../../lib/prefix';
+import { AboutUsData } from '../../../lib/type/aboutUsData';
 
 const Page = () => {
   const [aboutUsData, setAboutUsData] = useState<AboutUsData>();

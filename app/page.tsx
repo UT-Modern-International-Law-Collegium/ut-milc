@@ -22,7 +22,7 @@ import AwardCard from './components/AwardCard';
 import Firstview from './components/FirstView';
 import SectionButton from './components/SectionButton';
 import { NewsData } from '../lib/type/newsData';
-import NewsCard from './news/NewsCard';
+import NewsCard from './(pages)/news/NewsCard';
 
 const Page = () => {
   const router = useRouter();

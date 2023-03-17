@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
-import NewsCard from '../../app/news/NewsCard';
+import NewsCard from '../../app/(pages)/news/NewsCard';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { NextPageWithLayout } from '../_app';
