@@ -3,8 +3,6 @@
 import { Heading, Link, Stack, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
-import NextChakraLink from '../../components/utils/NextChakraLink';
-
 const Page = () => {
   return (
     <Stack

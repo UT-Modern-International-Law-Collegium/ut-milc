@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../../lib/axios';
-import { News } from '../../../lib/type/page';
+import { NewsData } from '../../../lib/type/newsData';
 import { WpNewsRes, WpTagName } from '../../../lib/type/wp';
 
 const handler = async (
@@ -16,7 +16,7 @@ const handler = async (
         `/posts?per_page=${count}&categories=6&_fields=id,date,content,excerpt,title,tags`
       );
       const wpNewsResData: WpNewsRes[] = wpNewsRes.data;
-      const newsRes: News[] = await Promise.all(
+      const newsRes: NewsData[] = await Promise.all(
         wpNewsResData.map(async (data: WpNewsRes) => {
           const tags: string[] = await Promise.all(
             data.tags.map(async (tag: number) => {
