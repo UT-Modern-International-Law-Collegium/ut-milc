@@ -19,16 +19,16 @@ import {
 } from '@chakra-ui/react';
 import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
-import NewsCard from '../../components/news/NewsCard';
+import NewsCard from '../../app/news/NewsCard';
 import PageTitle from '../../components/utils/PageTitle';
 import { axiosInstance } from '../../lib/axios';
 import { NextPageWithLayout } from '../_app';
 import moment from 'moment';
-import { News } from '../../lib/type/page';
+import { NewsData } from '../../lib/type/newsData';
 import { restrictStringCount } from '../../utils/restrictStringCount';
 
 type NewsPageProps = {
-  data: News[];
+  data: NewsData[];
 };
 
 const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
@@ -68,7 +68,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = ({ data }) => {
                     verticalAlign={'top'}
                     sx={{ img: { transition: '0.2s' } }}
                     _hover={{
-                      img: { transform: 'scale(1.1,1.1)' },
+                      img: { transform: 'scale(1.01,1.01)' },
                       h2: { color: 'teal.400' },
                     }}
                   >

@@ -21,20 +21,30 @@ import { TopData } from '../lib/type/topData';
 import AwardCard from './components/AwardCard';
 import Firstview from './components/FirstView';
 import SectionButton from './components/SectionButton';
+import { NewsData } from '../lib/type/newsData';
+import NewsCard from './news/NewsCard';
 
 const Page = () => {
   const router = useRouter();
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const [topData, setTopData] = useState<TopData>();
+  const [news, setNews] = useState<NewsData[]>([]);
 
   useEffect(() => {
-    const f = async () => {
+    const f1 = async () => {
       const res = await fetch(`${prefix()}/top`);
       const data: { data: TopData } = await res.json();
       setTopData(data.data);
     };
-    f();
+    f1();
+
+    const f2 = async () => {
+      const res = await fetch(`${prefix()}/news?count=5`);
+      const data: NewsData[] = await res.json();
+      setNews(data);
+    };
+    f2();
   }, []);
 
   if (!topData) {
@@ -155,7 +165,7 @@ const Page = () => {
             spacing={{ md: 8 }}
             overflowX={{ base: 'scroll', md: 'unset' }}
           >
-            {/* {data.news.map((item: News, index) => {
+            {news.map((item: NewsData, index) => {
               if (index > 2) return;
               return (
                 <NewsCard
@@ -164,7 +174,7 @@ const Page = () => {
                   maxW={{ base: 'unset', md: '30%' }}
                 />
               );
-            })} */}
+            })}
           </HStack>
         </Stack>
       </Stack>
