@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../../lib/axios';
-import { News } from '../../../lib/type/page';
+import { NewsData } from '../../../lib/type/newsData';
 import { WpNewsRes, WpTagName } from '../../../lib/type/wp';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -21,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           return wpTagResData.name;
         })
       );
-      const newsRes: News = {
+      const newsRes: NewsData = {
         id: wpResData.id,
         title: wpResData.title.rendered,
         content: wpResData.content.rendered,

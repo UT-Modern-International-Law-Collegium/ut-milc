@@ -18,11 +18,11 @@ import {
 import { MdDateRange } from 'react-icons/md';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance } from '../../lib/axios';
-import { News } from '../../lib/type/page';
+import { NewsData } from '../../lib/type/newsData';
 import { NextPageWithLayout } from '../_app';
 
 type NewsDetailPageProps = {
-  data: News;
+  data: NewsData;
 };
 
 const NewsDetailPage: NextPageWithLayout<NewsDetailPageProps> = ({ data }) => {
@@ -93,8 +93,8 @@ NewsDetailPage.getLayout = function getLayout(page: ReactElement) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const res: AxiosResponse<any, any> = await axiosInstance.get('/news');
-    const data: News[] = res.data;
-    const paths = data.map((item: News) => ({
+    const data: NewsData[] = res.data;
+    const paths = data.map((item: NewsData) => ({
       params: { newsId: item.id.toString() },
     }));
     return { paths, fallback: false };

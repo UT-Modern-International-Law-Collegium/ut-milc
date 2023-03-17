@@ -18,7 +18,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import NextChakraLink from '../../../components/utils/NextChakraLink';
+import NextChakraLink from '../utils/NextChakraLink';
 
 type ContactForm = {
   email: string;

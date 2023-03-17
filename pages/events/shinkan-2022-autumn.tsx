@@ -9,10 +9,44 @@ import {
 } from '@chakra-ui/react';
 import { NextPageWithLayout } from '../_app';
 import Layout from '../../components/layout/Layout';
-import { fakeData } from '../../lib/fakeData';
-import { Event } from '../../lib/type/page';
 import { motion, isValidMotionProp } from 'framer-motion';
 import { GiScales } from 'react-icons/gi';
+
+type Session = {
+  desc: string;
+  time: string;
+};
+
+type Event = {
+  name: string;
+  sessions: Session[];
+  comment: string;
+};
+
+const fakeData = {
+  events: [
+    {
+      name: 'Shinkan-2022-Autumn',
+      sessions: [
+        {
+          desc: 'サークルの概要・説明・質疑応答・交流会',
+          time: '9月26日 20:00-',
+        },
+        {
+          desc: '昨年度秋入会者3名によるサークル紹介・交流会',
+          time: '10月2日 20:00-',
+        },
+      ],
+      comment: `UTbaseの新歓で目に入りました。国際法研究会といいつつさまざまな企画を実施しているのが魅力です。セメスターおきに企画が変わるので、年度頭に入らなかった人でも馴染みやすいです。イベント等の交流の機会もあるので入会時期を問わず会員とは仲良くできます。
+
+        わたしは一年生の秋からの入会でした。半年遅れで入って知識がない分、勉強会などについていけるか不安でしたが、初心者の私にも参加しやすい企画が多く、とくにハンディキャップを感じることはありませんでした。また、既存メンバーとも親しくなることができ、充実したサークル生活を送ることができています。
+        
+        セメスター毎に活動が区切られていて、途中から入っても活動や交流がしやすいサークルだと思います。
+        活動の内容も量も本当に調整しやすいので、少しでも興味があるならとりあえず入ってみるのがおすすめです。私は国際法という名前しか知らない状態で入りましたが、活動をとおして自分の世界が広がり、知的好奇心が湧いてくるのを感じました。
+        予備知識が一切なかった私は、専門的な分会はついていけるかどうかで精一杯だったので、初めて学ぶ方は勉強会にも参加してみるのがいいのではないかと個人的には思います！`,
+    },
+  ],
+};
 
 const ChakraBox = chakra(motion.div, { shouldForwardProp: isValidMotionProp });
 

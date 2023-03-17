@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { Box, Center, Divider, Heading, Spinner, Text } from '@chakra-ui/react';
 
-import { prefix } from '../../../lib/prefix';
-import { WelcomeData } from '../../../lib/type/welcomeData';
+import { prefix } from '../../../../lib/prefix';
+import { WelcomeData } from '../../../../lib/type/welcomeData';
 
 const Page = () => {
   const [welcome, setWelcome] = useState<WelcomeData>();

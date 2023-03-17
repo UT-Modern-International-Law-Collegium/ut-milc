@@ -1,4 +1,7 @@
-import React, { FC } from 'react';
+'use client';
+
+import { FC } from 'react';
+import { BsArrowRight } from 'react-icons/bs';
 import {
   Button,
   ButtonProps,
@@ -6,17 +9,14 @@ import {
   Icon,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { BsArrowRight } from 'react-icons/bs';
 
-type SectionButtonProps = {
+type Props = {
   children: React.ReactNode;
 };
 
-const SectionButton: FC<SectionButtonProps & ButtonProps> = ({
-  children,
-  ...rest
-}) => {
+const SectionButton: FC<Props & ButtonProps> = ({ children, ...rest }) => {
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
+
   return (
     <Center>
       <Button

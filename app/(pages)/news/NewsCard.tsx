@@ -1,23 +1,25 @@
+'use client';
+
 import React, { FC } from 'react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
+import { MdDateRange } from 'react-icons/md';
 import {
   HStack,
   LinkBox,
-  LinkOverlay,
   Stack,
   Text,
   Badge,
   StackProps,
   Icon,
 } from '@chakra-ui/react';
-import { MdDateRange } from 'react-icons/md';
-import { News } from '../../lib/type/page';
-import { restrictStringCount } from '../../utils/restrictStringCount';
+
+import { restrictStringCount } from '../../../lib/restrictStringCount';
+import { NewsData } from '../../../lib/type/newsData';
 
 type Props = {
-  item: News;
+  item: NewsData;
   isLatest?: boolean;
 };
 
@@ -32,7 +34,7 @@ const NewsCard: FC<Props & StackProps> = ({ item, isLatest, ...rest }) => {
       boxShadow={'xl'}
       sx={{ img: { transition: '0.2s' } }}
       _hover={{
-        img: { transform: 'scale(1.1,1.1)' },
+        img: { transform: 'scale(1.01,1.01)' },
         textDecoration: 'underline',
       }}
       {...rest}
