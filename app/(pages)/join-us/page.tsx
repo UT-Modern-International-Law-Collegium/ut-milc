@@ -1,13 +1,10 @@
-import { Stack, Text, useMediaQuery } from '@chakra-ui/react';
-import { ReactElement } from 'react';
-import Layout from '../components/layout/Layout';
-import NextChakraLink from '../app/components/utils/NextChakraLink';
-import PageTitle from '../components/utils/PageTitle';
-import { NextPageWithLayout } from './_app';
+'use client';
 
-type JoinUsPage = {};
+import { Heading, Stack, Text } from '@chakra-ui/react';
 
-const JoinUsPage: NextPageWithLayout<JoinUsPage> = () => {
+import NextChakraLink from '../../components/utils/NextChakraLink';
+
+const Page = () => {
   return (
     <Stack
       pb={{ base: 100 }}
@@ -16,7 +13,23 @@ const JoinUsPage: NextPageWithLayout<JoinUsPage> = () => {
       mx={'auto'}
       px={{ base: 0, md: 100 }}
     >
-      <PageTitle px={{ base: 4, md: 0 }}>入会申し込み</PageTitle>
+      <Stack
+        direction={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        px={{ base: 4, md: 0 }}
+        pt={{ base: 20, md: 100 }}
+        w={{ base: '100%' }}
+        spacing={{ base: 0, md: 8 }}
+      >
+        <Heading
+          fontFamily={'serif'}
+          size={{ base: 'xl', md: '2xl' }}
+          letterSpacing={2}
+        >
+          入会申し込み
+        </Heading>
+      </Stack>
       <Text
         fontSize={18}
         lineHeight={{ base: 1.5, md: 2 }}
@@ -53,8 +66,4 @@ const JoinUsPage: NextPageWithLayout<JoinUsPage> = () => {
   );
 };
 
-JoinUsPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
-
-export default JoinUsPage;
+export default Page;
