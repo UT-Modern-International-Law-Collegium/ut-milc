@@ -14,12 +14,12 @@ import {
 import YearNavigation from '../../components/awards/YearNavigation';
 import Layout from '../../components/layout/Layout';
 import { axiosInstance, axiosWpInstance } from '../../lib/axios';
-import { Award } from '../../lib/type/page';
+import { AwardData } from '../../lib/type/awardData';
 import { NextPageWithLayout } from '../_app';
 import { DynamicRouteObj } from '../../lib/type/api';
 
 type Props = {
-  awards: Award[];
+  awards: AwardData[];
   years: number[];
 };
 
@@ -44,7 +44,7 @@ const AwardPageDividedByYear: NextPageWithLayout<Props> = ({
     <Stack minH={'100vh'} px={{ base: 3, sm: 10, md: 0 }}>
       <YearNavigation years={years} />
       <Box position={{ md: 'relative' }} top={{ md: -260 }}>
-        {awards.map((award: Award) => {
+        {awards.map((award: AwardData) => {
           return (
             <Stack
               key={award.id}

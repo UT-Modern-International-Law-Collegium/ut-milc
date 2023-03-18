@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../../lib/axios';
-import { Award } from '../../../lib/type/page';
+import { AwardData } from '../../../lib/type/awardData';
 import { WpAwardRes } from '../../../lib/type/wp';
 
 const handler = async (
@@ -15,7 +15,7 @@ const handler = async (
       `/posts?tags=${tagId}&_fields=id,content,title`
     );
     const wpResData: WpAwardRes[] = wpRes.data;
-    const awardRes: Award[] = wpResData.map((item: WpAwardRes) => {
+    const awardRes: AwardData[] = wpResData.map((item: WpAwardRes) => {
       return {
         id: item.id,
         year: Number(year),
