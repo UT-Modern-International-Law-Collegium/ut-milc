@@ -16,7 +16,12 @@ import Layout from '../../components/layout/Layout';
 import { axiosInstance, axiosWpInstance } from '../../lib/axios';
 import { AwardData } from '../../lib/type/awardData';
 import { NextPageWithLayout } from '../_app';
-import { DynamicRouteObj } from '../../lib/type/api';
+
+type DynamicRouteObj = {
+  params: {
+    year: string;
+  };
+}[];
 
 type Props = {
   awards: AwardData[];

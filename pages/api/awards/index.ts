@@ -1,8 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { axiosWpInstance } from '../../../lib/axios';
-import { AwardYearsRes } from '../../../lib/type/api';
 import { WpAwardYearRes, WpTagName } from '../../../lib/type/wp';
+
+type AwardYearsRes = {
+  year: number;
+};
 
 const handler = async (
   req: NextApiRequest,
