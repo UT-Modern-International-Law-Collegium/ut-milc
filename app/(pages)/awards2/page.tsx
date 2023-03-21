@@ -1,28 +1,29 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { prefix } from '../../../lib/prefix';
+import { Awards } from './Awards';
 
-const Page = ({ searchParams }: { searchParams: { year: string } }) => {
+const fetchYears = async () => {
+  const res = await fetch(`${prefix()}/awards2/years`);
+  const data: {
+    data: {
+      year: number;
+      id: number;
+    }[];
+  } = await res.json();
+
+  let years: { [key: string]: { id: number } } = {};
+  data.data.forEach((item) => {
+    years[item.year] = { id: item.id };
+  });
+
+  return years;
+};
+
+const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
   const { year } = searchParams;
 
-  const router = useRouter();
+  const years = await fetchYears();
 
-  const [years, setYears] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (!year) router.push('/');
-
-    const f = async () => {
-      const res1 = await fetch(`${prefix()}/awards2/years`);
-      const data1: { data: number[] } = await res1.json();
-      setYears(data1.data);
-    };
-    f();
-  }, [year, router]);
-
-  return <div></div>;
+  return <Awards year={year} years={years} />;
 };
 
 export default Page;

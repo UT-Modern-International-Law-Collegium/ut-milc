@@ -17,13 +17,19 @@ export const GET = async () => {
   }
 
   // tagIdからtagの名前を取得
-  const years: number[] = await Promise.all(
+  const _years: {
+    year: number;
+    id: number;
+  }[] = await Promise.all(
     tagIds.map(async (id: number) => {
       const _res = await fetch(`${wpPrefix()}/tags/${id}?_fields=name`);
       const _data: { name: string } = await _res.json();
-      return Number(_data.name);
+      return { year: Number(_data.name), id };
     })
   );
+
+  // _yearsの年度を降順にソート
+  const years = _years.sort((a, b) => b.year - a.year);
 
   return NextResponse.json({ data: years });
 };
