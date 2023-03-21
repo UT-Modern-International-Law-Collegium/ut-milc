@@ -5,7 +5,7 @@ import { wpPrefix } from '../wpPrefix';
 
 type AwardRes = {
   id: number;
-  title: string;
+  title: { rendered: string };
   content: {
     rendered: string;
     protected: boolean;
@@ -35,7 +35,7 @@ export const GET = async (request: Request) => {
 
       return {
         id: award.id,
-        title: award.title,
+        title: award.title.rendered,
         content: award.content.rendered,
         year: Number(_data.name),
       };
