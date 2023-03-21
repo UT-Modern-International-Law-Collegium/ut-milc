@@ -43,8 +43,8 @@ export const Awards: FC<Props> = ({ year, years }) => {
 
   if (!awards) {
     return (
-      <Center>
-        <Spinner />
+      <Center minH={'100vh'}>
+        <Spinner color={'teal'} h={24} w={24} />
       </Center>
     );
   }
