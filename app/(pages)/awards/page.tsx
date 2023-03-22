@@ -1,29 +1,48 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Center, Spinner } from '@chakra-ui/react';
+
 import { prefix } from '../../../lib/prefix';
 import { Awards } from './Awards';
 
-const fetchYears = async () => {
-  const res = await fetch(`${prefix()}/awards/years`);
-  const data: {
-    data: {
-      year: number;
-      id: number;
-    }[];
-  } = await res.json();
+const Page = () => {
+  const searchParams = useSearchParams();
 
-  let years: { [key: string]: { id: number } } = {};
-  data.data.forEach((item) => {
-    years[item.year] = { id: item.id };
-  });
+  const year = searchParams?.get('year');
 
-  return years;
-};
+  const [years, setYears] = useState<{ [key: string]: { id: number } }>();
 
-const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
-  const { year } = searchParams;
+  useEffect(() => {
+    const f = async () => {
+      const res = await fetch(`${prefix()}/awards/years`);
+      const data: {
+        data: {
+          year: number;
+          id: number;
+        }[];
+      } = await res.json();
 
-  // const years = await fetchYears();
-  const years = { '2021': { id: 5 }, '2022': { id: 4 } };
+      let years: { [key: string]: { id: number } } = {};
+      data.data.forEach((item) => {
+        years[item.year] = { id: item.id };
+      });
 
+      setYears(years);
+    };
+    f();
+  }, []);
+
+  if (!years) {
+    return (
+      <Center>
+        <Spinner color="teal" h={24} w={24} />
+      </Center>
+    );
+  }
+
+  // @ts-ignore
   return <Awards year={year} years={years} />;
 };
 
