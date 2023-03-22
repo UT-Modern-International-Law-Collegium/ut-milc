@@ -19,12 +19,12 @@ const fetchYears = async () => {
 };
 
 const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
-  // const { year } = searchParams;
+  const { year } = searchParams;
 
   // const years = await fetchYears();
+  const years = { '2021': { id: 5 }, '2022': { id: 4 } };
 
-  // return <Awards year={year} years={years} />;
-  return <div></div>;
+  return <Awards year={year} years={years} />;
 };
 
 export default Page;
