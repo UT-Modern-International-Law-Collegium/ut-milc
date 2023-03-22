@@ -51,7 +51,7 @@ const Header: FC = () => {
         <Stack
           position={'fixed'}
           zIndex={1}
-          bg={'rgb(203, 213, 224, 0.98)'}
+          bg={'white'}
           w={'100vw'}
           py={2}
           boxShadow={'lg'}
