@@ -61,8 +61,32 @@ export const Awards: FC<Props> = ({ year, years }) => {
 
   if (awards.length === 0) {
     return (
-      <Box py={24}>
-        <Text>現在掲載準備中です。</Text>
+      <Box
+        px={{ base: 4, md: 100 }}
+        pb={{ base: 100 }}
+        w={{ base: '100%', md: '80%' }}
+        mx={'auto'}
+      >
+        <Stack
+          direction={'row'}
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          pt={{ base: 20, md: 100 }}
+          w={{ base: '100%' }}
+          spacing={{ base: 0, md: 8 }}
+        >
+          <Heading
+            fontFamily={'serif'}
+            size={{ base: 'xl', md: '2xl' }}
+            letterSpacing={2}
+          >
+            活動実績
+          </Heading>
+        </Stack>
+        <Stack direction={'row'} pt={6}>
+          <YearNavigation year={year} years={years} />
+          <Text pt={1}>{`${year}年度の活動実績は現在掲載準備中です。`}</Text>
+        </Stack>
       </Box>
     );
   }
