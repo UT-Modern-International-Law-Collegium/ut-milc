@@ -36,7 +36,7 @@ const Page = () => {
 
   if (!years) {
     return (
-      <Center>
+      <Center minH={'100vh'}>
         <Spinner color="teal" h={24} w={24} />
       </Center>
     );
