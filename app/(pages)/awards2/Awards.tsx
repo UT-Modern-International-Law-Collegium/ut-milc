@@ -92,17 +92,18 @@ export const Awards: FC<Props> = ({ year, years }) => {
       </Stack>
       <Stack direction={'row'} pt={6}>
         <YearNavigation year={year} years={years} />
-        <Box
-          ml={{ base: 0, md: '32%', lg: '30%' }}
-          mr={{ md: '10%' }}
-          mb={10}
-          borderRadius={8}
-          boxShadow={{ base: '0px 0px 10px #ccc', md: 'xl' }}
-          minH={200}
-          pl={4}
-        >
+        <Box>
           {awards.map((award) => (
-            <Stack key={award.id}>
+            <Stack
+              key={award.id}
+              mb={10}
+              border={'1px solid'}
+              borderColor={'gray.100'}
+              borderRadius={8}
+              boxShadow={{ base: '0px 0px 10px #ccc', md: 'lg' }}
+              minH={200}
+              p={4}
+            >
               <Heading
                 px={{ base: 2, md: 4 }}
                 fontWeight={600}
