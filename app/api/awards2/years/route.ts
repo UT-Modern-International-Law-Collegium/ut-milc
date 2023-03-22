@@ -17,7 +17,7 @@ export const GET = async () => {
   }
 
   // tagIdからtagの名前を取得
-  const _years: {
+  const years: {
     year: number;
     id: number;
   }[] = await Promise.all(
@@ -27,9 +27,6 @@ export const GET = async () => {
       return { year: Number(_data.name), id };
     })
   );
-
-  // _yearsの年度を降順にソート
-  const years = _years.sort((a, b) => b.year - a.year);
 
   return NextResponse.json({ data: years });
 };
