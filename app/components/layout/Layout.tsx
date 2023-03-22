@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Stack, useMediaQuery } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -8,27 +8,22 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout: FC<LayoutProps> = ({ children }) => {
-  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
-  if (isLargerThan768px) {
-    return (
-      <>
-        <Header />
-        <Stack position={'relative'} minH={'100vh'}>
-          {children}
-        </Stack>
-        <Footer />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Header />
+const Layout: FC<LayoutProps> = ({ children }) => (
+  <>
+    {/* mobile */}
+    <Box display={{ base: 'block', md: 'none' }}>
+      <Header />
+      {children}
+      <Footer />
+    </Box>
+    {/* PC */}
+    <Box display={{ base: 'none', md: 'block' }}>
+      <Header />
+      <Stack position={'relative'} minH={'100vh'}>
         {children}
-        <Footer />
-      </>
-    );
-  }
-};
-
+      </Stack>
+      <Footer />
+    </Box>
+  </>
+);
 export default Layout;

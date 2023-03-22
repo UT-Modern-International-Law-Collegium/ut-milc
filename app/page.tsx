@@ -16,7 +16,6 @@ import {
   Text,
   Button,
   Center,
-  useMediaQuery,
   VStack,
   HStack,
   Icon,
@@ -35,7 +34,6 @@ import NewsCard from './(pages)/news/NewsCard';
 
 const Page = () => {
   const router = useRouter();
-  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const [topData, setTopData] = useState<TopData>();
   const [news, setNews] = useState<NewsData[]>([]);
@@ -57,7 +55,15 @@ const Page = () => {
   }, []);
 
   if (!topData) {
-    return <Box bg={'#092025'} minH={'100vh'} />;
+    return (
+      <Box
+        bg={'#092025'}
+        minH={'100vh'}
+        w={'100vw'}
+        position={'relative'}
+        zIndex={4}
+      />
+    );
   }
 
   return (
@@ -123,6 +129,7 @@ const Page = () => {
               borderLeft={{ md: '1px solid #ccc' }}
               dangerouslySetInnerHTML={{ __html: topData?.awards }}
             />
+            {/* PC */}
             <SectionButton
               position={'absolute'}
               display={{ base: 'none', md: 'flex' }}
@@ -133,14 +140,13 @@ const Page = () => {
             </SectionButton>
           </Stack>
           <AwardCard />
-          {!isLargerThan768px && (
-            <SectionButton
-              display={{ base: 'flex', md: 'none' }}
-              onClick={() => router.push(`/awards/${moment().year()}`)}
-            >
-              全ての成績を見る
-            </SectionButton>
-          )}
+          {/* mobile */}
+          <SectionButton
+            display={{ base: 'flex', md: 'none' }}
+            onClick={() => router.push(`/awards/${moment().year()}`)}
+          >
+            全ての成績を見る
+          </SectionButton>
         </Stack>
         {/* news */}
         <Stack spacing={{ base: 0, md: 8 }}>
@@ -161,30 +167,31 @@ const Page = () => {
                 />
               );
             })}
-            {isLargerThan768px ? (
-              <LinkBox
-                as={VStack}
-                minW={{ md: 'unset', lg: 100 }}
-                _hover={{ textDecoration: 'underline' }}
+            {/* PC */}
+            <LinkBox
+              as={VStack}
+              display={{ base: 'none', md: 'block' }}
+              minW={{ md: 'unset', lg: 100 }}
+              _hover={{ textDecoration: 'underline' }}
+            >
+              <NextLink href={'/news'}>
+                <Icon as={BsFillCaretRightFill} h={6} w={6} />
+              </NextLink>
+              <Text
+                display={{ md: 'none', lg: 'block' }}
+                _hover={{ cursor: 'pointer' }}
               >
-                <NextLink href={'/news'}>
-                  <Icon as={BsFillCaretRightFill} h={6} w={6} />
-                </NextLink>
-                <Text
-                  display={{ md: 'none', lg: 'block' }}
-                  _hover={{ cursor: 'pointer' }}
-                >
-                  全て見る
-                </Text>
-              </LinkBox>
-            ) : (
-              <IconButton
-                aria-label="news"
-                icon={<Icon as={BsArrowRightShort} h={10} w={10} />}
-                bg={'none'}
-                onClick={() => router.push('/news')}
-              />
-            )}
+                全て見る
+              </Text>
+            </LinkBox>
+            {/* mobile */}
+            <IconButton
+              display={{ base: 'block', md: 'none' }}
+              aria-label="news"
+              icon={<Icon as={BsArrowRightShort} h={10} w={10} />}
+              bg={'none'}
+              onClick={() => router.push('/news')}
+            />
           </HStack>
         </Stack>
       </Stack>

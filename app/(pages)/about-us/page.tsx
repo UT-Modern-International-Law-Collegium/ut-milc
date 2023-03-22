@@ -76,8 +76,8 @@ const Page = () => {
               <Text
                 fontSize={18}
                 lineHeight={2}
-                borderLeft={'1px solid #ccc'}
-                pl={5}
+                borderLeft={{ md: '1px solid #ccc' }}
+                pl={{ md: 5 }}
               >
                 {section.content}
               </Text>

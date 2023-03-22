@@ -1,24 +1,22 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+import NextLink from 'next/link';
 import { motion } from 'framer-motion';
 import moment from 'moment';
 import {
   Box,
   CircularProgress,
   Heading,
+  Link,
   Stack,
   Text,
-  useMediaQuery,
 } from '@chakra-ui/react';
 
 import Navigation from './layout/Navigation';
 import { prefix } from '../../lib/prefix';
-import NextChakraLink from './utils/NextChakraLink';
 
 const Firstview: FC = () => {
-  const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
-
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
     useState<boolean>(false);
 
@@ -66,12 +64,13 @@ const Firstview: FC = () => {
             color={'gray.800'}
           >
             {`${moment().year()}年度新歓の詳細は`}
-            <NextChakraLink
+            <Link
+              as={NextLink}
               href={'/events/welcome'}
               textDecoration={'underline'}
             >
               こちら
-            </NextChakraLink>
+            </Link>
           </Text>
         </Stack>
       )}
@@ -82,7 +81,9 @@ const Firstview: FC = () => {
         animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
         transition={'0.6s'}
       >
-        {isLargetThan768px && <Navigation zIndex={2} />}
+        <Box display={{ base: 'none', md: 'block' }}>
+          <Navigation />
+        </Box>
       </Box>
       {/* 内側の円 */}
       <Box
@@ -92,9 +93,10 @@ const Firstview: FC = () => {
         transition={'0.8s'}
       >
         <CircularProgress
+          // @ts-ignore
+          size={{ base: '100px', md: '245px' }}
           thickness={'0.1px'}
           value={100}
-          size={isLargetThan768px ? '245px' : '100px'}
           position={'absolute'}
           top={'50%'}
           left={'50%'}
@@ -103,15 +105,14 @@ const Firstview: FC = () => {
         />
         {/* 外側の円 */}
         <CircularProgress
+          // @ts-ignore
+          size={{ base: '400px', md: '1400px' }}
           thickness={'0.01px'}
           value={100}
           position={'absolute'}
           top={'50%'}
           left={'50%'}
           transform={'translate(-50%,-50%)'}
-          size={
-            isLargetThan768px ? '1400px' : '400px'
-          } /* TODO: resize when mobile. */
           color={'#C9C9C9'}
         />
       </Box>
@@ -128,7 +129,6 @@ const Firstview: FC = () => {
 };
 
 const TopTitle: FC = () => {
-  const [isLargetThan1280px] = useMediaQuery('(min-width:1280px)');
   const [titlePtValue, setTitlePtValue] = useState<number>(0);
   const [letterSpacingValue, setLetterSpacingValue] = useState<string>('0.4em');
 
@@ -144,64 +144,67 @@ const TopTitle: FC = () => {
     }
   }, []);
 
-  if (isLargetThan1280px) {
-    return (
-      <Heading
-        as={motion.h2}
-        h={'100vh'}
-        color={'#fff'}
-        style={{ writingMode: 'vertical-rl' }}
-        letterSpacing={36}
-        fontSize={68}
-        fontWeight={'normal'}
-        fontFamily={'serif'}
-        lineHeight={1.5}
-        position={'absolute'}
-        top={'62%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <Text
-          style={{
-            writingMode: 'vertical-rl',
-          }}
-          fontSize={24}
-          m={0}
-          lineHeight={1.8}
-          pt={1}
+  return (
+    <>
+      {/* mobile */}
+      <Box display={{ base: 'block', lg: 'none' }}>
+        <Heading
+          as={motion.h2}
+          style={{ writingMode: 'vertical-rl' }}
+          size={{ base: '2xl', md: 'xl' }}
+          pt={titlePtValue} /* ヘッダーの高さ分 */
+          h={'100vh'}
+          fontWeight={'normal'}
+          color={'#fff'}
+          fontFamily={'serif'}
+          letterSpacing={letterSpacingValue}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         >
-          東京大学
-        </Text>
-        現代国際法
-        <br />
-        <Text pt={300}>研究会</Text>
-      </Heading>
-    );
-  } else {
-    return (
-      <Heading
-        as={motion.h2}
-        style={{ writingMode: 'vertical-rl' }}
-        size={{ base: '2xl', md: 'xl' }}
-        pt={titlePtValue} /* ヘッダーの高さ分 */
-        h={'100vh'}
-        fontWeight={'normal'}
-        color={'#fff'}
-        fontFamily={'serif'}
-        letterSpacing={letterSpacingValue}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        現代国際法研究会
-      </Heading>
-    );
-  }
+          現代国際法研究会
+        </Heading>
+      </Box>
+      {/* PC */}
+      <Box display={{ base: 'none', lg: 'block' }}>
+        <Heading
+          as={motion.h2}
+          h={'100vh'}
+          color={'#fff'}
+          style={{ writingMode: 'vertical-rl' }}
+          letterSpacing={36}
+          fontSize={68}
+          fontWeight={'normal'}
+          fontFamily={'serif'}
+          lineHeight={1.5}
+          position={'absolute'}
+          top={'62%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <Text
+            style={{
+              writingMode: 'vertical-rl',
+            }}
+            fontSize={24}
+            m={0}
+            lineHeight={1.8}
+            pt={1}
+          >
+            東京大学
+          </Text>
+          現代国際法
+          <br />
+          <Text pt={300}>研究会</Text>
+        </Heading>
+      </Box>
+    </>
+  );
 };
 
 export default Firstview;

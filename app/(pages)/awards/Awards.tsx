@@ -25,7 +25,6 @@ export const Awards: FC<Props> = ({ year, years }) => {
   const router = useRouter();
 
   const [awards, setAwards] = useState<AwardData[]>();
-  console.log({ awards });
 
   useEffect(() => {
     if (!year) {
@@ -49,7 +48,8 @@ export const Awards: FC<Props> = ({ year, years }) => {
       setAwards(data.data);
     };
     f();
-  }, [year, years, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year]);
 
   if (!awards) {
     return (
@@ -66,6 +66,7 @@ export const Awards: FC<Props> = ({ year, years }) => {
         pb={{ base: 100 }}
         w={{ base: '100%', md: '80%' }}
         mx={'auto'}
+        minH={'100vh'}
       >
         <Stack
           direction={'row'}
