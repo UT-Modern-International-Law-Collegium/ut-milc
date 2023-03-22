@@ -9,7 +9,6 @@ import {
   Grid,
   GridItem,
   HStack,
-  IconButton,
   Input,
   Stack,
   Text,
@@ -55,7 +54,7 @@ const Footer: FC = () => {
           </HStack>
           <NextChakraLink href={'/'}>Top</NextChakraLink>
           <NextChakraLink href={'/about-us'}>About us</NextChakraLink>
-          <NextChakraLink href={`/awards/${moment().year()}`}>
+          <NextChakraLink href={`/awards?year=${moment().year()}`}>
             Awards
           </NextChakraLink>
           <NextChakraLink href={'/news'}>News</NextChakraLink>
