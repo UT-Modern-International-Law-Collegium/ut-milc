@@ -57,7 +57,7 @@ const Page = () => {
   }, []);
 
   if (!topData) {
-    return <Box bg={'#092025'} minH={'100vh'} />;
+    return <Box bg={'#092025'} minH={'100vh'} zIndex={2} />;
   }
 
   return (
