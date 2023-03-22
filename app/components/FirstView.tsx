@@ -1,12 +1,14 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+import NextLink from 'next/link';
 import { motion } from 'framer-motion';
 import moment from 'moment';
 import {
   Box,
   CircularProgress,
   Heading,
+  Link,
   Stack,
   Text,
   useMediaQuery,
@@ -14,11 +16,8 @@ import {
 
 import Navigation from './layout/Navigation';
 import { prefix } from '../../lib/prefix';
-import NextChakraLink from './utils/NextChakraLink';
 
 const Firstview: FC = () => {
-  const [isLargetThan768px] = useMediaQuery('(min-width:768px)');
-
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
     useState<boolean>(false);
 
@@ -66,12 +65,13 @@ const Firstview: FC = () => {
             color={'gray.800'}
           >
             {`${moment().year()}年度新歓の詳細は`}
-            <NextChakraLink
+            <Link
+              as={NextLink}
               href={'/events/welcome'}
               textDecoration={'underline'}
             >
               こちら
-            </NextChakraLink>
+            </Link>
           </Text>
         </Stack>
       )}
@@ -82,7 +82,9 @@ const Firstview: FC = () => {
         animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
         transition={'0.6s'}
       >
-        {isLargetThan768px && <Navigation zIndex={2} />}
+        <Box display={{ base: 'none', md: 'block' }}>
+          <Navigation />
+        </Box>
       </Box>
       {/* 内側の円 */}
       <Box
@@ -92,9 +94,10 @@ const Firstview: FC = () => {
         transition={'0.8s'}
       >
         <CircularProgress
+          // @ts-ignore
+          size={{ base: '100px', md: '245px' }}
           thickness={'0.1px'}
           value={100}
-          size={isLargetThan768px ? '245px' : '100px'}
           position={'absolute'}
           top={'50%'}
           left={'50%'}
@@ -103,15 +106,14 @@ const Firstview: FC = () => {
         />
         {/* 外側の円 */}
         <CircularProgress
+          // @ts-ignore
+          size={{ base: '400px', md: '1400px' }}
           thickness={'0.01px'}
           value={100}
           position={'absolute'}
           top={'50%'}
           left={'50%'}
           transform={'translate(-50%,-50%)'}
-          size={
-            isLargetThan768px ? '1400px' : '400px'
-          } /* TODO: resize when mobile. */
           color={'#C9C9C9'}
         />
       </Box>
