@@ -14,7 +14,7 @@ import { RiMenu3Fill } from 'react-icons/ri';
 import { IconContext } from 'react-icons/lib';
 import Navigation from './Navigation';
 import { NextRouter, useRouter } from 'next/router';
-import NextChakraLink from '../../../app/components/utils/NextChakraLink';
+import NextChakraLink from '../../utils/NextChakraLink';
 import moment from 'moment';
 
 const Header: FC = () => {

@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 import { BsTwitter, BsInstagram } from 'react-icons/bs';
 import { IconContext } from 'react-icons/lib';
-import NextChakraLink from '../../app/components/utils/NextChakraLink';
+import NextChakraLink from '../utils/NextChakraLink';
 import moment from 'moment';
 
 type ContactForm = {
