@@ -7,8 +7,8 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { NextPageWithLayout } from '../_app';
-import Layout from '../../components/layout/Layout';
+import { NextPageWithLayout } from '../../../pages/_app';
+import Layout from '../../../components/layout/Layout';
 import { motion, isValidMotionProp } from 'framer-motion';
 import { GiScales } from 'react-icons/gi';
 

@@ -29,7 +29,7 @@ const Header: FC = () => {
   }, [router, onClose]);
 
   const styleLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (router.pathname === path) {
       return 'rgb(0, 255, 177, 1)';
@@ -66,8 +66,8 @@ const Header: FC = () => {
             About us
           </NextChakraLink>
           <NextChakraLink
-            href={`/awards/${moment().year()}`}
-            color={styleLinkColor('/awards/[year]')}
+            href={`/awards?year=${moment().year()}`}
+            color={styleLinkColor('/awards')}
           >
             Awards
           </NextChakraLink>

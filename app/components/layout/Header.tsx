@@ -25,7 +25,7 @@ const Header: FC = () => {
   const [isLargerThan992px] = useMediaQuery('(min-width:992px)');
 
   const styleLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (pathname === path) {
       return 'rgb(0, 255, 177, 1)';
@@ -62,8 +62,8 @@ const Header: FC = () => {
             About us
           </NextChakraLink>
           <NextChakraLink
-            href={`/awards/${moment().year()}`}
-            color={styleLinkColor('/awards/[year]')}
+            href={`/awards?year=${moment().year()}`}
+            color={styleLinkColor('/awards')}
           >
             Awards
           </NextChakraLink>

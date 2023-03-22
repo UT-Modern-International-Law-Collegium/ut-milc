@@ -13,7 +13,7 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
   const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const stlyeLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards/[year]'
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (pathname === path) {
       return '#00FFB1';
@@ -46,8 +46,8 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
         About us
       </NextChakraLink>
       <NextChakraLink
-        color={stlyeLinkColor('/awards/[year]')}
-        href={`/awards/${moment().year()}`}
+        color={stlyeLinkColor('/awards')}
+        href={`/awards?year=${moment().year()}`}
       >
         Awards
       </NextChakraLink>
