@@ -12,7 +12,7 @@ export const YearNavigation: FC<Props> = ({ year, years: _years }) => {
     .sort((a, b) => b - a);
 
   return (
-    <Box minW={'20%'}>
+    <Box minW={'20%'} px={{ base: 1, md: 0 }}>
       {years.map((y) => (
         <Link
           as={NextLink}

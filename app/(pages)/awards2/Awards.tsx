@@ -83,7 +83,7 @@ export const Awards: FC<Props> = ({ year, years }) => {
             活動実績
           </Heading>
         </Stack>
-        <Stack direction={'row'} pt={6}>
+        <Stack direction={{ base: 'column', md: 'row' }} pt={6}>
           <YearNavigation year={year} years={years} />
           <Text pt={1}>{`${year}年度の活動実績は現在掲載準備中です。`}</Text>
         </Stack>
@@ -114,7 +114,7 @@ export const Awards: FC<Props> = ({ year, years }) => {
           活動実績
         </Heading>
       </Stack>
-      <Stack direction={'row'} pt={6}>
+      <Stack direction={{ base: 'column', md: 'row' }} pt={6}>
         <YearNavigation year={year} years={years} />
         <Box>
           {awards.map((award) => (
