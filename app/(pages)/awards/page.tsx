@@ -2,7 +2,7 @@ import { prefix } from '../../../lib/prefix';
 import { Awards } from './Awards';
 
 const fetchYears = async () => {
-  const res = await fetch(`${prefix()}/awards2/years`);
+  const res = await fetch(`${prefix()}/awards/years`);
   const data: {
     data: {
       year: number;

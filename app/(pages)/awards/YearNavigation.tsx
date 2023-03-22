@@ -17,7 +17,7 @@ export const YearNavigation: FC<Props> = ({ year, years: _years }) => {
         <Link
           as={NextLink}
           key={y}
-          href={`/awards2?year=${y}`}
+          href={`/awards?year=${y}`}
           display={'block'}
           lineHeight={2}
           fontWeight={y === Number(year) ? 'bold' : ''}

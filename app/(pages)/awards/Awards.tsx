@@ -40,7 +40,7 @@ export const Awards: FC<Props> = ({ year, years }) => {
     }
 
     const f = async () => {
-      const res = await fetch(`${prefix()}/awards2?tag_id=${years[year].id}`);
+      const res = await fetch(`${prefix()}/awards?tag_id=${years[year].id}`);
       if (res.status === 404) {
         setAwards([]);
       }
