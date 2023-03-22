@@ -1,19 +1,28 @@
 'use client';
 
 import { FC } from 'react';
-import Link from 'next/link';
-import { Box } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Box, Link } from '@chakra-ui/react';
 
 type Props = { year: string; years: { [key: string]: { id: number } } };
 
-export const YearNavigation: FC<Props> = ({ year, years }) => {
+export const YearNavigation: FC<Props> = ({ year, years: _years }) => {
+  const years: number[] = Object.keys(_years)
+    .map((y) => Number(y))
+    .sort((a, b) => b - a);
+
   return (
-    <Box
-      minW={'20%'}
-      sx={{ a: { display: 'block', fontSize: 20, lineHeight: 2 } }}
-    >
-      {Object.keys(years).map((y) => (
-        <Link key={y} href={`/awards2?year=${y}`}>
+    <Box minW={'20%'}>
+      {years.map((y) => (
+        <Link
+          as={NextLink}
+          key={y}
+          href={`/awards2?year=${y}`}
+          display={'block'}
+          lineHeight={2}
+          fontWeight={y === Number(year) ? 'bold' : ''}
+          fontSize={20}
+        >
           {`${y}年度`}
         </Link>
       ))}
