@@ -19,20 +19,28 @@ import {
   Link,
 } from '@chakra-ui/react';
 
-import Navigation from './Navigation';
-
 const Header: FC = () => {
   const pathname = usePathname();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const styleLinkColor = (
+  const styleHeaderLinkColor = (
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
   ): string => {
     if (pathname === path) {
       return 'rgb(0, 255, 177, 1)';
     } else {
       return 'rgb(0,0,0,1)';
+    }
+  };
+
+  const stlyeDrawerLinkColor = (
+    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
+  ): string => {
+    if (pathname === path) {
+      return '#00FFB1';
+    } else {
+      return '#fff';
     }
   };
 
@@ -59,9 +67,53 @@ const Header: FC = () => {
           />
           <Drawer isOpen={isOpen} onClose={onClose} placement={'right'}>
             <DrawerOverlay />
-            <DrawerContent bg={'gray.100'}>
-              <DrawerCloseButton />
-              <Navigation />
+            <DrawerContent bg={'#092025'}>
+              <DrawerCloseButton color={'white'} />
+              <Box
+                fontSize={24}
+                fontFamily={'serif'}
+                fontWeight={600}
+                lineHeight={2}
+                pl={14}
+                pt={24}
+                sx={{ a: { display: 'block' } }}
+              >
+                <Link
+                  as={NextLink}
+                  href={'/'}
+                  color={stlyeDrawerLinkColor('/')}
+                >
+                  Top
+                </Link>
+                <Link
+                  as={NextLink}
+                  href={'/about-us'}
+                  color={stlyeDrawerLinkColor('/about-us')}
+                >
+                  About us
+                </Link>
+                <Link
+                  as={NextLink}
+                  href={`/awards?year=${moment().year()}`}
+                  color={stlyeDrawerLinkColor('/awards')}
+                >
+                  Awards
+                </Link>
+                <Link
+                  as={NextLink}
+                  href={'/news'}
+                  color={stlyeDrawerLinkColor('/news')}
+                >
+                  News
+                </Link>
+                <Link
+                  as={NextLink}
+                  href={'/join-us'}
+                  color={stlyeDrawerLinkColor('/join-us')}
+                >
+                  Join us
+                </Link>
+              </Box>
             </DrawerContent>
           </Drawer>
         </Stack>
@@ -84,30 +136,34 @@ const Header: FC = () => {
             fontWeight={600}
             letterSpacing={1.8}
           >
-            <Link as={NextLink} href={'/'} color={styleLinkColor('/')}>
+            <Link as={NextLink} href={'/'} color={styleHeaderLinkColor('/')}>
               Top
             </Link>
             <Link
               as={NextLink}
               href={'/about-us'}
-              color={styleLinkColor('/about-us')}
+              color={styleHeaderLinkColor('/about-us')}
             >
               About us
             </Link>
             <Link
               as={NextLink}
               href={`/awards?year=${moment().year()}`}
-              color={styleLinkColor('/awards')}
+              color={styleHeaderLinkColor('/awards')}
             >
               Awards
             </Link>
-            <Link as={NextLink} href={'/news'} color={styleLinkColor('/news')}>
+            <Link
+              as={NextLink}
+              href={'/news'}
+              color={styleHeaderLinkColor('/news')}
+            >
               News
             </Link>
             <Link
               as={NextLink}
               href={'/join-us'}
-              color={styleLinkColor('/join-us')}
+              color={styleHeaderLinkColor('/join-us')}
             >
               Join us
             </Link>

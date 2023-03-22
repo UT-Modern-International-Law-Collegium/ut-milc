@@ -1,16 +1,13 @@
 'use client';
 
 import React, { FC } from 'react';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import moment from 'moment';
-import { Stack, StackProps, useMediaQuery } from '@chakra-ui/react';
+import { Link, Stack } from '@chakra-ui/react';
 
-import NextChakraLink from '../utils/NextChakraLink';
-
-const Navigation: FC<StackProps> = ({ ...rest }) => {
+const Navigation: FC = () => {
   const pathname = usePathname();
-
-  const [isLargerThan768px] = useMediaQuery('(min-width:768px)');
 
   const stlyeLinkColor = (
     path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
@@ -18,17 +15,13 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
     if (pathname === path) {
       return '#00FFB1';
     } else {
-      if (isLargerThan768px) {
-        return '#fff';
-      } else {
-        return '#000';
-      }
+      return '#fff';
     }
   };
 
   return (
     <Stack
-      {...rest}
+      zIndex={2}
       display={{ base: 'flex' }}
       position={{ base: 'fixed', md: 'absolute' }}
       top={'50%'}
@@ -39,24 +32,29 @@ const Navigation: FC<StackProps> = ({ ...rest }) => {
       fontFamily={'serif'}
       letterSpacing={5}
     >
-      <NextChakraLink color={stlyeLinkColor('/')} href={'/'}>
+      <Link as={NextLink} color={stlyeLinkColor('/')} href={'/'}>
         Top
-      </NextChakraLink>
-      <NextChakraLink color={stlyeLinkColor('/about-us')} href={'/about-us'}>
+      </Link>
+      <Link
+        as={NextLink}
+        color={stlyeLinkColor('/about-us')}
+        href={'/about-us'}
+      >
         About us
-      </NextChakraLink>
-      <NextChakraLink
+      </Link>
+      <Link
+        as={NextLink}
         color={stlyeLinkColor('/awards')}
         href={`/awards?year=${moment().year()}`}
       >
         Awards
-      </NextChakraLink>
-      <NextChakraLink color={stlyeLinkColor('/news')} href={'/news'}>
+      </Link>
+      <Link as={NextLink} color={stlyeLinkColor('/news')} href={'/news'}>
         News
-      </NextChakraLink>
-      <NextChakraLink color={stlyeLinkColor('/join-us')} href={'/join-us'}>
+      </Link>
+      <Link as={NextLink} color={stlyeLinkColor('/join-us')} href={'/join-us'}>
         Join us
-      </NextChakraLink>
+      </Link>
     </Stack>
   );
 };
