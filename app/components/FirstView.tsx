@@ -11,7 +11,6 @@ import {
   Link,
   Stack,
   Text,
-  useMediaQuery,
 } from '@chakra-ui/react';
 
 import Navigation from './layout/Navigation';
@@ -130,7 +129,6 @@ const Firstview: FC = () => {
 };
 
 const TopTitle: FC = () => {
-  const [isLargetThan1280px] = useMediaQuery('(min-width:1280px)');
   const [titlePtValue, setTitlePtValue] = useState<number>(0);
   const [letterSpacingValue, setLetterSpacingValue] = useState<string>('0.4em');
 
@@ -146,64 +144,67 @@ const TopTitle: FC = () => {
     }
   }, []);
 
-  if (isLargetThan1280px) {
-    return (
-      <Heading
-        as={motion.h2}
-        h={'100vh'}
-        color={'#fff'}
-        style={{ writingMode: 'vertical-rl' }}
-        letterSpacing={36}
-        fontSize={68}
-        fontWeight={'normal'}
-        fontFamily={'serif'}
-        lineHeight={1.5}
-        position={'absolute'}
-        top={'62%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <Text
-          style={{
-            writingMode: 'vertical-rl',
-          }}
-          fontSize={24}
-          m={0}
-          lineHeight={1.8}
-          pt={1}
+  return (
+    <>
+      {/* mobile */}
+      <Box display={{ base: 'block', lg: 'none' }}>
+        <Heading
+          as={motion.h2}
+          style={{ writingMode: 'vertical-rl' }}
+          size={{ base: '2xl', md: 'xl' }}
+          pt={titlePtValue} /* ヘッダーの高さ分 */
+          h={'100vh'}
+          fontWeight={'normal'}
+          color={'#fff'}
+          fontFamily={'serif'}
+          letterSpacing={letterSpacingValue}
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         >
-          東京大学
-        </Text>
-        現代国際法
-        <br />
-        <Text pt={300}>研究会</Text>
-      </Heading>
-    );
-  } else {
-    return (
-      <Heading
-        as={motion.h2}
-        style={{ writingMode: 'vertical-rl' }}
-        size={{ base: '2xl', md: 'xl' }}
-        pt={titlePtValue} /* ヘッダーの高さ分 */
-        h={'100vh'}
-        fontWeight={'normal'}
-        color={'#fff'}
-        fontFamily={'serif'}
-        letterSpacing={letterSpacingValue}
-        position={'absolute'}
-        top={'50%'}
-        left={'50%'}
-        transform={'translate(-50%,-50%)'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        現代国際法研究会
-      </Heading>
-    );
-  }
+          現代国際法研究会
+        </Heading>
+      </Box>
+      {/* PC */}
+      <Box display={{ base: 'none', lg: 'block' }}>
+        <Heading
+          as={motion.h2}
+          h={'100vh'}
+          color={'#fff'}
+          style={{ writingMode: 'vertical-rl' }}
+          letterSpacing={36}
+          fontSize={68}
+          fontWeight={'normal'}
+          fontFamily={'serif'}
+          lineHeight={1.5}
+          position={'absolute'}
+          top={'62%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <Text
+            style={{
+              writingMode: 'vertical-rl',
+            }}
+            fontSize={24}
+            m={0}
+            lineHeight={1.8}
+            pt={1}
+          >
+            東京大学
+          </Text>
+          現代国際法
+          <br />
+          <Text pt={300}>研究会</Text>
+        </Heading>
+      </Box>
+    </>
+  );
 };
 
 export default Firstview;
