@@ -76,12 +76,13 @@ const Header: FC = () => {
                 lineHeight={2}
                 pl={14}
                 pt={24}
-                sx={{ a: { display: 'block' } }}
+                sx={{ a: { display: 'block', letterSpacing: 2 } }}
               >
                 <Link
                   as={NextLink}
                   href={'/'}
                   color={stlyeDrawerLinkColor('/')}
+                  onClick={onClose}
                 >
                   Top
                 </Link>
@@ -89,6 +90,7 @@ const Header: FC = () => {
                   as={NextLink}
                   href={'/about-us'}
                   color={stlyeDrawerLinkColor('/about-us')}
+                  onClick={onClose}
                 >
                   About us
                 </Link>
@@ -96,6 +98,7 @@ const Header: FC = () => {
                   as={NextLink}
                   href={`/awards?year=${moment().year()}`}
                   color={stlyeDrawerLinkColor('/awards')}
+                  onClick={onClose}
                 >
                   Awards
                 </Link>
@@ -103,6 +106,7 @@ const Header: FC = () => {
                   as={NextLink}
                   href={'/news'}
                   color={stlyeDrawerLinkColor('/news')}
+                  onClick={onClose}
                 >
                   News
                 </Link>
@@ -110,6 +114,7 @@ const Header: FC = () => {
                   as={NextLink}
                   href={'/join-us'}
                   color={stlyeDrawerLinkColor('/join-us')}
+                  onClick={onClose}
                 >
                   Join us
                 </Link>
