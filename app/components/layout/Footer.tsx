@@ -44,7 +44,6 @@ const Footer: FC = () => {
       bg={'gray.200'}
       gap={{ base: 8, md: 0 }}
     >
-      {/* pages, links */}
       <GridItem colSpan={{ base: 2, md: 1 }}>
         {/* pages */}
         <Stack textAlign={{ base: 'center', md: 'inherit' }} mb={10}>
@@ -77,14 +76,14 @@ const Footer: FC = () => {
             <Divider borderColor={'#000'} />
           </HStack>
           <HStack spacing={12} justifyContent={'center'}>
-            <VStack as={Link} href={'https://twitter.com/utmilc_2023'}>
-              <Icon as={BsInstagram} h={9} w={9} />
-              <Text>Instagram</Text>
-            </VStack>
             <VStack
               as={Link}
               href={'https://www.instagram.com/kokusai_law_2023/'}
             >
+              <Icon as={BsInstagram} h={9} w={9} />
+              <Text>Instagram</Text>
+            </VStack>
+            <VStack as={Link} href={'https://twitter.com/utmilc_2023'}>
               <Icon as={BsTwitter} h={9} w={9} />
               <Text>Twitter</Text>
             </VStack>
