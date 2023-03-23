@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { wpPrefix } from '../../wpPrefix';
+import { wpPrefix } from '../../../wpPrefix';
 
 export const GET = async () => {
   const res = await fetch(`${wpPrefix()}/pages?slug=welcome`);
