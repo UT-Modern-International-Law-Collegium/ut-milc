@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { AwardData } from '../../../lib/type/awardData';
-import { wpPrefix } from '../wpPrefix';
+import { AwardData } from '../../../../lib/type/awardData';
+import { wpPrefix } from '../../wpPrefix';
 
 type AwardRes = {
   id: number;
