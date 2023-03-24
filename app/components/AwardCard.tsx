@@ -13,15 +13,16 @@ const AwardCard: FC = () => {
       px={4}
       borderRadius={8}
       border={'solid'}
-      borderColor={'gray.300'}
+      borderColor={'gray.100'}
       position={'relative'}
+      boxShadow={'2xl'}
     >
       <Icon
         as={BsAward}
         position={'absolute'}
         top={-6}
         left={-8}
-        color={'yellow.300'}
+        color={'yellow.400'}
         opacity={0.6}
         w={{ base: 100, md: 140 }}
         h={{ base: 100, md: 140 }}

@@ -49,7 +49,11 @@ const Navigation: FC = () => {
       >
         Awards
       </Link>
-      <Link as={NextLink} color={stlyeLinkColor('/news')} href={'/news'}>
+      <Link
+        color={stlyeLinkColor('/news')}
+        href={'https://note.com/utmilc'}
+        isExternal
+      >
         News
       </Link>
       <Link as={NextLink} color={stlyeLinkColor('/join-us')} href={'/join-us'}>

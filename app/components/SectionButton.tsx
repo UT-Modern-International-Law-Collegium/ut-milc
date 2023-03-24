@@ -2,29 +2,47 @@
 
 import { FC } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import { Button, ButtonProps, Center, Icon } from '@chakra-ui/react';
+import { Button, HStack, Icon, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 type Props = {
   children: React.ReactNode;
+  onClick?: any;
+  isExternal?: boolean;
+  href?: string;
 };
 
-const SectionButton: FC<Props & ButtonProps> = ({ children, ...rest }) => (
-  <Center>
-    <Button
-      transition={{ md: '0.2s' }}
-      rightIcon={
-        <Icon as={BsArrowRight} w={6} h={6} transition={{ md: '0.2s' }} />
-      }
-      pl={6}
-      bg={'none'}
-      fontWeight={'normal'}
+const SectionButton: FC<Props> = ({ children, onClick, isExternal, href }) =>
+  isExternal ? (
+    <LinkBox
+      as={Button}
+      my={14}
+      borderRadius={40}
+      bg={'teal.500'}
       fontSize={18}
-      textDecoration={'underline'}
-      borderRadius={'none'}
-      {...rest}
+      px={8}
+      py={6}
+      color={'#fff'}
+    >
+      <HStack>
+        <LinkOverlay href={href} isExternal>
+          {children}
+        </LinkOverlay>
+        <Icon as={BsArrowRight} />
+      </HStack>
+    </LinkBox>
+  ) : (
+    <Button
+      rightIcon={<Icon as={BsArrowRight} />}
+      my={14}
+      borderRadius={40}
+      bg={'teal.500'}
+      fontSize={18}
+      px={8}
+      py={6}
+      color={'#fff'}
+      onClick={onClick}
     >
       {children}
     </Button>
-  </Center>
-);
+  );
 export default SectionButton;

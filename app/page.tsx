@@ -1,14 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
-import NextLink from 'next/link';
-import {
-  BsArrowRight,
-  BsArrowRightShort,
-  BsCheckCircle,
-  BsFillCaretRightFill,
-} from 'react-icons/bs';
+import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
 import moment from 'moment';
 import {
   Heading,
@@ -20,181 +14,65 @@ import {
   HStack,
   Icon,
   Box,
-  LinkBox,
-  IconButton,
+  Divider,
 } from '@chakra-ui/react';
 
-import { prefix } from '../lib/prefix';
-import { TopData } from '../lib/type/topData';
 import AwardCard from './components/AwardCard';
 import Firstview from './components/FirstView';
 import SectionButton from './components/SectionButton';
-import { NewsData } from '../lib/type/newsData';
-import NewsCard from './(pages)/news/NewsCard';
 
 const Page = () => {
   const router = useRouter();
 
-  const [topData, setTopData] = useState<TopData>();
-  const [news, setNews] = useState<NewsData[]>([]);
-
-  useEffect(() => {
-    const f1 = async () => {
-      const res = await fetch(`${prefix()}/top`);
-      const data: { data: TopData } = await res.json();
-      setTopData(data.data);
-    };
-    f1();
-
-    const f2 = async () => {
-      const res = await fetch(`${prefix()}/news?count=5`);
-      const data: NewsData[] = await res.json();
-      setNews(data);
-    };
-    f2();
-  }, []);
-
-  if (!topData) {
-    return (
-      <Box
-        bg={'#092025'}
-        minH={'100vh'}
-        w={'100vw'}
-        position={'relative'}
-        zIndex={4}
-      />
-    );
-  }
-
   return (
-    <Stack spacing={{ base: 12, md: 4 }}>
+    <Box>
       <Firstview />
-      <Stack
-        position={{ base: 'static', md: 'relative' }}
-        spacing={{ base: 12, md: 140 }}
-        pt={{ base: 0, md: 20 }}
-        pb={{ base: 16, md: 20 }}
-        px={{ base: 5, md: 0, lg: 82, xl: 200 }}
-        sx={{ h2: { fontFamily: 'serif', letterSpacing: 2 } }}
-      >
-        {/* about */}
-        <Stack
-          spacing={{ base: 0, md: 20 }}
-          direction={{ base: 'column', md: 'row' }}
-        >
-          <Stack
-            position={{ base: 'static', md: 'relative' }}
-            spacing={{ base: 2, md: 8 }}
-          >
-            <Heading size={'2xl'}>About us</Heading>
-            <Text
-              fontSize={18}
-              lineHeight={2}
-              pl={{ md: 5 }}
-              borderLeft={{ md: '1px solid #ccc' }}
-              dangerouslySetInnerHTML={{ __html: topData?.aboutUs }}
-            />
-            <SectionButton
-              position={{ base: 'static' }}
-              bottom={{ md: 0 }}
-              onClick={() => router.push('/about-us')}
-            >
-              団体紹介はこちら
-            </SectionButton>
-          </Stack>
-        </Stack>
-        {/* awards */}
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          justifyContent={{ base: 'center', md: 'space-between' }}
-          spacing={{ base: 4, md: 20 }}
-        >
-          <Stack
-            w={{ base: '100%', md: '40%' }}
-            spacing={{ base: 2, md: 8 }}
-            position={'relative'}
-          >
-            <Heading
-              fontFamily={'serif'}
-              letterSpacing={2}
-              size={'2xl'}
-              textAlign={{ base: 'inherit' }}
-            >
-              Awards
-            </Heading>
-            <Text
-              fontSize={18}
-              lineHeight={2}
-              pl={{ md: 5 }}
-              borderLeft={{ md: '1px solid #ccc' }}
-              dangerouslySetInnerHTML={{ __html: topData?.awards }}
-            />
-            {/* PC */}
-            <SectionButton
-              position={'absolute'}
-              display={{ base: 'none', md: 'flex' }}
-              bottom={{ md: 0 }}
-              onClick={() => router.push(`/awards/${moment().year()}`)}
-            >
-              全ての成績を見る
-            </SectionButton>
-          </Stack>
-          <AwardCard />
-          {/* mobile */}
-          <SectionButton
-            display={{ base: 'flex', md: 'none' }}
-            onClick={() => router.push(`/awards/${moment().year()}`)}
-          >
-            全ての成績を見る
+      <Box w={{ base: '90%', md: '60%' }} mx={'auto'}>
+        {/* about us */}
+        <Box textAlign={'center'} pt={20}>
+          <Heading size={'2xl'} fontFamily={'serif'}>
+            About us
+          </Heading>
+          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
+          <Text lineHeight={2} fontSize={18}>
+            東京大学現代国際法研究会は、筒井若水先生（東京大学名誉教授）が開講されていた「昭和43年度筒井ゼミナール」を前身とし、50年以上の歴史を持つサークルです。
+          </Text>
+          <SectionButton onClick={() => router.push('/about-us')}>
+            団体紹介はこちら
           </SectionButton>
-        </Stack>
+        </Box>
+        {/* awards */}
+        <Box textAlign={'center'} pt={20}>
+          <Heading size={'2xl'} fontFamily={'serif'}>
+            Awards
+          </Heading>
+          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
+          <Text lineHeight={2} fontSize={18}>
+            現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
+          </Text>
+          <Center mt={14}>
+            <AwardCard />
+          </Center>
+          <SectionButton
+            onClick={() => router.push(`/awards?year=${moment().year()}`)}
+          >
+            活動実績はこちら
+          </SectionButton>
+        </Box>
         {/* news */}
-        <Stack spacing={{ base: 0, md: 8 }}>
-          <Heading fontFamily={'serif'} letterSpacing={2} size={'2xl'}>
+        <Box textAlign={'center'} pt={20}>
+          <Heading size={'2xl'} fontFamily={'serif'}>
             News
           </Heading>
-          <HStack
-            spacing={{ md: 8 }}
-            overflowX={{ base: 'scroll', md: 'unset' }}
-          >
-            {news.map((item: NewsData, index) => {
-              if (index > 2) return;
-              return (
-                <NewsCard
-                  key={item.id}
-                  item={item}
-                  maxW={{ base: 'unset', md: '30%' }}
-                />
-              );
-            })}
-            {/* PC */}
-            <LinkBox
-              as={VStack}
-              display={{ base: 'none', md: 'block' }}
-              minW={{ md: 'unset', lg: 100 }}
-              _hover={{ textDecoration: 'underline' }}
-            >
-              <NextLink href={'/news'}>
-                <Icon as={BsFillCaretRightFill} h={6} w={6} />
-              </NextLink>
-              <Text
-                display={{ md: 'none', lg: 'block' }}
-                _hover={{ cursor: 'pointer' }}
-              >
-                全て見る
-              </Text>
-            </LinkBox>
-            {/* mobile */}
-            <IconButton
-              display={{ base: 'block', md: 'none' }}
-              aria-label="news"
-              icon={<Icon as={BsArrowRightShort} h={10} w={10} />}
-              bg={'none'}
-              onClick={() => router.push('/news')}
-            />
-          </HStack>
-        </Stack>
-      </Stack>
+          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
+          <Text lineHeight={2} fontSize={18}>
+            現代国際法研究会は、note.comを利用した情報発信を行なっております。
+          </Text>
+          <SectionButton isExternal={true} href={'https://note.com/utmilc'}>
+            noteはこちら
+          </SectionButton>
+        </Box>
+      </Box>
       <Stack
         bg={'#092025'}
         position={'relative'}
@@ -225,15 +103,14 @@ const Page = () => {
               Join us
             </Heading>
           </HStack>
-          {topData && (
-            <Text
-              fontSize={18}
-              color={'#fff'}
-              w={{ base: '80%', md: '40%' }}
-              textAlign={'center'}
-              dangerouslySetInnerHTML={{ __html: topData?.joinUs }}
-            />
-          )}
+          <Text
+            fontSize={18}
+            color={'#fff'}
+            w={{ base: '80%', md: '40%' }}
+            textAlign={'center'}
+          >
+            現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
+          </Text>
           <Center>
             <Button
               bg={'teal.200'}
@@ -249,7 +126,7 @@ const Page = () => {
           </Center>
         </VStack>
       </Stack>
-    </Stack>
+    </Box>
   );
 };
 
