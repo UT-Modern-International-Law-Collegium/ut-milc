@@ -42,7 +42,7 @@ const Page = () => {
           </SectionButton>
         </Box>
         {/* awards */}
-        <Box textAlign={'center'} py={20}>
+        <Box textAlign={'center'} pt={20}>
           <Heading size={'2xl'} fontFamily={'serif'}>
             Awards
           </Heading>
@@ -60,7 +60,7 @@ const Page = () => {
           </SectionButton>
         </Box>
         {/* news */}
-        <Box textAlign={'center'} py={20}>
+        <Box textAlign={'center'} pt={20}>
           <Heading size={'2xl'} fontFamily={'serif'}>
             News
           </Heading>
