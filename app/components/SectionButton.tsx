@@ -17,12 +17,11 @@ const SectionButton: FC<Props> = ({ children, onClick, isExternal, href }) =>
       as={Button}
       my={14}
       borderRadius={40}
-      bg={'teal.400'}
+      bg={'teal.500'}
       fontSize={18}
       px={8}
       py={6}
       color={'#fff'}
-      fontWeight={'normal'}
     >
       <HStack>
         <LinkOverlay href={href} isExternal>
@@ -36,12 +35,11 @@ const SectionButton: FC<Props> = ({ children, onClick, isExternal, href }) =>
       rightIcon={<Icon as={BsArrowRight} />}
       my={14}
       borderRadius={40}
-      bg={'teal.400'}
+      bg={'teal.500'}
       fontSize={18}
       px={8}
       py={6}
       color={'#fff'}
-      fontWeight={'normal'}
       onClick={onClick}
     >
       {children}
