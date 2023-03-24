@@ -61,7 +61,7 @@ const Footer: FC = () => {
           <Link as={NextLink} href={`/awards?year=${moment().year()}`}>
             Awards
           </Link>
-          <Link as={NextLink} href={'/news'}>
+          <Link href={'https://note.com/utmilc'} isExternal>
             News
           </Link>
           <Link as={NextLink} href={'/join-us'}>
@@ -78,16 +78,21 @@ const Footer: FC = () => {
           <HStack spacing={12} justifyContent={'center'}>
             <VStack
               as={Link}
+              isExternal
               href={'https://www.instagram.com/kokusai_law_2023/'}
             >
               <Icon as={BsInstagram} h={9} w={9} />
               <Text>Instagram</Text>
             </VStack>
-            <VStack as={Link} href={'https://twitter.com/utmilc_2023'}>
+            <VStack
+              as={Link}
+              isExternal
+              href={'https://twitter.com/utmilc_2023'}
+            >
               <Icon as={BsTwitter} h={9} w={9} />
               <Text>Twitter</Text>
             </VStack>
-            <VStack as={Link} href={'https://lin.ee/gwVPQY5'}>
+            <VStack as={Link} isExternal href={'https://lin.ee/gwVPQY5'}>
               <Icon as={BsLine} h={9} w={9} />
               <Text>Line</Text>
             </VStack>
