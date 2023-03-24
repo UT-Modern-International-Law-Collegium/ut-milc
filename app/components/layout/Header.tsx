@@ -103,8 +103,8 @@ const Header: FC = () => {
                   Awards
                 </Link>
                 <Link
-                  as={NextLink}
-                  href={'/news'}
+                  href={'https://note.com/utmilc'}
+                  isExternal
                   color={stlyeDrawerLinkColor('/news')}
                   onClick={onClose}
                 >

@@ -61,7 +61,7 @@ const Footer: FC = () => {
           <Link as={NextLink} href={`/awards?year=${moment().year()}`}>
             Awards
           </Link>
-          <Link as={NextLink} href={'/news'}>
+          <Link href={'https://note.com/utmilc'} isExternal>
             News
           </Link>
           <Link as={NextLink} href={'/join-us'}>
