@@ -27,7 +27,7 @@ const Page = () => {
   }
 
   return (
-    <Box w={{ lg: '64%' }} mx={'auto'} py={20}>
+    <Box w={{ lg: '64%' }} mx={'auto'} py={20} px={{ base: 5, lg: 0 }}>
       <Heading
         dangerouslySetInnerHTML={{ __html: welcome.title }}
         textAlign={'center'}

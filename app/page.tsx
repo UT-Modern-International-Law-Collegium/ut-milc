@@ -50,7 +50,7 @@ const Page = () => {
           <Text lineHeight={2} fontSize={18}>
             現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
           </Text>
-          <Center my={14}>
+          <Center mt={14}>
             <AwardCard />
           </Center>
           <SectionButton
