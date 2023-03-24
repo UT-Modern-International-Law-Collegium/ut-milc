@@ -13,15 +13,18 @@ type Props = {
 
 const SectionButton: FC<Props> = ({ children, onClick, isExternal, href }) =>
   isExternal ? (
-    <LinkBox as="button">
+    <LinkBox
+      as="button"
+      bg={'teal.400'}
+      fontSize={18}
+      my={14}
+      borderRadius={40}
+      px={8}
+      py={3}
+      color={'#fff'}
+    >
       <HStack>
-        <LinkOverlay
-          href={href}
-          isExternal
-          my={14}
-          borderRadius={0}
-          bg={'none'}
-        >
+        <LinkOverlay href={href} isExternal>
           {children}
         </LinkOverlay>
         <Icon as={BsArrowRight} />
@@ -29,10 +32,15 @@ const SectionButton: FC<Props> = ({ children, onClick, isExternal, href }) =>
     </LinkBox>
   ) : (
     <Button
-      my={14}
-      borderRadius={0}
-      bg={'none'}
       rightIcon={<Icon as={BsArrowRight} />}
+      my={14}
+      borderRadius={40}
+      bg={'teal.400'}
+      fontSize={18}
+      px={8}
+      py={6}
+      color={'#fff'}
+      fontWeight={'normal'}
       onClick={onClick}
     >
       {children}
