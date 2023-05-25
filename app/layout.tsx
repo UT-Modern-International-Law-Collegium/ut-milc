@@ -5,7 +5,7 @@ import './globals.css';
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Layout from './components/layout/Layout';
+import Layout from './_components/layout/Layout';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
