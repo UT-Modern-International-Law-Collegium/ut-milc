@@ -19,15 +19,14 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 
-import { prefix } from '../../lib/prefix';
-import { AboutUsData } from '../../lib/type/aboutUsData';
+import { AboutUsData } from '@/lib/type/aboutUsData';
 
 const Page = () => {
   const [aboutUsData, setAboutUsData] = useState<AboutUsData>();
 
   useEffect(() => {
     const f = async () => {
-      const res = await fetch(`${prefix()}/about-us`);
+      const res = await fetch(`/api/about-us`);
       const data: { data: AboutUsData } = await res.json();
       setAboutUsData(data.data);
     };
