@@ -1,133 +1,94 @@
-'use client';
-
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
 import moment from 'moment';
-import {
-  Heading,
-  Stack,
-  Text,
-  Button,
-  Center,
-  VStack,
-  HStack,
-  Icon,
-  Box,
-  Divider,
-} from '@chakra-ui/react';
 
 import AwardCard from './components/AwardCard';
 import Firstview from './components/FirstView';
-import SectionButton from './components/SectionButton';
 
-const Page = () => {
-  const router = useRouter();
+const dividerStyle =
+  'border-t w-1/6 border-gray-500 mx-auto my-4 md:my-6 md:w-1/12 lg:w-[4em]';
+const descriptionStyle =
+  'leading-loose text-lg text-center md:w-[60vw] md:mx-auto lg:w-[50vw]';
+const navigationButtonStyle =
+  'text-lg bg-teal-500 text-white px-8 py-2 rounded-full block w-fit mx-auto font-semibold my-10 hover:bg-opacity-75';
+const headingStyle = 'text-4xl font-serif font-medium text-center md:text-5xl';
 
-  return (
-    <Box>
-      <Firstview />
-      <Box w={{ base: '90%', md: '60%' }} mx={'auto'}>
-        {/* about us */}
-        <Box textAlign={'center'} pt={20}>
-          <Heading size={'2xl'} fontFamily={'serif'}>
-            About us
-          </Heading>
-          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
-          <Text lineHeight={2} fontSize={18}>
-            東京大学現代国際法研究会は、筒井若水先生（東京大学名誉教授）が開講されていた「昭和43年度筒井ゼミナール」を前身とし、50年以上の歴史を持つサークルです。
-          </Text>
-          <SectionButton onClick={() => router.push('/about-us')}>
-            団体紹介はこちら
-          </SectionButton>
-        </Box>
-        {/* awards */}
-        <Box textAlign={'center'} pt={20}>
-          <Heading size={'2xl'} fontFamily={'serif'}>
-            Awards
-          </Heading>
-          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
-          <Text lineHeight={2} fontSize={18}>
-            現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
-          </Text>
-          <Center mt={14}>
-            <AwardCard />
-          </Center>
-          <SectionButton
-            onClick={() => router.push(`/awards?year=${moment().year()}`)}
-          >
-            活動実績はこちら
-          </SectionButton>
-        </Box>
-        {/* news */}
-        <Box textAlign={'center'} pt={20}>
-          <Heading size={'2xl'} fontFamily={'serif'}>
-            News
-          </Heading>
-          <Divider borderColor={'gray.500'} w={'20%'} mx={'auto'} my={5} />
-          <Text lineHeight={2} fontSize={18}>
-            現代国際法研究会は、note.comを利用した情報発信を行なっております。
-          </Text>
-          <SectionButton isExternal={true} href={'https://note.com/utmilc'}>
-            noteはこちら
-          </SectionButton>
-        </Box>
-      </Box>
-      <Stack
-        bg={'#092025'}
-        position={'relative'}
-        h={{ base: 500, md: 700 }}
-        pt={{ base: 100, md: 200 }}
+const Page = () => (
+  <div>
+    <Firstview />
+    {/* about us */}
+    <div className="px-4 mt-12 lg:mt-20">
+      <h1 className={`${headingStyle}`}>About us</h1>
+      {/* divider */}
+      <div className={`${dividerStyle}`} />
+      <p className={`${descriptionStyle}`}>
+        東京大学現代国際法研究会は、筒井若水先生（東京大学名誉教授）が開講されていた「昭和43年度筒井ゼミナール」を前身とし、50年以上の歴史を持つサークルです。
+      </p>
+      <Link href="/about-us" className={`${navigationButtonStyle}`}>
+        団体紹介はこちら
+        <BsArrowRight className="inline-block" />
+      </Link>
+    </div>
+    {/* awards */}
+    <div className="mt-20 px-4 lg:mt-28">
+      <h1 className={`${headingStyle}`}>Awards</h1>
+      {/* divider */}
+      <div className={`${dividerStyle}`} />
+      <p className={`mb-8 ${descriptionStyle}`}>
+        現代国際法研究会は、国内外の大会に数多く参加し、多くの実績を残してきています。
+      </p>
+      <AwardCard />
+      <Link
+        href={`/awards?year=${moment().year()}`}
+        className={`${navigationButtonStyle}`}
       >
-        <Stack
-          position={'absolute'}
-          bg={'#fff'}
-          // NOTE: 親要素のbgが表示されないように、topをマイナスに指定している。
-          top={{ base: -0.4, md: -0.3 }}
-          left={0}
-          clipPath={'polygon(0 0, 50% 38%, 100% 0)'}
-          h={{ base: 100, md: 200 }}
-          w={'100%'}
-        />
-        {/* join us */}
-        <VStack spacing={12}>
-          <HStack spacing={6}>
-            <Icon as={BsCheckCircle} h={10} w={10} color={'#81E6D9'} />
-            <Heading
-              fontFamily={'serif'}
-              letterSpacing={2}
-              size={'2xl'}
-              textAlign={'center'}
-              color={'#fff'}
-            >
-              Join us
-            </Heading>
-          </HStack>
-          <Text
-            fontSize={18}
-            color={'#fff'}
-            w={{ base: '80%', md: '40%' }}
-            textAlign={'center'}
-          >
-            現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
-          </Text>
-          <Center>
-            <Button
-              bg={'teal.200'}
-              fontSize={18}
-              py={7}
-              pl={7}
-              pr={8}
-              rightIcon={<BsArrowRight />}
-              onClick={() => router.push('/join-us')}
-            >
-              入会のお申し込みはこちら
-            </Button>
-          </Center>
-        </VStack>
-      </Stack>
-    </Box>
-  );
-};
+        活動実績はこちら
+        <BsArrowRight className="inline-block" />
+      </Link>
+    </div>
+    {/* news */}
+    <div className="mt-20 px-4 lg:mt-28">
+      <h1 className={`${headingStyle}`}>News</h1>
+      {/* divider */}
+      <div className={`${dividerStyle}`} />
+      <p className={`${descriptionStyle}`}>
+        現代国際法研究会は、note.comを利用した情報発信を行なっております。
+      </p>
+      <a
+        href="https://note.com/utmilc"
+        target="_blank"
+        rel="noreferrer"
+        className={`${navigationButtonStyle}`}
+      >
+        noteはこちら
+        <BsArrowRight className="inline-block" />
+      </a>
+    </div>
+    {/* 背景色黒 */}
+    <div className="flex bg-night relative h-[500px] pt-[100px] justify-center">
+      {/* 白抜きの逆三角形 */}
+      <div className="absolute bg-white top-[-0.4px] left-0 h-[100px] w-screen clip-path" />
+      {/* join us */}
+      <div className="flex gap-12 flex-col items-center">
+        <div className="flex gap-4 items-center">
+          <BsCheckCircle className="h-10 w-10 text-[#81E6D9]" />
+          <h1 className={`${headingStyle} text-white tracking-wide`}>
+            Join us
+          </h1>
+        </div>
+        <p className={`text-white w-[80vw] ${descriptionStyle}`}>
+          現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
+        </p>
+        <Link
+          href="/join-us"
+          className="bg-teal-200 py-4 px-8 font-semibold rounded-md text-lg hover:bg-opacity-75"
+        >
+          入会のお申し込みはこちら
+          <BsArrowRight className="inline-block" />
+        </Link>
+      </div>
+    </div>
+  </div>
+);
 
 export default Page;

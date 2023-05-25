@@ -11,6 +11,7 @@ const AwardCard: FC = () => {
       spacing={{ base: 2, md: 4 }}
       py={{ base: 4, md: 8 }}
       px={4}
+      mx={'auto'}
       borderRadius={8}
       border={'solid'}
       borderColor={'gray.100'}
