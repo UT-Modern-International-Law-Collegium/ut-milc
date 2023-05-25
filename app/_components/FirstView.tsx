@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react';
 
 import Navigation from './layout/Navigation';
-import { prefix } from '../../lib/prefix';
 
 const Firstview: FC = () => {
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
@@ -22,7 +21,7 @@ const Firstview: FC = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await fetch(`${prefix()}/events/welcome`);
+      const res = await fetch(`/api/events/welcome`);
       if (res.status === 200) {
         setIsWelcomePageExisting(true);
       }
