@@ -1,5 +1,7 @@
 'use client';
 
+import './globals.css';
+
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
 
