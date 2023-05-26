@@ -12,9 +12,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { prefix } from '../../../lib/prefix';
-import { AwardData } from '../../../lib/type/awardData';
 import { YearNavigation } from './YearNavigation';
+import { AwardData } from '@/lib/type/awardData';
 
 type Props = {
   year: string;
@@ -39,7 +38,7 @@ export const Awards: FC<Props> = ({ year, years }) => {
     }
 
     const f = async () => {
-      const res = await fetch(`${prefix()}/awards?tag_id=${years[year].id}`);
+      const res = await fetch(`/api/awards?tag_id=${years[year].id}`);
       if (res.status === 404) {
         setAwards([]);
       }
