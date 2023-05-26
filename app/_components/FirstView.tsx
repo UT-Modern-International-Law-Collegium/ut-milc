@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import Navigation from './layout/Navigation';
+import Navigation from './_layout/Navigation';
 
 const Firstview: FC = () => {
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
