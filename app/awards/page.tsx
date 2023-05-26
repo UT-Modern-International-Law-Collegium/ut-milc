@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Center, Spinner } from '@chakra-ui/react';
 
-import { prefix } from '../../../lib/prefix';
 import { Awards } from './Awards';
 
 const Page = () => {
@@ -16,7 +15,7 @@ const Page = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await fetch(`${prefix()}/awards/years`);
+      const res = await fetch(`/api/awards/years`);
       const data: {
         data: {
           year: number;

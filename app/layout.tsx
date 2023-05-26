@@ -1,9 +1,11 @@
 'use client';
 
+import './globals.css';
+
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Layout from './components/layout/Layout';
+import Layout from './_components/_layout/Layout';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
