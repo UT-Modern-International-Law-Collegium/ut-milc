@@ -40,7 +40,7 @@ const AboutUs: AboutUsData = {
 };
 
 const Page = () => (
-  <div className="w-full md:w-[60vw] mx-auto md:py-24">
+  <div className="w-11/12 md:w-[60vw] mx-auto md:py-24 py-20">
     <PageTitle>団体紹介</PageTitle>
     {AboutUs.sections.map((section, index) => (
       <div key={index} className="w-full my-10">
@@ -48,7 +48,7 @@ const Page = () => (
           <BsFillSquareFill className="text-[#4A5568]" />
           <h2 className="text-2xl font-semibold">{section.title}</h2>
         </div>
-        <p className="text-lg leading-loose md:border-l md:border-gray-300 md:pl-5 md:my-4">
+        <p className="text-lg leading-loose md:border-l md:border-gray-300 md:pl-5 my-4">
           {section.content}
         </p>
       </div>
