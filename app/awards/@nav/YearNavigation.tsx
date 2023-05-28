@@ -36,7 +36,7 @@ export const YearNavigation: FC<Props> = ({ years, year }) => {
         } overflow-hidden`}
       >
         {years.map((_year: number) => (
-          <li key={_year} className="md:mb-2">
+          <li key={_year} className="md:mb-2 md:break-keep">
             <Link
               href={`/awards?year=${_year}`}
               onClick={() => setIsAccordionOpen(!isAccordionOpen)}

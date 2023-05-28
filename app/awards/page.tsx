@@ -24,11 +24,16 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
       <h2 className="text-xl font-semibold my-4 md:mt-0 md:text-2xl">
         {year}年度
       </h2>
+      {/* divider */}
+      <div className="hidden md:block border-t my-2 border-gray-300" />
       {awards.length === 0 ? (
         <p>当該年度の活動実績はありません。</p>
       ) : (
         awards.map((award) => (
-          <div key={award.id} className="border p-4 rounded-md my-4">
+          <div
+            key={award.id}
+            className="border p-4 rounded-md my-4 md:border-gray-300"
+          >
             <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
             <p dangerouslySetInnerHTML={{ __html: award.content }} />
           </div>
