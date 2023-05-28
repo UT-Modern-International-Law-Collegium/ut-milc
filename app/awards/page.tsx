@@ -21,7 +21,7 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
 
   return (
     <div className="md:w-5/6 lg:w-10/12">
-      <h2 className="text-xl font-semibold my-4 md:mt-0 md:text-2xl">
+      <h2 className="text-xl font-semibold my-2 md:my-4 md:mt-0 md:text-2xl">
         {year}年度
       </h2>
       {/* divider */}

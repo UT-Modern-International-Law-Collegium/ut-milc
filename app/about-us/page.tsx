@@ -41,7 +41,7 @@ const Page = () => (
   <div className={`${pageWrapperStyle}`}>
     <PageTitle>団体紹介</PageTitle>
     {AboutUs.sections.map((section, index) => (
-      <div key={index} className="w-full my-10">
+      <div key={index} className="w-full">
         <div className="flex items-center gap-2">
           <BsFillSquareFill className="text-[#4A5568]" />
           <h2 className="text-2xl font-semibold">{section.title}</h2>
