@@ -1,30 +1,20 @@
-import { nextPrefix } from '@/lib/nextPrefix';
 import { Awards } from './Awards';
+import { fetchYears } from './fetchYears';
 
-const fetchYears = async () => {
-  const res = await fetch(`${nextPrefix()}/awards/years`);
-  const data: {
-    data: {
-      year: number;
-      id: number;
-    }[];
-  } = await res.json();
+const fetchData = async ({ year }: { year: string }) => {
+  const years = await fetchYears();
 
-  let years: { [key: string]: { id: number } } = {};
-  data.data.forEach((item) => {
-    years[item.year] = { id: item.id };
-  });
+  const yearID = years.find((item) => item.year === Number(year))?.id ?? null;
 
-  return years;
+  return yearID;
 };
 
 const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
   const { year } = searchParams;
+  const yearID = await fetchData({ year });
 
-  const years = await fetchYears();
-
-  // @ts-ignore
-  return <Awards year={year} years={years} />;
+  /* @ts-expect-error Server Component */
+  return <Awards yearID={yearID} />;
 };
 
 export default Page;
