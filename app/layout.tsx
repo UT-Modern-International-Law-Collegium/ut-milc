@@ -5,7 +5,8 @@ import './globals.css';
 import { DefaultSeo } from 'next-seo';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Layout from './_components/_layout/Layout';
+import Header from './_components/_layout/Header';
+import Footer from './_components/_layout/Footer';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -64,7 +65,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
         <ChakraProvider>
-          <Layout>{children}</Layout>
+          <Header />
+          <div className="min-h-screen">{children}</div>
+          <Footer />
         </ChakraProvider>
       </body>
     </html>
