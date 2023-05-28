@@ -20,8 +20,10 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
   const awards: AwardData[] = await fetchData({ year });
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold my-4">{year}年度</h2>
+    <div className="md:w-5/6 lg:w-10/12">
+      <h2 className="text-xl font-semibold my-4 md:mt-0 md:text-2xl">
+        {year}年度
+      </h2>
       {awards.length === 0 ? (
         <p>当該年度の活動実績はありません。</p>
       ) : (

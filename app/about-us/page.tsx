@@ -37,7 +37,7 @@ const AboutUs: AboutUsData = {
 };
 
 const Page = () => (
-  <div className="w-11/12 md:w-[60vw] mx-auto md:py-24 py-20">
+  <div className="w-11/12 md:w-[80vw] lg:w-[60vw] mx-auto md:py-24 py-20">
     <PageTitle>団体紹介</PageTitle>
     {AboutUs.sections.map((section, index) => (
       <div key={index} className="w-full my-10">
