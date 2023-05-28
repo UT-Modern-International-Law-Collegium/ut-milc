@@ -26,7 +26,7 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
         <p>当該年度の活動実績はありません。</p>
       ) : (
         awards.map((award) => (
-          <div key={award.id} className="border p-4 rounded-md">
+          <div key={award.id} className="border p-4 rounded-md my-4">
             <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
             <p dangerouslySetInnerHTML={{ __html: award.content }} />
           </div>
