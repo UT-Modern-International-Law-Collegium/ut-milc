@@ -8,7 +8,7 @@ const AwardsLayout = ({
   nav: ReactNode;
 }) => {
   return (
-    <div>
+    <div className="py-20 w-[94vw] mx-auto">
       {nav}
       {children}
     </div>

@@ -1,5 +1,5 @@
-import moment from 'moment';
 import Link from 'next/link';
+import moment from 'moment';
 
 import { fetchYears } from '../fetchYears';
 
@@ -26,7 +26,13 @@ const Page = async ({
   return (
     <div className="">
       {years.map((_year: number) => (
-        <Link key={_year} href={`/awards?year=${_year}`}>
+        <Link
+          key={_year}
+          href={`/awards?year=${_year}`}
+          className={`block ${
+            _year === Number(year) ? 'font-semibold text-teal-500' : ''
+          }`}
+        >
           {_year}年度
         </Link>
       ))}
