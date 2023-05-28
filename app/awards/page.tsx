@@ -21,11 +21,16 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
 
   return (
     <div>
-      <h2>{year}年度</h2>
+      <h2 className="text-xl font-semibold my-4">{year}年度</h2>
       {awards.length === 0 ? (
         <p>当該年度の活動実績はありません。</p>
       ) : (
-        <div></div>
+        awards.map((award) => (
+          <div key={award.id} className="border p-4 rounded-md">
+            <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
+            <p dangerouslySetInnerHTML={{ __html: award.content }} />
+          </div>
+        ))
       )}
     </div>
   );

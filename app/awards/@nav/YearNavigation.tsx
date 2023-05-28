@@ -27,7 +27,7 @@ export const YearNavigation: FC<Props> = ({ years, year }) => {
         />
       </button>
       {/* divider */}
-      <div className="border-t w-full border-gray-300 mx-auto my-2" />
+      <div className="border-t w-full border-gray-300 mx-auto mt-2 mb-3" />
       <ul
         className={`${
           isAccordionOpen
@@ -36,7 +36,7 @@ export const YearNavigation: FC<Props> = ({ years, year }) => {
         } overflow-hidden`}
       >
         {years.map((_year: number) => (
-          <li key={_year} className="">
+          <li key={_year}>
             <Link
               href={`/awards?year=${_year}`}
               onClick={() => setIsAccordionOpen(!isAccordionOpen)}
@@ -48,6 +48,8 @@ export const YearNavigation: FC<Props> = ({ years, year }) => {
             </Link>
           </li>
         ))}
+        {/* divider */}
+        <div className="border-t w-full border-gray-300 mx-auto mt-3 mb-2" />
       </ul>
     </div>
   );
