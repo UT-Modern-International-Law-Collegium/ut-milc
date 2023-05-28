@@ -2,6 +2,7 @@ import { BsFillSquareFill } from 'react-icons/bs';
 
 import { AboutUsData } from '@/lib/type/aboutUsData';
 import { PageTitle } from '../_components/PageTItle';
+import { pageWrapperStyle } from '@/constants/tailwind/pageWrapperStyle';
 
 const AboutUs: AboutUsData = {
   sections: [
@@ -37,7 +38,7 @@ const AboutUs: AboutUsData = {
 };
 
 const Page = () => (
-  <div className="w-11/12 md:w-[80vw] lg:w-[60vw] mx-auto md:py-24 py-20">
+  <div className={`${pageWrapperStyle}`}>
     <PageTitle>団体紹介</PageTitle>
     {AboutUs.sections.map((section, index) => (
       <div key={index} className="w-full my-10">
