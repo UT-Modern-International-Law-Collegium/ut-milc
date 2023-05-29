@@ -1,5 +1,6 @@
 import { nextPrefix } from '@/lib/nextPrefix';
 import { AwardData } from '@/lib/type/awardData';
+import { InnerHTML } from '../_components/InnerHTML';
 import { fetchYears } from './fetchYears';
 
 const fetchData = async ({ year }: { year: string }) => {
@@ -35,7 +36,7 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
             className="border p-4 rounded-md my-4 md:border-gray-300"
           >
             <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
-            <p dangerouslySetInnerHTML={{ __html: award.content }} />
+            <InnerHTML content={award.content} />
           </div>
         ))
       )}
