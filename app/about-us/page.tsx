@@ -1,7 +1,4 @@
-'use client';
-
 import { BsFillSquareFill } from 'react-icons/bs';
-import { Table, TableContainer, Tbody, Td, Th, Tr } from '@chakra-ui/react';
 
 import { AboutUsData } from '@/lib/type/aboutUsData';
 import { PageTitle } from '../_components/PageTItle';
@@ -40,10 +37,10 @@ const AboutUs: AboutUsData = {
 };
 
 const Page = () => (
-  <div className="w-11/12 md:w-[60vw] mx-auto md:py-24 py-20">
+  <div className="w-11/12 md:w-[88vw] lg:w-[68vw] mx-auto md:py-24 py-20">
     <PageTitle>団体紹介</PageTitle>
     {AboutUs.sections.map((section, index) => (
-      <div key={index} className="w-full my-10">
+      <div key={index} className="w-full">
         <div className="flex items-center gap-2">
           <BsFillSquareFill className="text-[#4A5568]" />
           <h2 className="text-2xl font-semibold">{section.title}</h2>
@@ -58,29 +55,20 @@ const Page = () => (
       <BsFillSquareFill className="text-[#4A5568]" />
       <h2 className="text-2xl font-semibold">2023年度役員紹介</h2>
     </div>
-    <TableContainer w={{ base: 'none', md: '80%', lg: '50%' }} mt={{ base: 5 }}>
-      <Table>
-        <Tbody>
-          {AboutUs.members.map((member: string[], index: number) => (
-            <Tr key={index}>
-              <Th
-                p={3}
-                fontSize={18}
-                color={'#000'}
-                bg={'gray.50'}
-                borderColor={'#fff'}
-                borderWidth={4}
-              >
-                {member[0]}
-              </Th>
-              <Td fontSize={18} p={3}>
-                {member[1]}
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </TableContainer>
+    <table className="w-full mt-4">
+      <tbody>
+        {AboutUs.members.map((member: string[], index: number) => (
+          <tr key={index}>
+            <th className="bg-gray-50 text-lg py-2 pl-2 text-left border-b border-white border-4">
+              {member[0]}
+            </th>
+            <td className="text-lg py-2 pl-2 border-b border-gray-100">
+              {member[1]}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 );
 

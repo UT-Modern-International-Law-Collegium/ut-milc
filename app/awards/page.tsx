@@ -1,48 +1,47 @@
-'use client';
+import { nextPrefix } from '@/lib/nextPrefix';
+import { AwardData } from '@/lib/type/awardData';
+import { InnerHTML } from '../_components/InnerHTML';
+import { fetchYears } from './fetchYears';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Center, Spinner } from '@chakra-ui/react';
+const fetchData = async ({ year }: { year: string }) => {
+  const years = await fetchYears();
+  const yearID = years.find((item) => item.year === Number(year))?.id ?? null;
 
-import { Awards } from './Awards';
-
-const Page = () => {
-  const searchParams = useSearchParams();
-
-  const year = searchParams?.get('year');
-
-  const [years, setYears] = useState<{ [key: string]: { id: number } }>();
-
-  useEffect(() => {
-    const f = async () => {
-      const res = await fetch(`/api/awards/years`);
-      const data: {
-        data: {
-          year: number;
-          id: number;
-        }[];
-      } = await res.json();
-
-      let years: { [key: string]: { id: number } } = {};
-      data.data.forEach((item) => {
-        years[item.year] = { id: item.id };
-      });
-
-      setYears(years);
-    };
-    f();
-  }, []);
-
-  if (!years) {
-    return (
-      <Center minH={'100vh'}>
-        <Spinner color="teal" h={24} w={24} />
-      </Center>
-    );
+  try {
+    const res = await fetch(`${nextPrefix()}/awards?tag_id=${yearID}`);
+    const data = await res.json();
+    return data.data;
+  } catch (_) {
+    return [];
   }
+};
 
-  // @ts-ignore
-  return <Awards year={year} years={years} />;
+const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
+  const { year } = searchParams;
+  const awards: AwardData[] = await fetchData({ year });
+
+  return (
+    <div className="md:w-5/6 lg:w-10/12">
+      <h2 className="text-xl font-semibold my-2 md:my-4 md:mt-0 md:text-2xl">
+        {year}年度
+      </h2>
+      {/* divider */}
+      <div className="hidden md:block border-t my-2 border-gray-300" />
+      {awards.length === 0 ? (
+        <p>当該年度の活動実績はありません。</p>
+      ) : (
+        awards.map((award) => (
+          <div
+            key={award.id}
+            className="border p-4 rounded-md my-4 md:border-gray-300"
+          >
+            <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
+            <InnerHTML content={award.content} />
+          </div>
+        ))
+      )}
+    </div>
+  );
 };
 
 export default Page;
