@@ -17,6 +17,7 @@ import {
   useDisclosure,
   Icon,
   Link,
+  ChakraProvider,
 } from '@chakra-ui/react';
 
 const Header: FC = () => {
@@ -45,7 +46,7 @@ const Header: FC = () => {
   };
 
   return (
-    <>
+    <ChakraProvider>
       {/* mobile */}
       <Box display={{ base: 'block', md: 'none' }}>
         <Stack
@@ -175,7 +176,7 @@ const Header: FC = () => {
           </HStack>
         </HStack>
       </Box>
-    </>
+    </ChakraProvider>
   );
 };
 
