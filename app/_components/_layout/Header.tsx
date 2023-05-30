@@ -1,7 +1,7 @@
 'use client';
 
 import React, { FC } from 'react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import moment from 'moment';
 import { RiMenu3Fill } from 'react-icons/ri';
@@ -16,7 +16,6 @@ import {
   Stack,
   useDisclosure,
   Icon,
-  Link,
   ChakraProvider,
 } from '@chakra-ui/react';
 
@@ -30,9 +29,9 @@ const styleHeaderLinkColor = ({
   currentPath: string;
 }) => {
   if (currentPath === path) {
-    return 'rgb(0, 255, 177, 1)';
+    return '#00ffb1';
   } else {
-    return 'rgb(0,0,0,1)';
+    return '#000000';
   }
 };
 
@@ -47,6 +46,28 @@ const stlyeDrawerLinkColor = ({
     return '#00FFB1';
   } else {
     return '#fff';
+  }
+};
+
+const linkStyle = ({
+  isMobile,
+  pathname,
+  currentPath,
+}: {
+  isMobile: boolean;
+  pathname: Pathname;
+  currentPath: string;
+}) => {
+  if (isMobile) {
+    return `text-[${stlyeDrawerLinkColor({
+      path: pathname,
+      currentPath,
+    })}] block leading-loose`;
+  } else {
+    return `text-[${styleHeaderLinkColor({
+      path: pathname,
+      currentPath,
+    })}] text-xl font-serif leading-loose`;
   }
 };
 
@@ -87,59 +108,59 @@ const Header: FC = () => {
                 lineHeight={2}
                 pl={14}
                 pt={24}
-                sx={{ a: { display: 'block', letterSpacing: 2 } }}
               >
                 <Link
-                  as={NextLink}
                   href={'/'}
-                  color={stlyeDrawerLinkColor({
-                    path: '/',
+                  className={`${linkStyle({
+                    isMobile: true,
+                    pathname: '/',
                     currentPath: pathname,
-                  })}
+                  })}]`}
                   onClick={onClose}
                 >
                   Top
                 </Link>
                 <Link
-                  as={NextLink}
                   href={'/about-us'}
-                  color={stlyeDrawerLinkColor({
-                    path: '/about-us',
+                  className={`${linkStyle({
+                    isMobile: true,
+                    pathname: '/about-us',
                     currentPath: pathname,
-                  })}
+                  })}]`}
                   onClick={onClose}
                 >
                   About us
                 </Link>
                 <Link
-                  as={NextLink}
                   href={`/awards?year=${moment().year()}`}
-                  color={stlyeDrawerLinkColor({
-                    path: '/awards',
+                  className={`${linkStyle({
+                    isMobile: true,
+                    pathname: '/awards',
                     currentPath: pathname,
-                  })}
+                  })}]`}
                   onClick={onClose}
                 >
                   Awards
                 </Link>
-                <Link
+                <a
                   href={'https://note.com/utmilc'}
-                  isExternal
-                  color={stlyeDrawerLinkColor({
-                    path: '/news',
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${linkStyle({
+                    isMobile: true,
+                    pathname: '/news',
                     currentPath: pathname,
-                  })}
-                  onClick={onClose}
+                  })}]`}
                 >
                   News
-                </Link>
+                </a>
                 <Link
-                  as={NextLink}
                   href={'/join-us'}
-                  color={stlyeDrawerLinkColor({
-                    path: '/join-us',
+                  className={`${linkStyle({
+                    isMobile: true,
+                    pathname: '/join-us',
                     currentPath: pathname,
-                  })}
+                  })}]`}
                   onClick={onClose}
                 >
                   Join us
@@ -160,57 +181,56 @@ const Header: FC = () => {
           justifyContent={'right'}
           px={100}
         >
-          <HStack
-            spacing={8}
-            fontSize={20}
-            fontFamily={'serif'}
-            fontWeight={600}
-            letterSpacing={1.8}
-          >
+          <HStack spacing={8}>
             <Link
-              as={NextLink}
               href={'/'}
-              color={styleHeaderLinkColor({ path: '/', currentPath: pathname })}
+              className={`${linkStyle({
+                isMobile: false,
+                pathname: '/',
+                currentPath: pathname,
+              })}]`}
             >
               Top
             </Link>
             <Link
-              as={NextLink}
               href={'/about-us'}
-              color={styleHeaderLinkColor({
-                path: '/about-us',
+              className={`${linkStyle({
+                isMobile: false,
+                pathname: '/about-us',
                 currentPath: pathname,
-              })}
+              })}]`}
             >
               About us
             </Link>
             <Link
-              as={NextLink}
               href={`/awards?year=${moment().year()}`}
-              color={styleHeaderLinkColor({
-                path: '/awards',
+              className={`${linkStyle({
+                isMobile: false,
+                pathname: '/awards',
                 currentPath: pathname,
-              })}
+              })}]`}
             >
               Awards
             </Link>
-            <Link
+            <a
               href={'https://note.com/utmilc'}
-              isExternal
-              color={styleHeaderLinkColor({
-                path: '/news',
+              target="_blank"
+              rel="noreferrer"
+              className={`${linkStyle({
+                isMobile: false,
+                pathname: '/news',
                 currentPath: pathname,
-              })}
+              })}]`}
             >
               News
-            </Link>
+            </a>
             <Link
-              as={NextLink}
               href={'/join-us'}
-              color={styleHeaderLinkColor({
-                path: '/join-us',
+              className={`${linkStyle({
+                isMobile: false,
+                pathname: '/join-us',
                 currentPath: pathname,
-              })}
+              })}]`}
             >
               Join us
             </Link>
