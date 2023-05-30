@@ -2,10 +2,17 @@
 
 import { FC } from 'react';
 import { BsAward } from 'react-icons/bs';
-import { Heading, Text, VStack, HStack, Icon } from '@chakra-ui/react';
+import {
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  Icon,
+  ChakraProvider,
+} from '@chakra-ui/react';
 
-const AwardCard: FC = () => {
-  return (
+const AwardCard: FC = () => (
+  <ChakraProvider>
     <VStack
       w={{ base: 'none', md: '60%' }}
       spacing={{ base: 2, md: 4 }}
@@ -48,7 +55,7 @@ const AwardCard: FC = () => {
         </Text>
       </HStack>
     </VStack>
-  );
-};
+  </ChakraProvider>
+);
 
 export default AwardCard;
