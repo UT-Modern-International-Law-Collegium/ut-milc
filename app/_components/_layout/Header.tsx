@@ -20,30 +20,40 @@ import {
   ChakraProvider,
 } from '@chakra-ui/react';
 
+import { Pathname } from '@/lib/type/utils';
+
+const styleHeaderLinkColor = ({
+  path,
+  currentPath,
+}: {
+  path: Pathname;
+  currentPath: string;
+}) => {
+  if (currentPath === path) {
+    return 'rgb(0, 255, 177, 1)';
+  } else {
+    return 'rgb(0,0,0,1)';
+  }
+};
+
+const stlyeDrawerLinkColor = ({
+  path,
+  currentPath,
+}: {
+  path: Pathname;
+  currentPath: string;
+}): string => {
+  if (currentPath === path) {
+    return '#00FFB1';
+  } else {
+    return '#fff';
+  }
+};
+
 const Header: FC = () => {
   const pathname = usePathname();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const styleHeaderLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
-  ): string => {
-    if (pathname === path) {
-      return 'rgb(0, 255, 177, 1)';
-    } else {
-      return 'rgb(0,0,0,1)';
-    }
-  };
-
-  const stlyeDrawerLinkColor = (
-    path: '/' | '/about-us' | '/news' | '/join-us' | '/awards'
-  ): string => {
-    if (pathname === path) {
-      return '#00FFB1';
-    } else {
-      return '#fff';
-    }
-  };
 
   return (
     <ChakraProvider>
@@ -82,7 +92,10 @@ const Header: FC = () => {
                 <Link
                   as={NextLink}
                   href={'/'}
-                  color={stlyeDrawerLinkColor('/')}
+                  color={stlyeDrawerLinkColor({
+                    path: '/',
+                    currentPath: pathname,
+                  })}
                   onClick={onClose}
                 >
                   Top
@@ -90,7 +103,10 @@ const Header: FC = () => {
                 <Link
                   as={NextLink}
                   href={'/about-us'}
-                  color={stlyeDrawerLinkColor('/about-us')}
+                  color={stlyeDrawerLinkColor({
+                    path: '/about-us',
+                    currentPath: pathname,
+                  })}
                   onClick={onClose}
                 >
                   About us
@@ -98,7 +114,10 @@ const Header: FC = () => {
                 <Link
                   as={NextLink}
                   href={`/awards?year=${moment().year()}`}
-                  color={stlyeDrawerLinkColor('/awards')}
+                  color={stlyeDrawerLinkColor({
+                    path: '/awards',
+                    currentPath: pathname,
+                  })}
                   onClick={onClose}
                 >
                   Awards
@@ -106,7 +125,10 @@ const Header: FC = () => {
                 <Link
                   href={'https://note.com/utmilc'}
                   isExternal
-                  color={stlyeDrawerLinkColor('/news')}
+                  color={stlyeDrawerLinkColor({
+                    path: '/news',
+                    currentPath: pathname,
+                  })}
                   onClick={onClose}
                 >
                   News
@@ -114,7 +136,10 @@ const Header: FC = () => {
                 <Link
                   as={NextLink}
                   href={'/join-us'}
-                  color={stlyeDrawerLinkColor('/join-us')}
+                  color={stlyeDrawerLinkColor({
+                    path: '/join-us',
+                    currentPath: pathname,
+                  })}
                   onClick={onClose}
                 >
                   Join us
@@ -142,34 +167,50 @@ const Header: FC = () => {
             fontWeight={600}
             letterSpacing={1.8}
           >
-            <Link as={NextLink} href={'/'} color={styleHeaderLinkColor('/')}>
+            <Link
+              as={NextLink}
+              href={'/'}
+              color={styleHeaderLinkColor({ path: '/', currentPath: pathname })}
+            >
               Top
             </Link>
             <Link
               as={NextLink}
               href={'/about-us'}
-              color={styleHeaderLinkColor('/about-us')}
+              color={styleHeaderLinkColor({
+                path: '/about-us',
+                currentPath: pathname,
+              })}
             >
               About us
             </Link>
             <Link
               as={NextLink}
               href={`/awards?year=${moment().year()}`}
-              color={styleHeaderLinkColor('/awards')}
+              color={styleHeaderLinkColor({
+                path: '/awards',
+                currentPath: pathname,
+              })}
             >
               Awards
             </Link>
             <Link
               href={'https://note.com/utmilc'}
               isExternal
-              color={styleHeaderLinkColor('/news')}
+              color={styleHeaderLinkColor({
+                path: '/news',
+                currentPath: pathname,
+              })}
             >
               News
             </Link>
             <Link
               as={NextLink}
               href={'/join-us'}
-              color={styleHeaderLinkColor('/join-us')}
+              color={styleHeaderLinkColor({
+                path: '/join-us',
+                currentPath: pathname,
+              })}
             >
               Join us
             </Link>
