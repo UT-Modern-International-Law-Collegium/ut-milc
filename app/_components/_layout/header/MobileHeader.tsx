@@ -42,14 +42,23 @@ export const MobileHeader: FC = () => {
             onClick={() => setIsOpen(false)}
           />
         </button>
-        <Link href={"/"} className={`${linkStyle("/")} pt-24`}>
+        <Link
+          href={"/"}
+          onClick={() => setIsOpen(false)}
+          className={`${linkStyle("/")} pt-24`}
+        >
           Top
         </Link>
-        <Link href={"/about-us"} className={`${linkStyle("/about-us")}`}>
+        <Link
+          href={"/about-us"}
+          onClick={() => setIsOpen(false)}
+          className={`${linkStyle("/about-us")}`}
+        >
           About us
         </Link>
         <Link
           href={`/awards?year=${moment().year()}`}
+          onClick={() => setIsOpen(false)}
           className={`${linkStyle(`/awards`)}`}
         >
           Awards
@@ -58,11 +67,16 @@ export const MobileHeader: FC = () => {
           href={"https://note.com/utmilc"}
           target="_blank"
           rel="noreferrer"
+          onClick={() => setIsOpen(false)}
           className={`${linkStyle("/news")}`}
         >
           News
         </a>
-        <Link href={"/join-us"} className={`${linkStyle("/join-us")}`}>
+        <Link
+          href={"/join-us"}
+          onClick={() => setIsOpen(false)}
+          className={`${linkStyle("/join-us")}`}
+        >
           Join us
         </Link>
       </div>
