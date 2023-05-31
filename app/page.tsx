@@ -1,23 +1,23 @@
-import Link from 'next/link';
-import { BsArrowRight, BsCheckCircle } from 'react-icons/bs';
-import moment from 'moment';
+import moment from "moment";
+import Link from "next/link";
+import { BsArrowRight, BsCheckCircle } from "react-icons/bs";
 
-import AwardCard from './_components/AwardCard';
-import Firstview from './_components/FirstView';
+import AwardCard from "./_components/AwardCard";
+import Firstview from "./_components/FirstView";
 
 const dividerStyle =
-  'border-t w-1/6 border-gray-500 mx-auto my-4 md:my-6 md:w-1/12 lg:w-[4em]';
+  "border-t w-1/6 border-gray-500 mx-auto my-4 md:my-6 md:w-1/12 lg:w-[4em]";
 const descriptionStyle =
-  'leading-loose text-lg text-center md:w-[60vw] md:mx-auto lg:w-[50vw]';
+  "leading-loose text-lg text-center md:w-[60vw] md:mx-auto lg:w-[50vw]";
 const navigationButtonStyle =
-  'text-lg bg-teal-500 text-white px-8 py-2 rounded-full block w-fit mx-auto font-semibold my-10 hover:bg-opacity-75';
-const headingStyle = 'text-4xl font-serif font-medium text-center md:text-5xl';
+  "text-lg bg-teal-500 text-white px-8 py-2 rounded-full block w-fit mx-auto font-semibold my-10 hover:bg-opacity-75";
+const headingStyle = "text-4xl font-serif font-medium text-center md:text-5xl";
 
 const Page = () => (
   <div>
     <Firstview />
     {/* about us */}
-    <div className="px-4 mt-12 lg:mt-20">
+    <div className="mt-12 px-4 lg:mt-20">
       <h1 className={`${headingStyle}`}>About us</h1>
       {/* divider */}
       <div className={`${dividerStyle}`} />
@@ -65,23 +65,23 @@ const Page = () => (
       </a>
     </div>
     {/* 背景色黒 */}
-    <div className="flex bg-night relative h-[500px] pt-[100px] justify-center">
+    <div className="relative flex h-[500px] justify-center bg-night pt-[100px]">
       {/* 白抜きの逆三角形 */}
-      <div className="absolute bg-white top-[-0.4px] left-0 h-[100px] w-screen clip-path" />
+      <div className="clip-path absolute left-0 top-[-0.4px] h-[100px] w-screen bg-white" />
       {/* join us */}
-      <div className="flex gap-12 flex-col items-center">
-        <div className="flex gap-4 items-center">
+      <div className="flex flex-col items-center gap-12">
+        <div className="flex items-center gap-4">
           <BsCheckCircle className="h-10 w-10 text-[#81E6D9]" />
-          <h1 className={`${headingStyle} text-white tracking-wide`}>
+          <h1 className={`${headingStyle} tracking-wide text-white`}>
             Join us
           </h1>
         </div>
-        <p className={`text-white w-[80vw] ${descriptionStyle}`}>
+        <p className={`w-[80vw] text-white ${descriptionStyle}`}>
           現代国際法研究会に入会を希望される方は、以下のボタンから申し込み専用ページへ進み、フォームを送信してください。
         </p>
         <Link
           href="/join-us"
-          className="bg-teal-200 py-4 px-8 font-semibold rounded-md text-lg hover:bg-opacity-75"
+          className="rounded-md bg-teal-200 px-8 py-4 text-lg font-semibold hover:bg-opacity-75"
         >
           入会のお申し込みはこちら
           <BsArrowRight className="inline-block" />
