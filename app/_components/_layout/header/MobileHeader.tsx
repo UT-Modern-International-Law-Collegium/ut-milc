@@ -32,8 +32,8 @@ export const MobileHeader: FC = () => {
       />
       {/* drawer */}
       <div
-        className={`transition-duration-800 absolute top-0 h-screen w-5/6 bg-night transition-all ease-in-out ${
-          isOpen ? "right-0" : "right-[-100vw]"
+        className={`transition-duration-1000 absolute top-0 h-screen w-5/6 bg-night transition-all ease-in-out ${
+          isOpen ? "right-0" : "right-[-120vw]"
         }`}
       >
         <button>
