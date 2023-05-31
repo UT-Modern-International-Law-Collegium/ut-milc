@@ -1,0 +1,25 @@
+.custom-text {
+  line-height: 2;
+}
+
+.custom-text h2 {
+  font-size: 28px;
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.custom-text h3 {
+  font-size: 20px;
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.custom-text a {
+  color: #319795; /* the equivalent of Chakra's teal.600 */
+  text-decoration: underline;
+}
+
+.custom-text img {
+  height: 200px;
+  width: 200px;
+}
