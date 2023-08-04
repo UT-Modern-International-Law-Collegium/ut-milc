@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { AwardData } from '../../../../lib/type/awardData';
-import { wpPrefix } from '../../wpPrefix';
+import { AwardData } from "../../../../lib/type/awardData";
+import { wpPrefix } from "../../wpPrefix";
 
 type AwardRes = {
   id: number;
@@ -15,7 +15,7 @@ type AwardRes = {
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
-  const tagId: string | null = searchParams.get('tag_id');
+  const tagId: string | null = searchParams.get("tag_id");
 
   const res = await fetch(
     `${wpPrefix()}/posts?&categories=3&tags=${tagId}&_fields=id,content,title,tags`
@@ -23,7 +23,7 @@ export const GET = async (request: Request) => {
   const data: AwardRes[] = await res.json();
 
   if (data.length === 0) {
-    return new Response('no posts found', { status: 404 });
+    return new Response("no posts found", { status: 404 });
   }
 
   const awards: AwardData[] = await Promise.all(
