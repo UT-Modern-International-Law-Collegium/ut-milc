@@ -3,6 +3,7 @@
 import moment from "moment";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 import type { Pathname } from "@/lib/type";
 
@@ -10,9 +11,11 @@ export const DesktopHeader = () => {
   const currentPath = usePathname();
 
   const linkStyle = (pathname: Pathname) =>
-    `md:text-xl lg:text-2xl font-serif leading-loose block ${
-      currentPath === pathname ? "text-[#00ffb1]" : "text-[#000000]"
-    }`;
+    twMerge(
+      `md:text-xl lg:text-2xl font-serif leading-loose block ${
+        currentPath === pathname ? "text-[#00ffb1]" : "text-[#000000]"
+      }`
+    );
 
   return (
     <div className="hidden md:fixed md:z-[2] md:flex md:w-screen md:justify-end md:gap-8 md:bg-white md:bg-opacity-75 md:py-2 md:pr-12">
