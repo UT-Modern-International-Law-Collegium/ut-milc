@@ -1,6 +1,6 @@
-import { FC, useEffect } from 'react';
-import { NextRouter, useRouter } from 'next/router';
-import Script from 'next/script';
+import { NextRouter, useRouter } from "next/router";
+import Script from "next/script";
+import { useEffect, type FC } from "react";
 
 const GA4: FC = () => {
   const router: NextRouter = useRouter();
@@ -11,7 +11,7 @@ const GA4: FC = () => {
         return;
       } else {
         (window as any).gtag(
-          'config',
+          "config",
           `${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`,
           {
             page_path: url,
@@ -19,8 +19,8 @@ const GA4: FC = () => {
         );
       }
     };
-    events.on('routeChangeComplete', f);
-    events.on('hashChangeComplete', f);
+    events.on("routeChangeComplete", f);
+    events.on("hashChangeComplete", f);
   }, [events]);
 
   return (
@@ -30,7 +30,7 @@ const GA4: FC = () => {
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
       />
-      <Script strategy="afterInteractive" id={'ga4-script'}>
+      <Script strategy="afterInteractive" id={"ga4-script"}>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

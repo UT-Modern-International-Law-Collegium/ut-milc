@@ -1,6 +1,6 @@
 import { InnerHTML } from "@/components/InnerHTML";
 import { nextPrefix } from "@/lib/nextPrefix";
-import { AwardData } from "@/lib/type/awardData";
+import type { AwardData } from "@/lib/type";
 import { fetchYears } from "./fetchYears";
 
 export const dynamic = "force-dynamic";

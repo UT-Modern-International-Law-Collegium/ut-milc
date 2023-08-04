@@ -2,7 +2,7 @@ import "./style.css";
 
 import { InnerHTML } from "@/components/InnerHTML";
 import { nextPrefix } from "@/lib/nextPrefix";
-import { WelcomeData } from "@/lib/type/welcomeData";
+import type { WelcomeData } from "@/lib/type";
 
 const Page = async () => {
   const res = await fetch(`${nextPrefix()}/events/welcome`);

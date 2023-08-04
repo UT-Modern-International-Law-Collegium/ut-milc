@@ -1,7 +1,7 @@
 import { BsFillSquareFill } from "react-icons/bs";
 
 import { PageTitle } from "@/components/PageTItle";
-import { AboutUsData } from "@/lib/type/aboutUsData";
+import type { AboutUsData } from "@/lib/type";
 
 const AboutUs: AboutUsData = {
   sections: [

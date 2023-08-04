@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import Footer from "../components/layout/Footer";
-import { DesktopHeader } from "../components/layout/header/DesktopHeader";
-import { MobileHeader } from "../components/layout/header/MobileHeader";
+import Footer from "@/components/layout/Footer";
+import { DesktopHeader } from "@/components/layout/header/DesktopHeader";
+import { MobileHeader } from "@/components/layout/header/MobileHeader";
 
 export const metadata = {
   title: "東京大学現代国際法研究会",
@@ -16,7 +16,11 @@ export const metadata = {
   },
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja">
       <body>
@@ -27,6 +31,4 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

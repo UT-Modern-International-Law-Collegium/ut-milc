@@ -1,7 +1,7 @@
-import moment from 'moment';
+import moment from "moment";
 
-import { fetchYears } from '../fetchYears';
-import { YearNavigation } from './YearNavigation';
+import { fetchYears } from "../fetchYears";
+import { YearNavigation } from "./YearNavigation";
 
 const fetchData = async () => {
   const data = await fetchYears();

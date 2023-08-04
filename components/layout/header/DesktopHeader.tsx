@@ -4,7 +4,7 @@ import moment from "moment";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Pathname } from "@/lib/type/utils";
+import type { Pathname } from "@/lib/type";
 
 export const DesktopHeader = () => {
   const currentPath = usePathname();

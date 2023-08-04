@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { AwardData } from "../../../../lib/type/awardData";
+import type { AwardData } from "@/lib/type";
 import { wpPrefix } from "../../wpPrefix";
 
 type AwardRes = {

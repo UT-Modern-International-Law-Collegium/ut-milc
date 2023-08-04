@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FC, useState } from "react";
+import { useState, type FC } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
 type Props = {

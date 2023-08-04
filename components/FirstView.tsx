@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import moment from "moment";
 import NextLink from "next/link";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 
 import Navigation from "./layout/Navigation";
 

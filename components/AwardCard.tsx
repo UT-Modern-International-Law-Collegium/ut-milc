@@ -1,43 +1,43 @@
-'use client';
+"use client";
 
-import { FC } from 'react';
-import { BsAward } from 'react-icons/bs';
 import {
+  ChakraProvider,
   Heading,
-  Text,
-  VStack,
   HStack,
   Icon,
-  ChakraProvider,
-} from '@chakra-ui/react';
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { type FC } from "react";
+import { BsAward } from "react-icons/bs";
 
 const AwardCard: FC = () => (
   <ChakraProvider>
     <VStack
-      w={{ base: 'none', md: '60%' }}
+      w={{ base: "none", md: "60%" }}
       spacing={{ base: 2, md: 4 }}
       py={{ base: 4, md: 8 }}
       px={4}
-      mx={'auto'}
+      mx={"auto"}
       borderRadius={8}
-      border={'solid'}
-      borderColor={'gray.100'}
-      position={'relative'}
-      boxShadow={'2xl'}
+      border={"solid"}
+      borderColor={"gray.100"}
+      position={"relative"}
+      boxShadow={"2xl"}
     >
       <Icon
         as={BsAward}
-        position={'absolute'}
+        position={"absolute"}
         top={-6}
         left={-8}
-        color={'yellow.400'}
+        color={"yellow.400"}
         opacity={0.6}
         w={{ base: 100, md: 140 }}
         h={{ base: 100, md: 140 }}
       />
       <Heading
-        fontWeight={'light'}
-        textAlign={'center'}
+        fontWeight={"light"}
+        textAlign={"center"}
         fontSize={{ base: 22, md: 30 }}
         zIndex={1}
       >
@@ -45,7 +45,7 @@ const AwardCard: FC = () => (
         Round
       </Heading>
       <Text fontSize={{ base: 18, md: 20 }}>~ NationalRound（国内予選） ~</Text>
-      <HStack alignItems={'baseline'}>
+      <HStack alignItems={"baseline"}>
         <Text fontSize={{ base: 18, md: 20 }}>総合結果</Text>
         <Text fontSize={{ base: 24, md: 32 }} pl={{ base: 2, md: 4 }}>
           優勝

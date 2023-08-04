@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { wpPrefix } from '../../wpPrefix';
-import { sliceListByNumber } from './sliceListByNumber';
-import { AboutUsData } from '../../../../lib/type/aboutUsData';
+import type { AboutUsData } from "@/lib/type";
+import { wpPrefix } from "../../wpPrefix";
+import { sliceListByNumber } from "./sliceListByNumber";
 
 export const GET = async () => {
   const res = await fetch(
@@ -12,7 +12,7 @@ export const GET = async () => {
   const rendered: string = data.content.rendered;
 
   // まずwp-block-tableで分割
-  const tmpSplited: string[] = rendered.split('wp-block-table');
+  const tmpSplited: string[] = rendered.split("wp-block-table");
 
   // 段階紹介と幹部紹介を分けて取り出す
   const aboutUs: string = tmpSplited[0];
@@ -58,7 +58,7 @@ export const GET = async () => {
   console.info({ aboutUsBlocksWithoutHTML });
 
   // 以下では、aboutUsBlocksWithoutHTMLを{ title: ..., content: ... } の形に整形している
-  let aboutUsObjList: Pick<AboutUsData, 'sections'>['sections'] = [];
+  let aboutUsObjList: Pick<AboutUsData, "sections">["sections"] = [];
   for (const list of aboutUsBlocksWithoutHTML) {
     const tmpAboutUs: { title: string; content: string } = {
       title: list[0],
@@ -72,14 +72,14 @@ export const GET = async () => {
   // -----------------
 
   // membersは表であることに留意。まず、trタグを起点に分割。
-  const membersSplitedByTr: string[] = members.split('tr');
+  const membersSplitedByTr: string[] = members.split("tr");
 
-  let splitedMembers: Pick<AboutUsData, 'members'>['members'] = [];
+  let splitedMembers: Pick<AboutUsData, "members">["members"] = [];
   for (const item of membersSplitedByTr) {
-    if (item.indexOf('</td><td>') !== -1) {
+    if (item.indexOf("</td><td>") !== -1) {
       const tmpItem: string[] = item
-        .split('</td><td>')
-        .map((str: string) => str.replace(/><td>|<\/td><\//g, ''));
+        .split("</td><td>")
+        .map((str: string) => str.replace(/><td>|<\/td><\//g, ""));
       splitedMembers.push(tmpItem);
     }
   }

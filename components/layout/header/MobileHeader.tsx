@@ -1,13 +1,13 @@
 "use client";
 
-import { FC, useState } from "react";
+import moment from "moment";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { RiMenu3Fill } from "react-icons/ri";
-import moment from "moment";
-
-import { Pathname } from "@/lib/type/utils";
+import { useState, type FC } from "react";
 import { MdClose } from "react-icons/md";
+import { RiMenu3Fill } from "react-icons/ri";
+
+import type { Pathname } from "@/lib/type";
 
 export const MobileHeader: FC = () => {
   const currentPath = usePathname();

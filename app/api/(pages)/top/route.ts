@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { TopData } from '../../../../lib/type/topData';
-import { wpPrefix } from '../../wpPrefix';
+import type { TopData } from "@/lib/type";
+import { wpPrefix } from "../../wpPrefix";
 
 const wpTopPageContentSlugs: string[] = [
-  'top-about-us',
-  'top-awards',
-  'top-join-us',
+  "top-about-us",
+  "top-awards",
+  "top-join-us",
 ];
 
 export const GET = async (_: Request) => {
