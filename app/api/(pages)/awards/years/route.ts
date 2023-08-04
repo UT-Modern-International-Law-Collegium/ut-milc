@@ -1,10 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { wpPrefix } from '../../../wpPrefix';
+import { wpPrefix } from "../../../wpPrefix";
 
 export const GET = async () => {
   // category=3（awards）の投稿から、タグを取得
-  const res = await fetch(`${wpPrefix()}/posts?&categories=3&_fields=tags`);
+  const res = await fetch(`${wpPrefix()}/posts?&categories=3&_fields=tags`, {
+    next: { revalidate: 0 },
+  });
   const data: { tags: number[] }[] = await res.json();
 
   // tagIdの配列を作る（idの重複は削除）

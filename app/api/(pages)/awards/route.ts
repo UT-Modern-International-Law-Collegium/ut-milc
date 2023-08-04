@@ -18,7 +18,8 @@ export const GET = async (request: Request) => {
   const tagId: string | null = searchParams.get("tag_id");
 
   const res = await fetch(
-    `${wpPrefix()}/posts?&categories=3&tags=${tagId}&_fields=id,content,title,tags`
+    `${wpPrefix()}/posts?&categories=3&tags=${tagId}&_fields=id,content,title,tags`,
+    { next: { revalidate: 0 } }
   );
   const data: AwardRes[] = await res.json();
 
