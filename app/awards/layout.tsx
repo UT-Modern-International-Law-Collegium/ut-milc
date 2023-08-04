@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { PageTitle } from '../_components/PageTItle';
+import { PageTitle } from "@/components/PageTItle";
+import { ReactNode } from "react";
 
 const AwardsLayout = ({
   children,
@@ -9,7 +9,7 @@ const AwardsLayout = ({
   nav: ReactNode;
 }) => {
   return (
-    <div className="w-11/12 md:w-[88vw] lg:w-[68vw] mx-auto md:py-24 py-20">
+    <div className="mx-auto w-11/12 py-20 md:w-[88vw] md:py-24 lg:w-[68vw]">
       <PageTitle>活動実績</PageTitle>
       <div className=" md:flex md:gap-8 lg:gap-12">
         {nav}

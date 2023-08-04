@@ -2,8 +2,8 @@ import moment from "moment";
 import Link from "next/link";
 import { BsArrowRight, BsCheckCircle } from "react-icons/bs";
 
-import AwardCard from "./_components/AwardCard";
-import Firstview from "./_components/FirstView";
+import AwardCard from "@/components/AwardCard";
+import Firstview from "@/components/FirstView";
 
 const dividerStyle =
   "border-t w-1/6 border-gray-500 mx-auto my-4 md:my-6 md:w-1/12 lg:w-[4em]";
