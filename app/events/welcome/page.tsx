@@ -1,10 +1,11 @@
 import "./style.css";
 
-import { InnerHTML } from "@/components/InnerHTML";
-import { nextPrefix } from "@/lib/nextPrefix";
+import { InnerHTML } from "@/components/inner-html";
+import { Separator } from "@/components/ui/separator";
 import type { WelcomeData } from "@/lib/type";
+import { nextPrefix } from "@/lib/url-prefix";
 
-const Page = async () => {
+export default async function Page() {
   const res = await fetch(`${nextPrefix()}/events/welcome`);
   const data: { data: WelcomeData } = await res.json();
   const welcome = data.data;
@@ -15,11 +16,8 @@ const Page = async () => {
         content={welcome.title}
         className="text-center font-serif text-4xl"
       />
-      {/* divider */}
-      <div className="my-4 border-t" />
+      <Separator className="my-4" />
       <InnerHTML content={welcome.content} className="custom-text" />
     </div>
   );
-};
-
-export default Page;
+}

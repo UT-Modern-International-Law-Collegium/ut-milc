@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
 import type { AboutUsData } from "@/lib/type";
-import { wpPrefix } from "../../wpPrefix";
-import { sliceListByNumber } from "./sliceListByNumber";
+import { wpPrefix } from "@/lib/url-prefix";
+import { sliceListByNumber } from "@/lib/utils";
 
 export const GET = async () => {
   const res = await fetch(

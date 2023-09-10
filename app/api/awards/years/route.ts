@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { wpPrefix } from "../../../wpPrefix";
+import { wpPrefix } from "@/lib/url-prefix";
 
 export const GET = async () => {
   // category=3（awards）の投稿から、タグを取得

@@ -1,7 +1,8 @@
-import { InnerHTML } from "@/components/InnerHTML";
-import { nextPrefix } from "@/lib/nextPrefix";
+import { InnerHTML } from "@/components/inner-html";
+import { Separator } from "@/components/ui/separator";
+import { fetchYears } from "@/lib/awards/fetch-years";
 import type { AwardData } from "@/lib/type";
-import { fetchYears } from "./fetchYears";
+import { nextPrefix } from "@/lib/url-prefix";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,11 @@ const fetchData = async ({ year }: { year: string }) => {
   }
 };
 
-const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { year: string };
+}) {
   const { year } = searchParams;
   const awards: AwardData[] = await fetchData({ year });
 
@@ -27,8 +32,7 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
       <h2 className="my-2 text-xl font-semibold md:my-4 md:mt-0 md:text-2xl">
         {year}年度
       </h2>
-      {/* divider */}
-      <div className="my-2 hidden border-t border-gray-300 md:block" />
+      <Separator className="my-2 hidden border-t border-gray-300 md:block" />
       {awards.length === 0 ? (
         <p>当該年度の活動実績はありません。</p>
       ) : (
@@ -44,6 +48,4 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
       )}
     </div>
   );
-};
-
-export default Page;
+}
