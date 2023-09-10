@@ -1,7 +1,7 @@
 import { InnerHTML } from "@/components/InnerHTML";
-import { nextPrefix } from "@/lib/nextPrefix";
+import { fetchYears } from "@/lib/awards/fetch-years";
 import type { AwardData } from "@/lib/type";
-import { fetchYears } from "./fetchYears";
+import { nextPrefix } from "@/lib/url-prefix";
 
 export const dynamic = "force-dynamic";
 

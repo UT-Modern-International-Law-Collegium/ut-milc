@@ -1,13 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { wpPrefix } from '../../../wpPrefix';
+import { wpPrefix } from "@/lib/url-prefix";
 
 export const GET = async () => {
   const res = await fetch(`${wpPrefix()}/pages?slug=welcome`);
   const data = await res.json();
 
   if (data.length === 0) {
-    return new Response('no welcome page.', {
+    return new Response("no welcome page.", {
       status: 404,
     });
   }

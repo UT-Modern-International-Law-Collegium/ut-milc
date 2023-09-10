@@ -1,4 +1,4 @@
-import { nextPrefix } from "@/lib/nextPrefix";
+import { nextPrefix } from "@/lib/url-prefix";
 
 type _Data = {
   data: {

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import type { TopData } from "@/lib/type";
-import { wpPrefix } from "../../wpPrefix";
+import { wpPrefix } from "@/lib/url-prefix";
 
 const wpTopPageContentSlugs: string[] = [
   "top-about-us",
