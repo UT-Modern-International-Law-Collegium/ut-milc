@@ -1,3 +1,10 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 const sliceListByNumber = <T>(list: T[], number: number): T[][] => {
   const length: number = Math.ceil(list.length / number);
   let listGroup: T[][] = [];
@@ -9,4 +16,4 @@ const sliceListByNumber = <T>(list: T[], number: number): T[][] => {
   return listGroup;
 };
 
-export { sliceListByNumber };
+export { sliceListByNumber, cn };
