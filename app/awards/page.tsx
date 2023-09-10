@@ -18,7 +18,11 @@ const fetchData = async ({ year }: { year: string }) => {
   }
 };
 
-const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { year: string };
+}) {
   const { year } = searchParams;
   const awards: AwardData[] = await fetchData({ year });
 
@@ -44,6 +48,4 @@ const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
       )}
     </div>
   );
-};
-
-export default Page;
+}

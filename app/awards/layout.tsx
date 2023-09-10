@@ -1,14 +1,15 @@
-import { PageTitle } from "@/components/PageTItle";
-import { Loader } from "@/components/ui/loader";
 import { ReactNode, Suspense } from "react";
 
-const AwardsLayout = ({
+import { PageTitle } from "@/components/PageTItle";
+import { Loader } from "@/components/ui/loader";
+
+export default function AwardsLayout({
   children,
   nav,
 }: {
   children: ReactNode;
   nav: ReactNode;
-}) => {
+}) {
   return (
     <div className="mx-auto w-11/12 py-20 md:w-[88vw] md:py-24 lg:w-[68vw]">
       <PageTitle>活動実績</PageTitle>
@@ -26,6 +27,4 @@ const AwardsLayout = ({
       </div>
     </div>
   );
-};
-
-export default AwardsLayout;
+}

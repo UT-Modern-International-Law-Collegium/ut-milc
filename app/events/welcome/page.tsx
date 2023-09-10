@@ -4,7 +4,7 @@ import { InnerHTML } from "@/components/InnerHTML";
 import type { WelcomeData } from "@/lib/type";
 import { nextPrefix } from "@/lib/url-prefix";
 
-const Page = async () => {
+export default async function Page() {
   const res = await fetch(`${nextPrefix()}/events/welcome`);
   const data: { data: WelcomeData } = await res.json();
   const welcome = data.data;
@@ -20,6 +20,4 @@ const Page = async () => {
       <InnerHTML content={welcome.content} className="custom-text" />
     </div>
   );
-};
-
-export default Page;
+}
