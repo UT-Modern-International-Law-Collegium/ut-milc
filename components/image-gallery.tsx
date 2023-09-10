@@ -9,8 +9,8 @@ type Props = {
 
 export const CustomImageGallery: FC<Props> = ({ images }) => {
   return (
-    <div className="rounded-lg bg-gray-100 pb-4 pt-8">
-      <div className="mx-auto w-3/4">
+    <div className="rounded-lg bg-gray-100 md:pb-4 md:pt-8">
+      <div className="mx-auto w-full md:w-3/4">
         <ImageGallery
           items={images}
           autoPlay
