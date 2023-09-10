@@ -1,7 +1,7 @@
 import moment from "moment";
 
+import { YearNavigation } from "@/components/year-navigation";
 import { fetchYears } from "@/lib/awards/fetch-years";
-import { YearNavigation } from "../../../components/year-navigation";
 
 const fetchData = async () => {
   const data = await fetchYears();

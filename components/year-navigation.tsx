@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, type FC } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-import { Separator } from "./ui/separator";
+
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   years: number[];

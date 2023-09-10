@@ -14,7 +14,7 @@ import moment from "moment";
 import NextLink from "next/link";
 import { useEffect, useState, type FC } from "react";
 
-import Navigation from "./layout/Navigation";
+import Navigation from "@/components/layout/Navigation";
 
 const Firstview: FC = () => {
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
