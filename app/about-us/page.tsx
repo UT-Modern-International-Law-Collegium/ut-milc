@@ -1,13 +1,13 @@
 import { BsFillSquareFill } from "react-icons/bs";
 
 import { PageTitle } from "@/components/page-tItle";
-import { AboutUs } from "./data";
+import { data } from "./data";
 
 export default function Page() {
   return (
     <div className="mx-auto w-11/12 py-20 md:w-[88vw] md:py-24 lg:w-[68vw]">
       <PageTitle>団体紹介</PageTitle>
-      {AboutUs.sections.map((section, index) => (
+      {data.sections.map((section, index) => (
         <div key={index} className="w-full">
           <div className="flex items-center gap-2">
             <BsFillSquareFill className="text-[#4A5568]" />
@@ -25,7 +25,7 @@ export default function Page() {
       </div>
       <table className="mt-4 w-full">
         <tbody>
-          {AboutUs.members.map((member: string[], index: number) => (
+          {data.members.map((member: string[], index: number) => (
             <tr key={index}>
               <th className="border-4 border-b border-white bg-gray-50 py-2 pl-2 text-left text-lg">
                 {member[0]}

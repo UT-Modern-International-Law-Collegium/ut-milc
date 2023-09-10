@@ -1,6 +1,6 @@
 import type { AboutUsData } from "@/lib/type";
 
-export const AboutUs: AboutUsData = {
+export const data: AboutUsData = {
   sections: [
     {
       title: "模擬裁判",
