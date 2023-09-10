@@ -1,7 +1,10 @@
-import { nextPrefix } from '@/lib/nextPrefix';
-import { AwardData } from '@/lib/type/awardData';
-import { InnerHTML } from '../_components/InnerHTML';
-import { fetchYears } from './fetchYears';
+import { InnerHTML } from "@/components/inner-html";
+import { Separator } from "@/components/ui/separator";
+import { fetchYears } from "@/lib/awards/fetch-years";
+import type { AwardData } from "@/lib/type";
+import { nextPrefix } from "@/lib/url-prefix";
+
+export const dynamic = "force-dynamic";
 
 const fetchData = async ({ year }: { year: string }) => {
   const years = await fetchYears();
@@ -16,32 +19,33 @@ const fetchData = async ({ year }: { year: string }) => {
   }
 };
 
-const Page = async ({ searchParams }: { searchParams: { year: string } }) => {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { year: string };
+}) {
   const { year } = searchParams;
   const awards: AwardData[] = await fetchData({ year });
 
   return (
     <div className="md:w-5/6 lg:w-10/12">
-      <h2 className="text-xl font-semibold my-2 md:my-4 md:mt-0 md:text-2xl">
+      <h2 className="my-2 text-xl font-semibold md:my-4 md:mt-0 md:text-2xl">
         {year}年度
       </h2>
-      {/* divider */}
-      <div className="hidden md:block border-t my-2 border-gray-300" />
+      <Separator className="my-2 hidden border-t border-gray-300 md:block" />
       {awards.length === 0 ? (
         <p>当該年度の活動実績はありません。</p>
       ) : (
         awards.map((award) => (
           <div
             key={award.id}
-            className="border p-4 rounded-md my-4 md:border-gray-300"
+            className="my-4 rounded-md border p-4 md:border-gray-300"
           >
-            <h3 className="text-lg  font-semibold mb-2">{award.title}</h3>
+            <h3 className="mb-2  text-lg font-semibold">{award.title}</h3>
             <InnerHTML content={award.content} />
           </div>
         ))
       )}
     </div>
   );
-};
-
-export default Page;
+}
