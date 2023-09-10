@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type FC } from "react";
 import { MdArrowDropDown } from "react-icons/md";
+import { Separator } from "./ui/separator";
 
 type Props = {
   years: number[];
@@ -26,8 +27,7 @@ export const YearNavigation: FC<Props> = ({ years, year }) => {
         `}
         />
       </button>
-      {/* divider */}
-      <div className="mx-auto mb-3 mt-2 w-full border-t border-gray-300 md:hidden" />
+      <Separator className="block bg-gray-300 md:hidden" />
       <ul
         className={`${
           isAccordionOpen
