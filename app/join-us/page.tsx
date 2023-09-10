@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { PageTitle } from "@/components/PageTItle";
+import { PageTitle } from "@/components/page-tItle";
 
 export default function Page() {
   return (

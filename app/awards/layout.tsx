@@ -1,7 +1,7 @@
 import { ReactNode, Suspense } from "react";
 
-import { PageTitle } from "@/components/PageTItle";
-import { Loader } from "@/components/ui/loader";
+import { Loader } from "@/components/loader";
+import { PageTitle } from "@/components/page-tItle";
 
 export default function AwardsLayout({
   children,

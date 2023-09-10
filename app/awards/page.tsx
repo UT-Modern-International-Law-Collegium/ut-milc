@@ -1,4 +1,4 @@
-import { InnerHTML } from "@/components/InnerHTML";
+import { InnerHTML } from "@/components/inner-html";
 import { fetchYears } from "@/lib/awards/fetch-years";
 import type { AwardData } from "@/lib/type";
 import { nextPrefix } from "@/lib/url-prefix";

@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { InnerHTML } from "@/components/InnerHTML";
+import { InnerHTML } from "@/components/inner-html";
 import type { WelcomeData } from "@/lib/type";
 import { nextPrefix } from "@/lib/url-prefix";
 

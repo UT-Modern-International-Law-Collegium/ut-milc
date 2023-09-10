@@ -1,8 +1,8 @@
 import "./globals.css";
 
 import Footer from "@/components/layout/Footer";
-import { DesktopHeader } from "@/components/layout/header/DesktopHeader";
-import { MobileHeader } from "@/components/layout/header/MobileHeader";
+import { DesktopHeader } from "@/components/layout/header/desktop-header";
+import { MobileHeader } from "@/components/layout/header/mobile-header";
 
 export const metadata = {
   title: "東京大学現代国際法研究会",

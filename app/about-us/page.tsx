@@ -1,6 +1,6 @@
 import { BsFillSquareFill } from "react-icons/bs";
 
-import { PageTitle } from "@/components/PageTItle";
+import { PageTitle } from "@/components/page-tItle";
 import { AboutUs } from "./data";
 
 export default function Page() {
