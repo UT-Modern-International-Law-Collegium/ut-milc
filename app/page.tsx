@@ -3,7 +3,8 @@ import Link from "next/link";
 import { BsArrowRight, BsCheckCircle } from "react-icons/bs";
 
 import AwardCard from "@/components/award-card";
-import Firstview from "@/components/first-view";
+
+import { Firstview } from "@/components/first-view";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 

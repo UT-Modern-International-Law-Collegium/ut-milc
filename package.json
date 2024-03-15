@@ -20,7 +20,7 @@
     "framer-motion": "^11.0.10",
     "lucide-react": "^0.276.0",
     "moment": "^2.29.4",
-    "next": "latest",
+    "next": "^13.4.19",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "react": "latest",

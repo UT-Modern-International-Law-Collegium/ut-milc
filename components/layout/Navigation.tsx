@@ -1,12 +1,9 @@
-"use client";
-
 import { Link, Stack } from "@chakra-ui/react";
 import moment from "moment";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import { type FC } from "react";
 
-const Navigation: FC = () => {
+export function Navigation() {
   const pathname = usePathname();
 
   const stlyeLinkColor = (
@@ -61,6 +58,4 @@ const Navigation: FC = () => {
       </Link>
     </Stack>
   );
-};
-
-export default Navigation;
+}

@@ -13,9 +13,9 @@ import moment from "moment";
 import NextLink from "next/link";
 import { useEffect, useState, type FC } from "react";
 
-import Navigation from "@/components/layout/Navigation";
+import { Navigation } from "@/components/layout/Navigation";
 
-const Firstview: FC = () => {
+export function Firstview() {
   const [isWelcomePageExisting, setIsWelcomePageExisting] =
     useState<boolean>(false);
 
@@ -125,7 +125,7 @@ const Firstview: FC = () => {
       </Box>
     </Stack>
   );
-};
+}
 
 const TopTitle: FC = () => {
   const [titlePtValue, setTitlePtValue] = useState<number>(0);
@@ -205,5 +205,3 @@ const TopTitle: FC = () => {
     </>
   );
 };
-
-export default Firstview;
