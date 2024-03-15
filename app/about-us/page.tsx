@@ -11,6 +11,8 @@ import AboutUs2 from "@/public/about-us-2.jpg";
 import AboutUs3 from "@/public/about-us-3.jpg";
 import AboutUs4 from "@/public/about-us-4.jpg";
 
+export const dynamic = "force-dynamic";
+
 const images = [
   {
     original: AboutUs1.src,
