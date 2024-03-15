@@ -21,7 +21,7 @@ export function Firstview() {
 
   useEffect(() => {
     const f = async () => {
-      const res = await fetch(`/api/events/welcome`);
+      const res = await fetch(`/api/welcome`);
       if (res.status === 200) {
         setIsWelcomePageExisting(true);
       }
