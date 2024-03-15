@@ -6,7 +6,9 @@ import type { WelcomeData } from "@/lib/type";
 import { nextPrefix } from "@/lib/url-prefix";
 
 export default async function Page() {
-  const res = await fetch(`${nextPrefix()}/welcome`);
+  const res = await fetch(`${nextPrefix()}/welcome`, {
+    cache: "no-store",
+  });
   const data: { data: WelcomeData } = await res.json();
   const welcome = data.data;
 
