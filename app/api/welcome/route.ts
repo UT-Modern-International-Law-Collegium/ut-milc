@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 import { wpPrefix } from "@/lib/url-prefix";
 
 export const GET = async () => {
-  const res = await fetch(`${wpPrefix()}/pages?slug=welcome`);
+  const res = await fetch(`${wpPrefix()}/pages?slug=welcome`, {
+    cache: "no-store",
+  });
   const data = await res.json();
 
   if (data.length === 0) {
