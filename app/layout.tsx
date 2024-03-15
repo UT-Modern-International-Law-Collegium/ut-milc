@@ -3,16 +3,18 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import { DesktopHeader } from "@/components/layout/header/desktop-header";
 import { MobileHeader } from "@/components/layout/header/mobile-header";
+import { Provider } from "@/components/provider";
 
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NODE_ENV === "production"
+      ? "https://www.utmilc.com"
+      : "http://localhost:3000"
+  ),
   title: "東京大学現代国際法研究会",
   description: "東京大学現代国際法研究会のホームページです。",
-  themeColor: "#ffffff",
-  manifest: "/favicons/site.webmanifest",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
+  openGraph: {
+    images: "/opengraph-image.png",
   },
 };
 
@@ -24,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <DesktopHeader />
-        <MobileHeader />
-        <div className="min-h-screen">{children}</div>
-        <Footer />
+        <Provider>
+          <DesktopHeader />
+          <MobileHeader />
+          <div className="min-h-screen">{children}</div>
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

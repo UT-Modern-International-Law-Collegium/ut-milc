@@ -1,28 +1,15 @@
 import "react-image-gallery/styles/css/image-gallery.css";
 
-import dynamic from "next/dynamic";
 import { BsFillSquareFill } from "react-icons/bs";
 
-import Loading from "@/app/loading";
 import { PageTitle } from "@/components/page-tItle";
 import { data } from "./data";
 
+import { CustomImageGallery } from "@/components/image-gallery";
 import AboutUs1 from "@/public/about-us-1.jpg";
 import AboutUs2 from "@/public/about-us-2.jpg";
 import AboutUs3 from "@/public/about-us-3.jpg";
 import AboutUs4 from "@/public/about-us-4.jpg";
-
-const CustomImageGallery = dynamic(
-  async () => {
-    const { CustomImageGallery: Component } = await import(
-      "@/components/image-gallery"
-    );
-    return { default: Component };
-  },
-  {
-    loading: () => <Loading />,
-  }
-);
 
 const images = [
   {
