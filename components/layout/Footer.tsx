@@ -1,44 +1,23 @@
 "use client";
 
 import {
-  Button,
-  Center,
   Divider,
-  FormLabel,
   Grid,
   GridItem,
   HStack,
   Icon,
-  Input,
   Link,
   Stack,
   Text,
-  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import moment from "moment";
 import NextLink from "next/link";
-import { type FC } from "react";
-import { useForm } from "react-hook-form";
-import { BsInstagram, BsLine, BsTwitter } from "react-icons/bs";
+import { BsInstagram, BsLine, BsTwitterX } from "react-icons/bs";
 
-type ContactForm = {
-  email: string;
-  content: string;
-};
-
-const Footer: FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactForm>();
-
-  const doContactFormSubmit = (data: ContactForm): void => {};
-
+export function Footer() {
   return (
     <Grid
-      templateColumns={"repeat(2, 1fr)"}
       py={12}
       px={{ base: 8, lg: 40 }}
       bg={"gray.200"}
@@ -79,7 +58,7 @@ const Footer: FC = () => {
             <VStack
               as={Link}
               isExternal
-              href={"https://www.instagram.com/kokusai_law_2023/"}
+              href={"https://www.instagram.com/kokusai_law"}
             >
               <Icon as={BsInstagram} h={9} w={9} />
               <Text>Instagram</Text>
@@ -87,80 +66,18 @@ const Footer: FC = () => {
             <VStack
               as={Link}
               isExternal
-              href={"https://twitter.com/utmilc_2023"}
+              href={"https://twitter.com/utmilc_2024"}
             >
-              <Icon as={BsTwitter} h={9} w={9} />
-              <Text>Twitter</Text>
+              <Icon as={BsTwitterX} h={9} w={9} />
+              <Text>X</Text>
             </VStack>
-            <VStack as={Link} isExternal href={"https://lin.ee/gwVPQY5"}>
+            <VStack as={Link} isExternal href={"https://lin.ee/2k1ROo0"}>
               <Icon as={BsLine} h={9} w={9} />
               <Text>Line</Text>
             </VStack>
           </HStack>
         </Stack>
       </GridItem>
-      {/* contact */}
-      <GridItem colSpan={{ base: 2, md: 1 }} px={{ base: 0, md: 10 }}>
-        <Stack spacing={5}>
-          <HStack>
-            <Divider borderColor={"#000"} />
-            <Text>contact</Text>
-            <Divider borderColor={"#000"} />
-          </HStack>
-          <Text>
-            ご質問等は以下フォームから送信をお願いします。
-            <br />
-            ※当団体に参加を希望される方は、
-            <Link as={NextLink} href={"/join-us"} textDecoration={"underline"}>
-              こちら
-            </Link>
-            からご応募ください。
-          </Text>
-          {/* メアド */}
-          <Stack sx={{ span: { color: "red" } }}>
-            <FormLabel>
-              メールアドレス<span>*</span>
-            </FormLabel>
-            <Input
-              bg={"#fff"}
-              {...register("email", {
-                required: "メールアドレスは必須項目です。",
-                pattern: {
-                  value:
-                    /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
-                  message: "メールアドレスの形式が違います。",
-                },
-              })}
-            />
-            <span>{errors.email?.message}</span>
-          </Stack>
-          {/* 内容 */}
-          <Stack sx={{ span: { color: "red" } }}>
-            <FormLabel fontSize={18} m={0}>
-              お問い合わせ内容<span>*</span>
-            </FormLabel>
-            <Textarea
-              bg={"#fff"}
-              minH={200}
-              {...register("content", {
-                required: "お問い合わせ内容を入力してください。",
-              })}
-            />
-            <span>{errors.content?.message}</span>
-          </Stack>
-          <Center>
-            <Button
-              w={200}
-              bg={"blue.100"}
-              onClick={handleSubmit(doContactFormSubmit)}
-            >
-              送信する
-            </Button>
-          </Center>
-        </Stack>
-      </GridItem>
     </Grid>
   );
-};
-
-export default Footer;
+}
