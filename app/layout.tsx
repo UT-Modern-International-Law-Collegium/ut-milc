@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import { GoogleAnalytics } from "@/components/google-analytics";
-import Footer from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer";
 import { DesktopHeader } from "@/components/layout/header/desktop-header";
 import { MobileHeader } from "@/components/layout/header/mobile-header";
 import { Provider } from "@/components/provider";
