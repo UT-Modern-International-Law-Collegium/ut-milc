@@ -23,3 +23,13 @@
   height: 200px;
   width: 200px;
 }
+
+.custom-text ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+.custom-text li {
+  margin: 0;
+  padding: 0;
+}

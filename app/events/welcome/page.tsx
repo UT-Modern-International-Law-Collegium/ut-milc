@@ -16,7 +16,7 @@ export default async function Page() {
     <div className="mx-auto w-11/12 py-20 md:w-[88vw] md:py-24 lg:w-[68vw]">
       <InnerHTML
         content={welcome.title}
-        className="text-center font-serif text-4xl"
+        className="text-center text-4xl font-bold"
       />
       <Separator className="my-4" />
       <InnerHTML content={welcome.content} className="custom-text" />
