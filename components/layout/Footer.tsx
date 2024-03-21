@@ -69,7 +69,7 @@ export function Footer() {
               href={"https://twitter.com/utmilc_2024"}
             >
               <Icon as={BsTwitterX} h={9} w={9} />
-              <Text>Twitter</Text>
+              <Text>X</Text>
             </VStack>
             <VStack as={Link} isExternal href={"https://lin.ee/2k1ROo0"}>
               <Icon as={BsLine} h={9} w={9} />
